@@ -12,6 +12,9 @@
     /* teal-700 */
     --dark-background: oklch(51.1% 0.096 186.391);
 
+    /* orange-200 */
+    --accent: oklch(90.1% 0.076 70.697);
+
     --white: white;
 
     width: 100%;
@@ -21,9 +24,13 @@
 html {
     width: 100%;
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 body {
+    max-width: 600px;
     font-family: var(--font-sans);
     font-weight: 400;
     margin: 0;
@@ -66,38 +73,18 @@ button {
     border: none;
 }
 
+.hidden {
+    visibility: hidden;
+}
+
+.noDisplay {
+    display: none;
+}
+
 .defaultIcon {
     width: 25px;
     height: 25px;
     fill: var(--light-background);
-}
-
-#siteHeader {
-    background-color: var(--dark-background);
-    color: var(--light-background);
-    box-sizing: border-box;
-    width: 100%;
-    padding: 15px;
-    /* padding-left: 50px; */
-    user-select: none;
-    border-bottom: 1px solid var(--light-background);
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
-#siteHeaderName {
-    padding-top: 3px;
-}
-
-#pageSelector {
-    background-color: var(--dark-background);
-    color: var(--light-background);
-    width: 100%;
-    padding: 15px;
-    padding-left: 50px;
-    user-select: none;
-    border-top: 1px solid var(--light-background);
 }
 
 #contentWrapper {
@@ -105,55 +92,4 @@ button {
     height: 100%;
     max-width: 600px;
     overflow-y: scroll;
-}
-
-#searchHeader {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /* padding: 5px; */
-}
-
-#searchBoxWrapper {
-    position: relative;
-    background-color: var(--dark-background);
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
-#searchBox {
-    width: 100%;
-    max-width: 800px;
-    padding: 15px;
-    margin: 5px;
-    box-sizing: border-box;
-    background: none;
-    border: none;
-    color: var(--white);
-    font-weight: bold;
-}
-
-#suggestionBox {
-    width: 100%;
-    max-width: 800px;
-    position: absolute;
-    top: 56px;
-    /* left: 50%; */
-    box-sizing: border-box;
-    background-color: var(--white);
-    /* margin: 20px; */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.parcelSuggestion {
-    background: none;
-    border: none;
-    padding: 10px;
-    user-select: none;
-    cursor: pointer;
 }

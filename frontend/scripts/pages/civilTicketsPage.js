@@ -20,6 +20,15 @@ const civilTicketCard = (ticket) => {
             </a>
         `;
     }
+    let detailsElem = '';
+    if (ticket.additional_citation_details) {
+        detailsElem = `
+            <p>
+                ${ticket.additional_citation_details}
+            </p>
+        `;
+    }
+
     return `
         <div class="recordCard">
             <div class="recordCardInnerWrapper">
@@ -36,35 +45,13 @@ const civilTicketCard = (ticket) => {
                     <p>Filed: ${fileDate}</p>
                     <p>Issued: ${issueDate}</p>
                 </div>
-                <p>
-                    ${ticket.additional_citation_details}
-                </p>
+                ${detailsElem}
                 ${buttonElem}
             </div>
         </div>
     `;
 }
 
-
-// additional_citation_details: "FOR SAFE OPERATION AND MAINTENANCE AND REPAIR OF ELEVATOR SERIAL #3222 & VN26002816: 159/160: ESCALATOR NOT RUNNING."
-// ​
-// ​
-// file_date: "2026/04/02 04:00:00+00"
-// ​
-// ​
-// issue_date: "2026/04/02 04:00:00+00"
-// ​
-// ​
-// parcel: "10134044"
-// ​
-// ​
-// ticket_id: "CT26003595"
-// ​
-// ​
-// ticket_status: "Awaiting Payment"
-// ​
-// ​
-// ticket_status_date: "2026/04/02 04:00:00+00"
 const civilTicketsPage = () => {
     const civilTickets = getCivilTicketsState();
     console.log(civilTickets);
@@ -78,7 +65,9 @@ const civilTicketsPage = () => {
                 Total Civil Tickets: ${civilTickets.length}
             </h1>
             <p id="recordPageHeaderDescription">
-                If violations exist, the City of Cleveland issues violation notices, giving the property owner time to make corrections.
+                A Civil Ticket is a fine issued when a property does not meet city standards or code.
+            </p>
+            <p id="recordPageHeaderDescription">
                 Click "more" to see the official records on the City's Accela Citizen Access site.
             </p>
         </div>
@@ -93,10 +82,11 @@ export async function renderCivilTicketsPage() {
     const parcelpin = parcel.parcel;
     const civilTickets = await getCivilTickets(parcelpin);
 
-    // for (let i = 0; i < violations.length; i++) {
-    //     violations[i].issue_date = new Date(violations[i].issue_date);
-    // }
-    // violations.sort((a, b) => b.issue_date.getTime() - a.issue_date.getTime());
+    for (let i = 0; i < civilTickets.length; i++) {
+        civilTickets[i].issue_date = new Date(civilTickets[i].issue_date);
+        civilTickets[i].file_date = new Date(civilTickets[i].file_date);
+    }
+    civilTickets.sort((a, b) => b.issue_date.getTime() - a.issue_date.getTime());
 
     setCivilTicketsState(civilTickets);
     updateContentWrapper(civilTicketsPage());

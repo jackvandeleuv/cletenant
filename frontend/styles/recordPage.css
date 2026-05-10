@@ -56,6 +56,16 @@
     gap: 10px;
 }
 
+.recordCardComplaintSubHeader {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.statusDescriptionWrapper {
+    text-align: right;
+}
+
 .acaLinkButtonWrapper {
     display: flex;
     justify-content: center;
@@ -74,4 +84,18 @@
 .acaLinkButton {
     text-decoration: none;
     color: var(--light-background);
+}
+
+.recordCardTagBox {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.healthTag {
+    padding: 5px;
+    border-radius: 5px;
+    font-size: small;
+    font-weight: 500;
+    user-select: none;
 }

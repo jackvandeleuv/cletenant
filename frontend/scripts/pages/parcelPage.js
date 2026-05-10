@@ -1,9 +1,15 @@
+import { getParcel } from "../fetchData.js";
+import { getParcelpinState } from "../main.js";
+import { insertParcelIntoSearchBox } from "../searchBar.js";
 import { convertDateObjectToLabel } from "../utilities.js";
 
-export function renderParcelPage() {
-    const parcel = getParcelPageParcelState();
-    console.log(parcel);
-    document.getElementById('contentWrapper').innerHTML = parcelPage(parcel);
+export async function renderParcelPage() {
+    const parcelpin = getParcelpinState();
+    const parcel = await getParcel(parcelpin);
+    setParcelPageParcelState(parcel[0]);
+    
+    document.getElementById('contentWrapper').innerHTML = parcelPage();
+    insertParcelIntoSearchBox();
 }
 
 const parcelInfoHeaderBox = (label, value) => {
@@ -24,7 +30,8 @@ const enforcementCard = (label, value) => {
     `;
 }
 
-const parcelPage = (parcel) => {
+const parcelPage = () => {
+    const parcel = getParcelPageParcelState();
     const transferDate = convertDateObjectToLabel(new Date(parcel.last_transfer_date));
     const infoBoxes = [
         ['Parcel ID', parcel.parcel],
@@ -39,11 +46,6 @@ const parcelPage = (parcel) => {
         ['Code Violations', parcel.code_violations],
         ['311 Complaints', parcel.complaints_311],
         ['Health Complaints', parcel.health_complaints],
-
-        ['Civil Tickets', parcel.civil_tickets],
-        ['Code Violations', parcel.code_violations],
-        ['311 Complaints', parcel.complaints_311],
-        ['Health Complaints', parcel.health_complaints],
     ];
     const enforcementElem = enforcement.map((data) => enforcementCard(data[0], data[1])).join('\n');
     
@@ -51,7 +53,7 @@ const parcelPage = (parcel) => {
         <div id="parcelInfoHeader">
             ${infoBoxesElem}
         </div>
-        <div class="cardWrapper">
+        <div id="cardWrapper">
             ${enforcementElem}
         </div>
     `;

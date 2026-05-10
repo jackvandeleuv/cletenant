@@ -16,6 +16,14 @@ export async function getViolations(parcelpin) {
     return await lookupRecord('code_violations', 'parcelpin', parcelpin);
 }
 
+export async function getComplaints311(parcelpin) {
+    return await lookupRecord('complaints_311', 'parcelpin', parcelpin);
+}
+
+export async function getComplaintsHealth(parcelpin) {
+    return await lookupRecord('health_complaints', 'parcelpin', parcelpin);
+}
+
 export async function getCivilTickets(parcelpin) {
     return await lookupRecord('civil_tickets', 'parcelpin', parcelpin);
 }

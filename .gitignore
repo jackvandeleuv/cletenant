@@ -1,4 +1,5 @@
-scratch
+pipeline/source
+pipeline/transformed
 backend/.serverenv
 backend/__pycache__
 .venv

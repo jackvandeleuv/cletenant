@@ -6,12 +6,12 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-parcels = pd.read_csv('../scratch/transformed/parcels.csv')
-owners = pd.read_csv('../scratch/transformed/owner_summary.csv')
-ct = pd.read_csv('../scratch/transformed/civil_tickets.csv')
-v = pd.read_csv('../scratch/transformed/code_violations.csv')
-req = pd.read_csv('../scratch/transformed/complaints_311.csv')
-cdph = pd.read_csv('../scratch/transformed/health_complaints.csv')
+parcels = pd.read_csv('../pipeline/transformed/parcels.csv')
+owners = pd.read_csv('../pipeline/transformed/owner_summary.csv')
+ct = pd.read_csv('../pipeline/transformed/civil_tickets.csv')
+v = pd.read_csv('../pipeline/transformed/code_violations.csv')
+req = pd.read_csv('../pipeline/transformed/complaints_311.csv')
+cdph = pd.read_csv('../pipeline/transformed/health_complaints.csv')
 
 def dataframe_to_response(parcelpin, df):
     sub = df[df.parcel == parcelpin]
