@@ -5,17 +5,155 @@
 
     /* neutral-200 */
     --light-background: oklch(92.2% 0 0); 
+
+    /* neutral-800 */
+    --dark: oklch(26.9% 0 0);
     
-    
+    /* teal-700 */
+    --dark-background: oklch(51.1% 0.096 186.391);
+
+    --white: white;
+
+    width: 100%;
+    height: 100%;
+}
+
+html {
+    width: 100%;
+    height: 100%;
 }
 
 body {
     font-family: var(--font-sans);
     font-weight: 400;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--light-background);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-h1, h2, h3, button, nav {
+h1, h2, h3, h4, button, nav, p {
     font-family: var(--font-sans);
     font-weight: 400;
     margin: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+h1 {
+    font-size: larger;
+}
+
+h2 {
+    font-size: large;
+}
+
+h3 {
+    font-size: medium;
+}
+
+h4 {
+    font-size: small;
+}
+
+button {
+    background: none;
+    border: none;
+}
+
+.defaultIcon {
+    width: 25px;
+    height: 25px;
+    fill: var(--light-background);
+}
+
+#siteHeader {
+    background-color: var(--dark-background);
+    color: var(--light-background);
+    box-sizing: border-box;
+    width: 100%;
+    padding: 15px;
+    /* padding-left: 50px; */
+    user-select: none;
+    border-bottom: 1px solid var(--light-background);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+#siteHeaderName {
+    padding-top: 3px;
+}
+
+#pageSelector {
+    background-color: var(--dark-background);
+    color: var(--light-background);
+    width: 100%;
+    padding: 15px;
+    padding-left: 50px;
+    user-select: none;
+    border-top: 1px solid var(--light-background);
+}
+
+#contentWrapper {
+    width: 100%;
+    height: 100%;
+    max-width: 600px;
+    overflow-y: scroll;
+}
+
+#searchHeader {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* padding: 5px; */
+}
+
+#searchBoxWrapper {
+    position: relative;
+    background-color: var(--dark-background);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#searchBox {
+    width: 100%;
+    max-width: 800px;
+    padding: 15px;
+    margin: 5px;
+    box-sizing: border-box;
+    background: none;
+    border: none;
+    color: var(--white);
+    font-weight: bold;
+}
+
+#suggestionBox {
+    width: 100%;
+    max-width: 800px;
+    position: absolute;
+    top: 56px;
+    /* left: 50%; */
+    box-sizing: border-box;
+    background-color: var(--white);
+    /* margin: 20px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.parcelSuggestion {
+    background: none;
+    border: none;
+    padding: 10px;
+    user-select: none;
+    cursor: pointer;
 }

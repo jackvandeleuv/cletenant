@@ -1,3 +1,4 @@
 scratch
 backend/.serverenv
 backend/__pycache__
+.venv

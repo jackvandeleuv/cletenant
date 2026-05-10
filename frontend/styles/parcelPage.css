@@ -5,11 +5,27 @@
 }
 
 .card {
-    background-color: var(--light-background);
+    background-color: var(--white);
     padding: 20px;
     border-radius: 10px;
 }
 
 .cardValue {
+    font-weight: bold;
+}
+
+#parcelInfoHeader {
+    display: grid;
+    grid-template-columns: 2fr 2fr;
+    margin: 10px;
+    background-color: var(--white);
+    border-radius: 15px;
+}
+
+.parcelInfoHeaderBox {
+    padding: 20px;
+}
+
+.parcelInfoHeaderBoxLabel {
     font-weight: bold;
 }

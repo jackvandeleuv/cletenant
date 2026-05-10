@@ -1,17 +1,25 @@
-export async function getSuggestions(q) {
-    const url = `http://127.0.0.1:5000/suggestions?q=${q}`;
+async function lookupRecord(endpoint, key, value) {
+    const url = `http://127.0.0.1:5000/${endpoint}?${key}=${value}`;
     const resp = await fetch(url);
     return await resp.json();
+}
+
+export async function getSuggestions(q) {
+    return await lookupRecord('suggestions', 'q', q);
 }
 
 export async function getParcel(parcelpin) {
-    const url = `http://127.0.0.1:5000/parcel?parcelpin=${parcelpin}`;
-    const resp = await fetch(url);
-    return await resp.json();
+    return await lookupRecord('parcel', 'parcelpin', parcelpin);
+}
+
+export async function getViolations(parcelpin) {
+    return await lookupRecord('code_violations', 'parcelpin', parcelpin);
+}
+
+export async function getCivilTickets(parcelpin) {
+    return await lookupRecord('civil_tickets', 'parcelpin', parcelpin);
 }
 
 export async function getOwner(name) {
-    const url = `http://127.0.0.1:5000/owner?name=${name}`;
-    const resp = await fetch(url);
-    return await resp.json();
+    return await lookupRecord('owner', 'name', name);
 }

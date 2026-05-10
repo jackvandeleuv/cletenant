@@ -1,6 +1,7 @@
-import { getOwner, getParcel, getSuggestions } from "./fetchData.js";
+import { getOwner, getParcel, getSuggestions } from "../fetchData.js";
 import { renderOwnerPage, setOwnerPageOwner } from "./ownerPage.js";
-import { renderParcelPage, setParcelPageParcel } from "./parcelPage.js";
+import { renderParcelPage, setParcelPageParcelState } from "./parcelPage.js";
+import { renderViolationsPage } from "./violationsPage.js";
 
 export function renderSearchPage() {
     const searchBox = document.getElementById('searchBox')
@@ -14,7 +15,7 @@ function addSuggestionListeners() {
     for (const parcelButton of parcelButtons) {
         parcelButton.addEventListener('click', (async () => {
             const parcel = await getParcel(parcelButton.id);
-            setParcelPageParcel(parcel[0]);
+            setParcelPageParcelState(parcel[0]);
             renderParcelPage();
         }))
     }
@@ -63,36 +64,11 @@ const parcelSuggestion = (row) => {
 }
 
 function setSearchPageSuggestions(update) {
-    suggestionsState = structuredClone(update);
+    _suggestions = structuredClone(update);
 }
 
 function getSearchPageSuggestions() {
-    return structuredClone(suggestionsState);
+    return structuredClone(_suggestions);
 }
 
-let suggestionsState = [];
-
-// TEST
-const parcel = {
-  "parcel": "10103005",
-  "par_addr_all": "601 LAKESIDE AVE, CLEVELAND, OH, 44114",
-  "parcel_owner": "CLEVELAND CITY",
-  "std_deeded_owner": "CITY OF CLEVELAND",
-  "grantor": null,
-  "grantee": "Cleveland City Of-City Hall",
-  "owner_clean": "CITY OF CLEVELAND",
-  "civil_tickets": 10,
-  "health_complaints": 10,
-  "code_violations": 48,
-  "illegal_use_of_property_complaints": 0,
-  "large_set_out_or_eviction_complaints": 0,
-  "high_grass_complaints": 1,
-  "no_heat_complaints": 0,
-  "no_permit_complaints": 0,
-  "rental_inspection_complaints": 0,
-  "vacant_property_complaints": 1,
-  "exterior_maintenance_complaints": 5
-}
-
-setParcelPageParcel(parcel);
-renderParcelPage();
+let _suggestions = [];

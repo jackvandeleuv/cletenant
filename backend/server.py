@@ -8,23 +8,51 @@ CORS(app)
 
 parcels = pd.read_csv('../scratch/transformed/parcels.csv')
 owners = pd.read_csv('../scratch/transformed/owner_summary.csv')
+ct = pd.read_csv('../scratch/transformed/civil_tickets.csv')
+v = pd.read_csv('../scratch/transformed/code_violations.csv')
+req = pd.read_csv('../scratch/transformed/complaints_311.csv')
+cdph = pd.read_csv('../scratch/transformed/health_complaints.csv')
+
+def dataframe_to_response(parcelpin, df):
+    sub = df[df.parcel == parcelpin]
+    if len(sub) == 0:
+        return 'did not recognize parcelpin', 404
+    return sub.to_json(orient='records'), None
+
+def get_parcelpin_param(request):
+    return escape(request.args.get("parcelpin")).upper().strip()
+
+@app.route("/code_violations")
+def code_violations():
+    parcelpin = get_parcelpin_param(request)
+    return dataframe_to_response(parcelpin, v)
+    
+@app.route("/complaints_311")
+def complaints_311():
+    parcelpin = get_parcelpin_param(request)
+    return dataframe_to_response(parcelpin, req)
+    
+@app.route("/health_complaints")
+def health_complaints():
+    parcelpin = get_parcelpin_param(request)
+    return dataframe_to_response(parcelpin, cdph)
+    
+@app.route("/civil_tickets")
+def civil_tickets():
+    parcelpin = get_parcelpin_param(request)
+    return dataframe_to_response(parcelpin, ct)
 
 @app.route("/parcel")
 def parcel():
-    parcelpin = request.args.get("parcelpin")
-    parcelpin = escape(parcelpin).upper().strip()
-
-    sub = parcels[parcels.parcel == parcelpin]
-
-    if len(sub) == 0:
-        return 'did not recognize parcelpin', 404
-
-    return sub[: 1].to_json(orient='records')
+    parcelpin = get_parcelpin_param(request)
+    try:
+        return dataframe_to_response(parcelpin, parcels)
+    except ValueError as ve:
+        return str(ve), 404
 
 @app.route("/owner")
 def owner():
-    name = request.args.get("name")
-    name = escape(name).upper().strip()
+    name = escape(request.args.get("name")).upper().strip()
 
     sub = owners[owners.owner_clean == name]
 
