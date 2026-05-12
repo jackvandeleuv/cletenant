@@ -1,6 +1,29 @@
+import { BACKEND_URL, CLIENT_SAFE_KEY } from "./config.js";
+
 async function lookupRecord(endpoint, key, value) {
-    const url = `http://127.0.0.1:5000/${endpoint}?${key}=${value}`;
-    const resp = await fetch(url);
+    payload = {
+        key: `ilike.${value}`
+    }
+
+    const url = `${BACKEND_URL}/${endpoint}"`
+
+    const params = new URLSearchParams({
+        select: '*',
+        key: `ilike.${value}`, 
+    });
+
+    const resp = await fetch(
+        url, 
+        method='GET',
+        headers={
+            'Range': '0-999',
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'apikey': CLIENT_SAFE_KEY,
+            'Authorization': `Bearer ${CLIENT_SAFE_KEY}`,
+        },
+        body=params,
+    );
+
     return await resp.json();
 }
 
