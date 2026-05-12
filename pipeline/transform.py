@@ -1,8 +1,12 @@
 import pandas as pd
 import re 
 
+def filter_to_known_parcels(df, parcel_df):
+    return df.merge(parcel_df[['parcel']].drop_duplicates(), on='parcel').copy()
 
 # PARCELS ----------------------------------------------------------------------
+
+print('parcels')
 
 parcels = pd.read_json('source/parcels.json')
 parcels.columns = [x.lower().strip() for x in parcels.columns]
@@ -20,16 +24,20 @@ parcels['owner_clean'] = parcels['std_deeded_owner'].apply(
     )
     if not pd.isna(x) else None
 )
+
 parcels = parcels.copy()
 
 
 # CIVIL TICKETS ----------------------------------------------------------------------
 
+print('civil tickets')
 civil_tickets = pd.read_json('source/civil_tickets.json')
 civil_tickets.columns = [x.lower().strip() for x in civil_tickets.columns]
 
 civil_tickets = civil_tickets.rename(columns={'dw_parcel': 'parcel'})
 civil_tickets = civil_tickets[~civil_tickets.parcel.isna()]
+
+civil_tickets = filter_to_known_parcels(civil_tickets, parcels)
 
 civil_tickets[[
     'ticket_id',
@@ -53,11 +61,17 @@ parcels = parcels.merge(civil_tickets_agg, on='parcel', how='left')
 
 # COMPLAINTS (HEALTH) ----------------------------------------------------------------------
 
+print('health complaints')
+
 complaints_health = pd.read_json('source/complaints_health.json')
 complaints_health.columns = [x.lower().strip() for x in complaints_health.columns]
 
 complaints_health = complaints_health.rename(columns={'dw_parcel': 'parcel'})
+
+complaints_health = filter_to_known_parcels(complaints_health, parcels)
+
 complaints_health[[
+    'objectid',
     'id',
     'complaint_number',
     'submit_date',
@@ -85,6 +99,8 @@ parcels = parcels.merge(complaints_health_agg, on='parcel', how='left')
 
 
 # VIOLATIONS ----------------------------------------------------------------------
+
+print('violations')
 
 complaint_violations = pd.read_json('source/complaint_violations.json')
 complaint_violations.columns = [x.lower().strip() for x in complaint_violations.columns]
@@ -115,10 +131,13 @@ violation_status_history = (violation_status_history
         'accela_citizen_access_url',
     ]]
     .sort_values(['record_id', 'dw_parcel'])
-    .drop_duplicates()
+    .drop_duplicates('record_id')
     .rename(columns={'dw_parcel': 'parcel'})
     .merge(complaint_violations, on='record_id', how='left')
 )
+
+violation_status_history = filter_to_known_parcels(violation_status_history, parcels)
+
 violation_status_history.to_csv('transformed/code_violations.csv', index=False)
 
 violations_agg = (violation_status_history
@@ -132,6 +151,8 @@ parcels = parcels.merge(violations_agg, on='parcel', how='left')
 
 
 # COMPLAINTS (311) ----------------------------------------------------------------------
+
+print('311 complaints')
 
 complaints_311 = pd.read_json('source/complaints_311.json')
 complaints_311.columns = ['_'.join(x.lower().strip().split()) for x in complaints_311.columns]
@@ -149,6 +170,8 @@ complaints_311 = complaints_311[[
     'target_date',
     'parcel',
 ]]
+
+complaints_311 = filter_to_known_parcels(complaints_311, parcels)
 
 complaints_311.to_csv('transformed/complaints_311.csv', index=False)
 
