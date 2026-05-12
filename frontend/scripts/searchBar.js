@@ -1,4 +1,4 @@
-import { getOwner, getParcel, getSuggestions } from "./fetchData.js";
+import { getParcel, getSuggestions } from "./fetchData.js";
 import { getCurrentPage, pageIDToDisplayName, setAndRenderCurrentPage } from "./main.js";
 import { getParcelPageParcelState, renderParcelPage, setParcelPageParcelState } from "./pages/parcelPage.js";
 import { renderViolationsPage } from "./pages/violationsPage.js";
@@ -21,6 +21,7 @@ function addSuggestionListeners() {
     const parcelButtons = document.getElementsByClassName('parcelSuggestion');
     for (const parcelButton of parcelButtons) {
         parcelButton.addEventListener('click', (async () => {
+            console.log(`click listener with: ${parcelButton.id}`);
             const parcel = await getParcel(parcelButton.id);
             setParcelPageParcelState(parcel[0]);
             toggleSuggestionDropdownVisible();
@@ -28,14 +29,14 @@ function addSuggestionListeners() {
         }))
     }
 
-    const ownerButtons = document.getElementsByClassName('ownerSuggestion');
-    for (const ownerButton of ownerButtons) {
-        ownerButton.addEventListener('click', (async () => {
-            const owner = await getOwner(ownerButton.id);
-            setOwnerPageOwner(owner);
-            renderOwnerPage();
-        }))
-    }
+    // const ownerButtons = document.getElementsByClassName('ownerSuggestion');
+    // for (const ownerButton of ownerButtons) {
+    //     ownerButton.addEventListener('click', (async () => {
+    //         const owner = await getOwner(ownerButton.id);
+    //         setOwnerPageOwner(owner);
+    //         renderOwnerPage();
+    //     }))
+    // }
 }
 
 async function searchInputListener(input) {
@@ -43,11 +44,7 @@ async function searchInputListener(input) {
     setSearchPageSuggestions(results);
     const elems = [];
     for (const row of results) {
-        if (row.result_type === 'parcel') {
-            elems.push(parcelSuggestion(row))
-        } else {
-            elems.push(ownerSuggestion(row))
-        }
+        elems.push(parcelSuggestion(row))
     }
     document.getElementById('suggestionBox').innerHTML = elems.join('\n');
     addSuggestionListeners();

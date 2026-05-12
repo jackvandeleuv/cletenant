@@ -37,7 +37,7 @@ const parcelPage = () => {
         ['Parcel ID', parcel.parcel],
         ['Parcel Owner', parcel.parcel_owner],
         ['Last Transfer Date', transferDate],
-        ['Tax Assessed Total', parcel.tax_assessed_total],
+        ['Tax Delinquency', `$${parcel.taxdelinquencyamount || 0}`],
     ];
     const infoBoxesElem = infoBoxes.map((data) => parcelInfoHeaderBox(data[0], data[1])).join('\n');
     
@@ -45,7 +45,7 @@ const parcelPage = () => {
         ['Civil Tickets', parcel.civil_tickets],
         ['Code Violations', parcel.code_violations],
         ['311 Complaints', parcel.complaints_311],
-        ['Health Complaints', parcel.health_complaints],
+        ['Health Complaints', parcel.complaints_health],
     ];
     const enforcementElem = enforcement.map((data) => enforcementCard(data[0], data[1])).join('\n');
     
@@ -59,8 +59,16 @@ const parcelPage = () => {
     `;
 }
 
+function updateUrlParam(key, value) {
+    console.log(value)
+    const url = new URL(window.location.href);
+    url.searchParams.set(key, value); 
+    window.history.pushState({}, "", url);
+}
+
 export function setParcelPageParcelState(update) {
     _parcel = structuredClone(update);
+    updateUrlParam('parcel', update.parcel);
 }
 
 export function getParcelPageParcelState() {

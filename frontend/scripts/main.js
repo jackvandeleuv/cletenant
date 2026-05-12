@@ -1,4 +1,4 @@
-import { getParcel } from "./fetchData.js";
+import { getParcel, lookupRecord } from "./fetchData.js";
 import { renderCivilTicketsPage } from "./pages/civilTicketsPage.js";
 import { renderComplaints311Page } from "./pages/complaints311Page.js";
 import { renderComplaintsHealthPage } from "./pages/complaintsHealthPage.js";
@@ -6,12 +6,13 @@ import { renderParcelPage, setParcelPageParcelState } from "./pages/parcelPage.j
 import { renderSearchPage as setUpSearchBar } from "./searchBar.js";
 import { renderViolationsPage } from "./pages/violationsPage.js";
 
-function main() {
+async function main() {
     const parcelpin = getParcelpinFromURL();
     setParcelpinState(parcelpin);
 
     setUpSearchBar();
     renderParcelPage();
+
     // test();
 }
 
