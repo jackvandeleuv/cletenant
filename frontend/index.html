@@ -1,65 +1,13 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>CleScout</title>
-
-    <meta name="description" content="See if your rental has been certified Lead Safe by the City of Cleveland.">
-    <link rel="canonical" href="https://city-of-cleveland.github.io/lead-safe-viewer/">
-
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="CleScout">
-    <meta property="og:title" content="CleScout">
-    <meta property="og:description" content="Explore city enforcement actions on every property in Cleveland.">
-    
-    <!-- CSS -->
-    <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="styles/searchBar.css">
-    <link rel="stylesheet" href="styles/parcelPage.css">
-    <link rel="stylesheet" href="styles/recordPage.css">
-
-</head>
-<body id="body">
-    <div id="searchHeader">
-        <div id="siteHeader">
-            <svg class="defaultIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
-                <path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"/>
-            </svg>
-            <h3 id="siteHeaderName">CleScout</h3>
-        </div>
-        <div id="searchBoxWrapper">
-            <input
-                type="text"
-                id="searchBox"
-                autocomplete="off"
-                placeholder="Address or owner"
-            />
-            <div id="suggestionBox" class="hidden"></div>
-        </div>
-        <div id="pageSelectorWrapper">
-            <button id="pageSelector">
-                <p id="pageSelectorCurrentLabel">
-                    Overview
-                </p>
-                <svg id="pageSelectorButtonIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
-                    <path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z"/>
-                </svg>
-            </button>
-            <div id="pageSelectorButtonWrapper" class="hidden">
-                <button id="parcelPage" class="pageSelectorButton noDisplay">Overview</button>
-                <button id="civilTicketsPage" class="pageSelectorButton">Civil Tickets</button>
-                <button id="violationsPage" class="pageSelectorButton">Code Violations</button>
-                <button id="complaints311Page" class="pageSelectorButton">Complaints (311)</button>
-                <button id="complaintsHealthPage" class="pageSelectorButton">Complaints (Health)</button>
-            </div>
-        </div>
-    </div>
-    <div id="contentWrapper">
-        <!-- Result data goes here. -->
-    </div>
-
-    <script type="module" src="scripts/main.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>cleapp</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>

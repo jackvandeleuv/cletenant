@@ -1,6 +1,6 @@
 import { BACKEND_URL, CLIENT_SAFE_KEY } from "./config.js";
 
-export async function lookupRecord(endpoint, key, value, exactMatch, limit) {
+async function lookupRecord(endpoint, key, value, exactMatch, limit) {
     const DEFAULT_LIMIT = 999;
 
     const url = new URL(`${BACKEND_URL}/${endpoint}`);
@@ -28,8 +28,6 @@ export async function lookupRecord(endpoint, key, value, exactMatch, limit) {
             },
         }
     );
-
-    console.log(resp)
 
     if (!resp.ok) {
         throw new Error(`${resp.status}: ${resp.statusText}`);
