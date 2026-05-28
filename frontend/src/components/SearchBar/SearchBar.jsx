@@ -7,6 +7,11 @@ import SuggestionsBox from '../SuggestionsBox/SuggestionsBox';
 import { sleep } from '../../utils/utilities';
 
 function SearchBar({ currentPage, setCurrentPage, setCurrentParcel }) {
+    const test = async () => {
+        console.log(await getSuggestions('hi'))
+    }
+    test();
+
     const [pageButtonsHidden, setPageButtonsHidden] = useState({
         'parcelPage': true,
         'civilTickets': false,
