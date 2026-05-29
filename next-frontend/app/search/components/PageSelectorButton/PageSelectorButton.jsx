@@ -1,14 +1,13 @@
-function PageSelectorButton({ pageID, setCurrentPage, isHidden }) {
-    const buttonClass = isHidden ? 'pageSelectorButton noDisplay' : 'pageSelectorButton';
+import Link from 'next/link';
+import styles from './PageSelectorButton.module.css';
+
+export default function PageSelectorButton({ parcelpin, buttonLabel, buttonRoute }) {
     return (
-        <button 
-            onClick={(() => setCurrentPage(pageID))} 
-            id="parcelPage" 
-            className={buttonClass}
+        <Link 
+            href={`/search/${parcelpin}/${buttonRoute}`}
+            className={styles.pageSelectorButton}
         >
-            Overview
-        </button>
+            {buttonLabel}
+        </Link>
     )
 }
-
-export default PageSelectorButton;

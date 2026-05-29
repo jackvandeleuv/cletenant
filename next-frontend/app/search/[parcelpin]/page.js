@@ -1,10 +1,11 @@
-"use client";
+import { getParcel } from "../../utils/fetchData";
+import ParcelPage from "./ParcelPage";
 
-import ParcelPage from "../components/ParcelPage/ParcelPage";
-import '../../globals.css';
+export default async function ParcelPageWrapper({ params }) {   
+    const { parcelpin } = await params;
+    const parcel = (await getParcel(parcelpin))[0];
 
-export default function OverviewPage() {
     return (
-        <ParcelPage/>
+        <ParcelPage parcel={parcel}/>
     )
 }

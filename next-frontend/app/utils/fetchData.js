@@ -41,6 +41,7 @@ export async function getSuggestions(q) {
 }
 
 export async function getParcel(parcelpin) {
+    console.log(`looking up ${parcelpin}`)
     return await lookupRecord('parcels', 'parcel', parcelpin);
 }
 

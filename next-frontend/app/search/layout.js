@@ -1,8 +1,7 @@
 "use client";
 
 import { useState } from 'react';
-import PageSelectorButton from './components/PageSelectorButton/PageSelectorButton';
-import styles from './layout.module.css';
+import styles from './SearchPage.module.css';
 import { getSuggestions } from '../utils/fetchData';
 import SuggestionsBox from './components/SuggestionsBox/SuggestionsBox';
 import { sleep } from '../utils/utilities';
@@ -13,13 +12,7 @@ export default function SearchBar({ children }) {
     // }
     // test();
 
-    const [pageButtonsHidden, setPageButtonsHidden] = useState({
-        'parcelPage': true,
-        'civilTickets': false,
-        'codeViolations': false,
-        'complaints311': false,
-        'complaintsHealth': false,
-    });
+
     const [suggestions, setSuggestions] = useState([]);
     const [suggestionsBoxState, setSuggestionsBoxState] = useState({
         hidden: true, 
@@ -59,15 +52,6 @@ export default function SearchBar({ children }) {
         }
     }
 
-    const pageIDToLabel = new Map([
-        ['parcelPage', 'Overview'],
-        ['civilTicketsPage', 'Civil Tickets'],
-        ['violationsPage', 'Code Violations'],
-        ['complaints311Page', 'Complaints (311)'],
-        ['complaintsHealthPage', 'Complaints (Health)'],
-    ])
-    const pageIDs = Array.from(pageIDToLabel.keys());
-
     return (
         <div className={styles.searchHeader}>
             <div className={styles.siteHeader}>
@@ -92,30 +76,7 @@ export default function SearchBar({ children }) {
                     setCurrentParcel={() => {}}
                 />
             </div>
-            <div className={styles.pageSelectorWrapper}>
-                <button className={styles.pageSelector}>
-                    <p className={styles.pageSelectorCurrentLabel}>
-                        {/* {pageIDToLabel.get(currentPage)} */}
-                        {'Overview'}
-                    </p>
-                    <svg className={styles.pageSelectorButtonIcon} xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
-                        <path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z"/>
-                    </svg>
-                </button>
-                <div className={`${styles.pageSelectorButtonWrapper} ${styles.hidden}`}>
-                    {pageIDs.map((pageID) => 
-                        <PageSelectorButton 
-                            key={pageID}
-                            pageID={pageID}
-                            setCurrentPage={() => {}}
-                            isHidden={pageButtonsHidden[pageID]}
-                        >
-                            {pageIDToLabel.get(pageID)}
-                        </PageSelectorButton>
-                    )}
-                </div>
-                {children}
-            </div>
+            {children}
         </div>
     )
 }
