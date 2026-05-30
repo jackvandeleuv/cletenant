@@ -1,0 +1,27 @@
+.parcelSuggestion {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 10px;
+    user-select: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.parcelSuggestionContent {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    justify-content: left;
+    align-items: left;
+}
+
+.parcelSuggestionIcon {
+    width: 25px;
+    height: 25px;
+    min-width: 25px;
+    min-height: 25px;
+    fill: var(--dark);
+}

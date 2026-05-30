@@ -27,6 +27,8 @@ html {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 5px;
+    box-sizing: border-box;
 }
 
 body {
@@ -40,6 +42,10 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+input:focus {
+    outline: none;
 }
 
 h1, h2, h3, h4, button, nav, p {
@@ -81,15 +87,15 @@ button {
     display: none;
 }
 
-.defaultIcon {
-    width: 25px;
-    height: 25px;
-    fill: var(--light-background);
-}
-
-#contentWrapper {
+.contentWrapper {
     width: 100%;
     height: 100%;
     max-width: 600px;
     overflow-y: scroll;
+}
+
+.defaultIcon {
+    width: 25px;
+    height: 25px;
+    fill: var(--light-background);
 }

@@ -1,0 +1,42 @@
+
+.suggestionBox {
+    width: 100%;
+    max-width: 800px;
+    position: absolute;
+    top: 55px;
+    z-index: 1;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--white);
+}
+
+.suggestionBoxSkeleton {
+    width: 100%;
+    max-width: 800px;
+    height: 250px;
+    position: absolute;
+    top: 57px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+
+    background-color: var(--dark-background);
+    background-color: white;
+    animation: skeletonPulse 1.2s ease-in-out infinite;
+}
+
+@keyframes skeletonPulse {
+    0%, 100% {
+        background-color: #a3a3a3; /* neutral-400 */
+    }
+
+    50% {
+        background-color: #525252; /* neutral-600 */
+    }
+}

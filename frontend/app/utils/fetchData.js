@@ -1,6 +1,6 @@
 import { BACKEND_URL, CLIENT_SAFE_KEY } from "./config.js";
 
-export async function lookupRecord(endpoint, key, value, exactMatch, limit) {
+async function lookupRecord(endpoint, key, value, exactMatch, limit) {
     const DEFAULT_LIMIT = 999;
 
     const url = new URL(`${BACKEND_URL}/${endpoint}`);
@@ -29,8 +29,6 @@ export async function lookupRecord(endpoint, key, value, exactMatch, limit) {
         }
     );
 
-    console.log(resp)
-
     if (!resp.ok) {
         throw new Error(`${resp.status}: ${resp.statusText}`);
     }
@@ -43,6 +41,7 @@ export async function getSuggestions(q) {
 }
 
 export async function getParcel(parcelpin) {
+    console.log(`looking up ${parcelpin}`)
     return await lookupRecord('parcels', 'parcel', parcelpin);
 }
 
@@ -55,7 +54,7 @@ export async function getComplaints311(parcelpin) {
 }
 
 export async function getComplaintsHealth(parcelpin) {
-    return await lookupRecord('health_complaints', 'parcel', parcelpin);
+    return await lookupRecord('complaints_health', 'parcel', parcelpin);
 }
 
 export async function getCivilTickets(parcelpin) {
