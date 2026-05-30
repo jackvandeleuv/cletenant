@@ -1,0 +1,204 @@
+.parcelInfoHeaderBox {
+    padding: 20px;
+}
+
+.parcelInfoHeaderBoxLabel {
+    font-weight: bold;
+}
+
+.cardWrapper {
+    display: flex; 
+    flex-direction: column;
+    gap: 15px;
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.card {
+    background-color: var(--white);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.cardValue {
+    font-weight: bold;
+}
+
+.parcelInfoHeader {
+    display: grid;
+    grid-template-columns: 2fr 2fr;
+    /* background-color: var(--white); */
+    /* border-radius: 15px; */
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.recordCardWrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.recordPageHeaderCount {
+    font-weight: bold;
+    padding: 20px;
+}
+
+.recordPageHeaderDescription {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+}
+
+.recordCard {
+    box-sizing: border-box;
+    padding: 25px;
+    background-color: var(--white);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.recordCardHeaderWrapper {
+    display: flex;
+    gap: 10px;
+}
+
+.recordCardInnerWrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 15px;
+}
+
+.recordCardIcon {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    min-height: 40px;
+    fill: var(--dark);
+}
+
+.recordCardValue {
+    font-weight: bold;
+}
+
+.recordCardSubHeader {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.recordCardComplaintSubHeader {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.statusDescriptionWrapper {
+    text-align: right;
+}
+
+.acaLinkButtonWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: large;
+    font-weight: bold;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: var(--dark);
+    border-radius: 5px;
+    user-select: none;
+    cursor: pointer;
+}
+
+.acaLinkButton {
+    text-decoration: none;
+    color: var(--light-background);
+}
+
+.recordCardTagBox {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.healthTag {
+    padding: 5px;
+    border-radius: 5px;
+    font-size: small;
+    font-weight: 500;
+    user-select: none;
+}
+
+.siteHeader {
+    background-color: var(--dark-background);
+    color: var(--light-background);
+    box-sizing: border-box;
+    width: 100%;
+    padding: 15px;
+    /* padding-left: 50px; */
+    user-select: none;
+    border-bottom: 1px solid var(--light-background);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.homeIcon {
+    width: 25px;
+    height: 25px;
+    fill: var(--light-background);
+}
+
+.siteHeaderName {
+    padding-top: 3px;
+}
+
+.searchHeader {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* padding: 5px; */
+}
+
+.searchBoxWrapper {
+    position: relative;
+    background-color: var(--dark-background);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.searchBox {
+    width: 100%;
+    max-width: 800px;
+    padding: 15px;
+    margin: 5px;
+    box-sizing: border-box;
+    background: none;
+    border: none;
+    color: var(--white);
+    font-weight: bold;
+}
+
+.searchWrapper {
+    height: 60%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
