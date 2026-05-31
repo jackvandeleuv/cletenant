@@ -3,7 +3,7 @@ import styles from '../parcelpin.module.css';
 export default function CivilTicketsCard({ record }) {
 
     const hasLink = record.accela_citizen_access_url !== undefined;
-
+    console.log(record)
     return (
         <div className={styles.recordCard}>
             <div className={styles.recordCardInnerWrapper}>
@@ -21,8 +21,13 @@ export default function CivilTicketsCard({ record }) {
                     <p>Issued: {record.issue_date}</p>
                 </div>
                 <p>
-                    {record.additional_citation_details}
-                </p>                
+                    Status: {record.ticket_status}
+                </p>
+                {record.additional_citation_details && (
+                    <p>
+                        {record.additional_citation_details}
+                    </p>
+                )}                
                 {hasLink &&
                     <a 
                         className={styles.acaLinkButtonWrapper}

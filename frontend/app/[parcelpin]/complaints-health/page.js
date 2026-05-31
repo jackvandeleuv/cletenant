@@ -1,11 +1,21 @@
 import { getComplaintsHealth } from "@/app/utils/fetchData";
-import PageSelectorButtonWrapper from "../../components/PageSelectorButton/PageSelectorButtonWrapper";
 import styles from '../parcelpin.module.css';
 import ComplaintHealthCard from "./ComplaintHealthCard";
+import { convertDateObjectToLabel } from "@/app/utils/utilities";
 
 export default async function ComplaintsHealthPage({ params }) {
     const { parcelpin } = await params;
     const records = await getComplaintsHealth(parcelpin);
+
+    records.sort((a, b) => 
+        ((new Date(b.submit_date)).getTime() - (new Date(a.submit_date)).getTime())
+    );
+
+    for (let i = 0; i < records.length; i++) {
+        records[i].submit_date = convertDateObjectToLabel(new Date(records[i].submit_date));
+    }
+
+    console.log(records)
 
     return (
         <>
@@ -15,8 +25,7 @@ export default async function ComplaintsHealthPage({ params }) {
                         Total Health Complaints: {records.length}
                     </h1>
                     <p className={styles.recordPageHeaderDescription}>
-                        If violations exist, the City of Cleveland issues violation notices, giving the property owner time to make corrections.
-                        Click "more" to see the official records on the City's Accela Citizen Access site.
+                        The Cleveland Department of Public Health accepts complaints via the City website.
                     </p>
                 </div>
                 <div className={styles.recordCardWrapper}>

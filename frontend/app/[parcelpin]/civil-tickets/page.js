@@ -25,8 +25,7 @@ export default async function CivilTicketsPage({ params }) {
                         Total Civil Tickets: {records.length}
                     </h1>
                     <p className={styles.recordPageHeaderDescription}>
-                        If violations exist, the City of Cleveland issues violation notices, giving the property owner time to make corrections.
-                        Click "more" to see the official records on the City's Accela Citizen Access site.
+                        Civil tickets are building code enforcement actions which may carry financial penalties. Tickets are issued by the City of Cleveland.
                     </p>
                 </div>
                 <div className={styles.recordCardWrapper}>

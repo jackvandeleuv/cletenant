@@ -1,8 +1,7 @@
 import styles from './parcelpin.module.css';
 
-export default function ParcelInfoHeaderBox({ label, value}) {
-    console.log('rendering info header')
-    console.log(label)
+export default function ParcelInfoHeaderBox({ label, value }) {
+   
     return (
         <div className={styles.parcelInfoHeaderBox}>
             <h3>{label}</h3>

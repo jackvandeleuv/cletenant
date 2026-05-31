@@ -1,15 +1,19 @@
 .mainPageWrapper {
+    position: relative;
     background-color: var(--dark-background);
     height: 100%;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 
 .searchWrapper {
+    position: absolute;
+    top: 75px;
     max-width: var(--max-width);
-    height: 60%;
+    height: 100%;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -20,9 +24,7 @@
 
 .siteHeader {
     color: var(--dark);
-    box-sizing: border-box;
     width: 100%;
-    padding: 15px;
     user-select: none;
     display: flex;
     align-items: center;
@@ -40,15 +42,20 @@
     min-width: 70px;
     min-height: 70px;
     /* fill: var(--dark); */
-    fill: var(--light-background)
+    fill: var(--white)
 }
 
 .siteHeaderName {
     padding-top: 3px;
     font-weight: bold;
     font-size: xxx-large;
+    color: var(--white);
+}
 
-    color: var(--light-background);
+.siteSubHeader {
+    color: var(--white);
+    padding: 15px;
+    user-select: none;
 }
 
 .searchHeader {
@@ -61,7 +68,7 @@
 
 .searchBoxWrapper {
     position: relative;
-    background-color: var(--light-background);
+    background-color: var(--white);
     width: 100%;
     display: flex;
     flex-direction: column;

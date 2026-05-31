@@ -24,7 +24,12 @@ export default async function ViolationPage({ params }) {
                         Total Code Violations: {records.length}
                     </h1>
                     <p className={styles.recordPageHeaderDescription}>
-                        If violations exist, the City of Cleveland issues violation notices, giving the property owner time to make corrections.
+                        When the City finds a property in violation of building or zoning codes, a record of that violation will appear here.
+                    </p>
+                    <p className={styles.recordPageHeaderDescription}>
+                        If violations are not corrected, the City may start legal proceedings against a property owner.
+                    </p>
+                    <p className={styles.recordPageHeaderDescription}>         
                         Click "more" to see the official records on the City's Accela Citizen Access site.
                     </p>
                 </div>

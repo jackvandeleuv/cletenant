@@ -31,7 +31,7 @@
     box-sizing: border-box;
     padding: 10px;
     gap: 10px;
-    background-color: var(--light-background);
+    background-color: var(--white);
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
     border-bottom: 2px solid var(--dark);

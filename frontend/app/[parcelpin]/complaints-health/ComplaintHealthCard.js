@@ -2,8 +2,6 @@ import styles from '../parcelpin.module.css';
 import ComplaintTag from './ComplaintTag';
 
 export default function ComplaintHealthCard({ complaint }) {
-
-
     const tagSpecs = (complaint) => {
         const COLS = [
             ['complaint_type', 'Type', 'oklch(90.1% 0.076 70.697)'],  // orange-200
@@ -23,8 +21,6 @@ export default function ComplaintHealthCard({ complaint }) {
         return tagSpecs;
     }
 
-
-
     return (
         <div className={styles.recordCard}>
             <div className={styles.recordCardInnerWrapper}>
@@ -39,7 +35,7 @@ export default function ComplaintHealthCard({ complaint }) {
                 </div>
                 <div className={styles.recordCardSubHeader}>
                     <p>Status: {complaint.complaint_status}</p>
-                    <p>Created: {complaint.issue_date}</p>
+                    <p>Created: {complaint.submit_date}</p>
                 </div>
                 {complaint.complaint_outcome && (
                     <div className={styles.recordCardSubHeader}>

@@ -46,7 +46,8 @@ export default function SearchBar({ children }) {
                         <SuggestionsBox 
                             suggestions={suggestions} 
                             loading={suggestionsLoading}
-                            topDist={'60px'}
+                            topDist={'58px'}
+                            topPadding={'0px'}
                         />
                     )}
                 </div>

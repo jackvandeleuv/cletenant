@@ -111,6 +111,11 @@
     gap: 10px;
 }
 
+.enforcementCardSubtitle {
+    font-size: small;
+    font-weight: lighter;
+}
+
 .statusDescriptionWrapper {
     text-align: right;
 }
@@ -201,6 +206,7 @@
 }
 
 .searchBox {
+    z-index: 1;
     width: 100%;
     max-width: 800px;
     padding: 15px;

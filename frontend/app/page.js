@@ -20,6 +20,10 @@ export default function MainSearch() {
                     </svg>
                     <h1 className={styles.siteHeaderName}>CleTenant</h1>
                 </div>
+                <h2 className={styles.siteSubHeader}>
+                    Find information about any property in Cleveland. 
+                    While this tool uses public, government data, it is not affiliated with the City or County.
+                </h2>
                 <div className={styles.searchBoxWrapper}>
                     <div className={styles.inputBoxWrapper}>
                         <input
@@ -46,6 +50,7 @@ export default function MainSearch() {
                             suggestions={suggestions} 
                             loading={suggestionsLoading}
                             topDist={'50px'}
+                            topPadding={'15px'}
                         />
                     )}
                 </div>

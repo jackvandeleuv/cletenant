@@ -2,8 +2,6 @@ import { convertDateObjectToLabel } from '@/app/utils/utilities';
 import styles from '../parcelpin.module.css';
 
 export default function Complaint311Card({ complaint }) {
-    // const hasLink = record.accela_citizen_access_url !== undefined;
-
     const requestedTime = convertDateObjectToLabel(new Date(complaint.requested_datetime));
     const otherTime = complaint.closed_date ? convertDateObjectToLabel(new Date(complaint.closed_date)) : convertDateObjectToLabel(new Date(complaint.target_date));
     const otherLabel = complaint.closed_date ? 'Closed' : 'Target';
@@ -17,7 +15,7 @@ export default function Complaint311Card({ complaint }) {
                     </svg>
                     <div className={styles.recordCardHeader}>
                         <h4>311 Complaint</h4>
-                        <h1 className={styles.recordCardValue}>{complaint.reference_number}</h1>
+                        <h1 className={styles.recordCardValue}>{complaint.service_request_id}</h1>
                     </div>
                 </div>
                 <div className={styles.recordCardComplaintSubHeader}>
