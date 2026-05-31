@@ -4,6 +4,56 @@ import re
 def filter_to_known_parcels(df, parcel_df):
     return df.merge(parcel_df[['parcel']].drop_duplicates(), on='parcel').copy()
 
+def try_cast_to_int(string):
+    try:
+        return int(string.strip())
+    except ValueError:
+        return None
+    
+def adjust_shortened_address_range(start, end):
+    start = str(start)
+    end = str(end)
+
+    # Handle formats like '10002-4'
+    to_add = start[: -len(end)]
+    end_adj = int(to_add + end)
+    if end_adj > int(start):
+        return end_adj
+    
+    # If we couldn't find an adjusted endpoint that is
+    # greater than the start point, give up and return
+    # the starting point
+    return int(start)
+
+def addr_to_min_max(string):
+    SEPARATORS = ['-', '&', 'to']
+
+    # Handle addresses like '100-102'
+    string = str(string).lower()
+    for sep in SEPARATORS:
+        if string.count(sep) == 1:
+            start, end = string.split(sep)
+
+            start = try_cast_to_int(start)
+            end = try_cast_to_int(end)
+
+            if start and end and end < start:
+                return start, adjust_shortened_address_range(start, end)
+
+            return start, end
+
+    # Likely only a single number or an invalid number.
+    integer = try_cast_to_int(string)
+    return integer, integer
+
+def addr_to_min(string):
+    addr_min, _ = addr_to_min_max(string)
+    return addr_min
+
+def addr_to_max(string):
+    _, addr_max = addr_to_min_max(string)
+    return addr_max
+
 # PARCELS ----------------------------------------------------------------------
 
 print('parcels')
@@ -25,8 +75,11 @@ parcels['owner_clean'] = parcels['std_deeded_owner'].apply(
     if not pd.isna(x) else None
 )
 
-parcels = parcels.copy()
+parcels['parcel_street'] = parcels['parcel_street'].apply(lambda x: x.strip() if not pd.isna(x) else None)
+parcels['parcel_addr_min'] = parcels['parcel_addr'].apply(lambda x: addr_to_min(x))
+parcels['parcel_addr_max'] = parcels['parcel_addr'].apply(lambda x: addr_to_max(x))
 
+parcels = parcels.copy()
 
 # CIVIL TICKETS ----------------------------------------------------------------------
 
