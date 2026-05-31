@@ -27,22 +27,24 @@ export default async function Complaints311Page({ params }) {
                 parcelpin={parcelpin}
             />
 
-            <div className={styles.recordPageHeader}>
-                <h1 className={styles.recordPageHeaderCount}>
-                    Total 311 Complaints: {records.length}
-                </h1>
-                <p className={styles.recordPageHeaderDescription}>
-                    If violations exist, the City of Cleveland issues violation notices, giving the property owner time to make corrections.
-                    Click "more" to see the official records on the City's Accela Citizen Access site.
-                </p>
-            </div>
-            <div className={styles.recordCardWrapper}>
-                {records.map((record) => (
-                    <Complaint311Card
-                        key={record.service_request_id}
-                        complaint={record}
-                    />
-                ))}
+            <div className={'contentWrapper'}>
+                <div className={styles.recordPageHeader}>
+                    <h1 className={styles.recordPageHeaderCount}>
+                        Total 311 Complaints: {records.length}
+                    </h1>
+                    <p className={styles.recordPageHeaderDescription}>
+                        If violations exist, the City of Cleveland issues violation notices, giving the property owner time to make corrections.
+                        Click "more" to see the official records on the City's Accela Citizen Access site.
+                    </p>
+                </div>
+                <div className={styles.recordCardWrapper}>
+                    {records.map((record) => (
+                        <Complaint311Card
+                            key={record.service_request_id}
+                            complaint={record}
+                        />
+                    ))}
+                </div>
             </div>
         </>
     )

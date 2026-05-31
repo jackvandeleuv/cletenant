@@ -29,22 +29,24 @@ export default async function CivilTicketsPage({ params }) {
                 parcelpin={parcelpin}
             />
 
-            <div className={styles.recordPageHeader}>
-                <h1 className={styles.recordPageHeaderCount}>
-                    Total Civil Tickets: {records.length}
-                </h1>
-                <p className={styles.recordPageHeaderDescription}>
-                    If violations exist, the City of Cleveland issues violation notices, giving the property owner time to make corrections.
-                    Click "more" to see the official records on the City's Accela Citizen Access site.
-                </p>
-            </div>
-            <div className={styles.recordCardWrapper}>
-                {records.map((record) => (
-                    <CivilTicketsCard 
-                        key={record.ticket_id}
-                        record={record}
-                    />
-                ))}
+            <div className={'contentWrapper'}>
+                <div className={styles.recordPageHeader}>
+                    <h1 className={styles.recordPageHeaderCount}>
+                        Total Civil Tickets: {records.length}
+                    </h1>
+                    <p className={styles.recordPageHeaderDescription}>
+                        If violations exist, the City of Cleveland issues violation notices, giving the property owner time to make corrections.
+                        Click "more" to see the official records on the City's Accela Citizen Access site.
+                    </p>
+                </div>
+                <div className={styles.recordCardWrapper}>
+                    {records.map((record) => (
+                        <CivilTicketsCard 
+                            key={record.ticket_id}
+                            record={record}
+                        />
+                    ))}
+                </div>
             </div>
         </>
     )

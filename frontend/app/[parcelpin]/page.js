@@ -33,25 +33,27 @@ export default async function ParcelPage({ params }) {
                 parcelpin={parcelpin}
             />
 
-            <div className={styles.parcelInfoHeader}>
-                {infoBoxes.map((row) => ( 
-                    <ParcelInfoHeaderBox 
-                        key={row[0]}
-                        label={row[0]}
-                        value={row[1]}
-                    />
-                ))}            
-            </div>
-            <div className={styles.cardWrapper}>
-                {enforcement.map((row) => (
-                    <EnforcementCard 
-                        key={row[0]}
-                        label={row[0]}
-                        value={row[1]}
-                        parcelpin={parcelpin}
-                        route={row[2]}
-                    />
-                ))} 
+            <div className={'contentWrapper'}>
+                <div className={styles.parcelInfoHeader}>
+                    {infoBoxes.map((row) => ( 
+                        <ParcelInfoHeaderBox 
+                            key={row[0]}
+                            label={row[0]}
+                            value={row[1]}
+                        />
+                    ))}            
+                </div>
+                <div className={styles.cardWrapper}>
+                    {enforcement.map((row) => (
+                        <EnforcementCard 
+                            key={row[0]}
+                            label={row[0]}
+                            value={row[1]}
+                            parcelpin={parcelpin}
+                            route={row[2]}
+                        />
+                    ))} 
+                </div>
             </div>
         </>
     )
