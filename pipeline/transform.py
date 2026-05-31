@@ -1,6 +1,28 @@
 import pandas as pd
 import re 
 
+def clean_string(string):
+    if pd.isna(string):
+        return None
+    return re.sub(
+        r"\s\s+",
+        " ",
+        string.strip()
+    ).strip()
+
+def clean_string_remove_nonalpha(string):
+    if pd.isna(string):
+        return None
+    return re.sub(
+        r"\s\s+",
+        " ",
+        re.sub(
+            r"[^A-Za-z0-9]", 
+            " ", 
+            string.strip()
+        )
+    ).strip()
+
 def filter_to_known_parcels(df, parcel_df):
     return df.merge(parcel_df[['parcel']].drop_duplicates(), on='parcel').copy()
 
@@ -62,22 +84,22 @@ parcels = pd.read_json('source/parcels.json')
 parcels.columns = [x.lower().strip() for x in parcels.columns]
 
 parcels = parcels[~parcels.par_addr_all.isna()].rename(columns={'parcelpin': 'parcel'})
-parcels['owner_clean'] = parcels['std_deeded_owner'].apply(
-    lambda x: re.sub(
-        r"\s\s+",
-        " ",
-        re.sub(
-            r"[^A-Za-z0-9]", 
-            " ", 
-            x
-        )
-    )
-    if not pd.isna(x) else None
-)
 
-parcels['parcel_street'] = parcels['parcel_street'].apply(lambda x: x.strip() if not pd.isna(x) else None)
+parcels['owner_clean'] = parcels['std_deeded_owner'].apply(clean_string_remove_nonalpha)
+
+PARCELS_SIMPLE_CLEAN = [
+    'parcel_predir',
+    'parcel_street',
+    'parcel_suffix',
+    'parcel_unit',
+]
+for col_name in PARCELS_SIMPLE_CLEAN:
+    parcels[col_name] = parcels[col_name].apply(clean_string)
+
 parcels['parcel_addr_min'] = parcels['parcel_addr'].apply(lambda x: addr_to_min(x))
 parcels['parcel_addr_max'] = parcels['parcel_addr'].apply(lambda x: addr_to_max(x))
+
+parcels = parcels.drop('parcel_addr', axis=1)
 
 parcels = parcels.copy()
 
