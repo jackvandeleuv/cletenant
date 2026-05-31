@@ -74,7 +74,7 @@ async function lookupRecordWithAddress(endpoint, input, address, limit) {
         address.streetName === '' &&
         address.streetName === ''
     ) {
-        url.searchParams.set('par_addr_all', `ilike.${input}*`);  
+        url.searchParams.set('par_addr_all', `ilike.${input.trim()}*`);  
     }
 
     if (limit) {

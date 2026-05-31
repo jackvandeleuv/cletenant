@@ -48,7 +48,7 @@ def adjust_shortened_address_range(start, end):
     return int(start)
 
 def addr_to_min_max(string):
-    SEPARATORS = ['-', '&', 'to']
+    SEPARATORS = ['-', '&', 'to', ',']
 
     # Handle addresses like '100-102'
     string = str(string).lower()

@@ -32,10 +32,10 @@ function splitOffTrailingSubstring(string, gpattern) {
 }
 
 const STREET_DIR_MAP = new Map([
-    ['N', 'NORTH'],
-    ['S', 'SOUTH'],
-    ['E', 'EAST'],
-    ['W', 'WEST'],
+    ['NORTH', 'N'],
+    ['SOUTH', 'S'],
+    ['EAST', 'E'],
+    ['WEST', 'W'],
 ]);
 
 const REMAP_SUFFIX = new Map([
@@ -60,13 +60,22 @@ const REMAP_SUFFIX = new Map([
 
 export function parseAddress(input) {
     const string = input.toUpperCase();
+    console.log(string)
+    let [streetNumber, stringA] = splitOffLeadingSubstring(string, /^\s*(\d{1,6})/);
+    
+    console.log(`street number: ${streetNumber}`)
 
-    const [streetNumber, stringA] = splitOffLeadingSubstring(string, /^\s*(\d{1,6})/);
+    streetNumber = Number.parseInt(streetNumber.trim());
+    if (Number.isNaN(streetNumber)) {
+        streetNumber = '';
+    }
+    
+    console.log(`street number clean: ${streetNumber}`)
 
     let [streetDir, stringB] = splitOffLeadingSubstring(stringA, /^(\s*(?:N|S|E|W)\s)/);
     if (streetDir === "") {
         [streetDir, stringB] = splitOffLeadingSubstring(stringA, /^(\s*(?:NORTH|SOUTH|EAST|WEST)\s)/);
-        streetDir = STREET_DIR_MAP.get(streetDir) || streetDir;
+        streetDir = STREET_DIR_MAP.get(streetDir.trim()) || streetDir;
     }
 
     let [streetName, streetType] = splitOffTrailingSubstring(
@@ -75,9 +84,9 @@ export function parseAddress(input) {
         // at least one space after the street type.
         stringB + ' ', 
         // g flag is required to find the last match.
-        /\s(ROW|TER|SQ|PK|PKWAY|CIR|PKWY|LN|PL|CT|BLVD|DR|RD|ST|AVE|BLV|BVD|ROW|TERRACE|SQUARE|PARKWAY|CIRCLE|LANE|PLACE|COURT|BOULEVARD|DRIVE|ROAD|STREET|AVENUE)\s/g
+        /\s(ROW|TER|SQ|PK|PKWAY|CIR|PKWY|LN|PL|CT|BLVD|DR|RD|ST|AVE|BLV|BVD|ROW|TERRACE|SQUARE|PARKWAY|CIRCLE|LANE|PLACE|COURT|BOULEVARD|DRIVE|ROAD|STREET|AVENUE)[,.\s]/g
     );
-    streetType = REMAP_SUFFIX.get(streetType) || streetType;
+    streetType = REMAP_SUFFIX.get(streetType.trim()) || streetType;
 
     const numericStreetName = streetName.trim().match(/^(\d{1,3})/);
     if (numericStreetName) {
@@ -85,7 +94,7 @@ export function parseAddress(input) {
     }
 
     return {
-        streetNumber: Number.parseInt(streetNumber.trim()) || '',
+        streetNumber: streetNumber,
         streetDir: streetDir.trim(),
         streetName: streetName.trim(),
         streetType: streetType.trim(),

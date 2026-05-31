@@ -28,6 +28,7 @@ export default function MainSearch() {
         if (input !== currentInput) return;
 
         const parsed = parseAddress(input);
+        console.log(parsed)
 
         try {
             setSuggestions(await getSuggestionsByAddress(input, parsed));
