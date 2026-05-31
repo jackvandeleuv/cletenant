@@ -6,29 +6,19 @@ import { convertDateObjectToLabel } from "@/app/utils/utilities";
 
 export default async function CivilTicketsPage({ params }) {
     const { parcelpin } = await params;
-    // const parcel = (await getParcel(parcelpin))[0];
-
     const records = await getCivilTickets(parcelpin);
+
     records.sort((a, b) => 
         ((new Date(b.issue_date)).getTime() - (new Date(a.issue_date)).getTime())
     );
-
-    console.log(records)
 
     for (let i = 0; i < records.length; i++) {
         records[i].issue_date = convertDateObjectToLabel(new Date(records[i].issue_date));
         records[i].file_date = convertDateObjectToLabel(new Date(records[i].file_date));
     }
 
-    console.log(records)
-
     return (
         <>
-            <PageSelectorButtonWrapper
-                currentRoute={'civil-tickets'}
-                parcelpin={parcelpin}
-            />
-
             <div className={'contentWrapper'}>
                 <div className={styles.recordPageHeader}>
                     <h1 className={styles.recordPageHeaderCount}>

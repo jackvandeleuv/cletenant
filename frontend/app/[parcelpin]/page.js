@@ -28,11 +28,6 @@ export default async function ParcelPage({ params }) {
 
     return (
         <>
-            <PageSelectorButtonWrapper
-                currentRoute={''}  // Overview page
-                parcelpin={parcelpin}
-            />
-
             <div className={'contentWrapper'}>
                 <div className={styles.parcelInfoHeader}>
                     {infoBoxes.map((row) => ( 

@@ -5,17 +5,10 @@ import ComplaintHealthCard from "./ComplaintHealthCard";
 
 export default async function ComplaintsHealthPage({ params }) {
     const { parcelpin } = await params;
-
     const records = await getComplaintsHealth(parcelpin);
-    console.log(records)
 
     return (
         <>
-            <PageSelectorButtonWrapper
-                currentRoute={'complaints-health'}
-                parcelpin={parcelpin}
-            />
-
             <div className={'contentWrapper'}>
                 <div className={styles.recordPageHeader}>
                     <h1 className={styles.recordPageHeaderCount}>

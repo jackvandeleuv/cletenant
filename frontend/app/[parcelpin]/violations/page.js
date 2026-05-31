@@ -6,7 +6,6 @@ import { convertDateObjectToLabel } from "@/app/utils/utilities";
 
 export default async function ViolationPage({ params }) {
     const { parcelpin } = await params;
-    // const parcel = (await getParcel(parcelpin))[0];
 
     const records = await getViolations(parcelpin);
     records.sort((a, b) => 
@@ -19,11 +18,6 @@ export default async function ViolationPage({ params }) {
 
     return (
         <>
-            <PageSelectorButtonWrapper
-                currentRoute={'violations'}
-                parcelpin={parcelpin}
-            />
-
             <div className={'contentWrapper'}>
                 <div className={styles.recordPageHeader}>
                     <h1 className={styles.recordPageHeaderCount}>

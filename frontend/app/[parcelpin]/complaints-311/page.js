@@ -4,13 +4,7 @@ import styles from '../parcelpin.module.css';
 import Complaint311Card from "./Complaint311Card";
 
 export default async function Complaints311Page({ params }) {
-    console.log('params')
-    console.log(await params);
     const { parcelpin } = await params;
-    console.log('parcelpin')
-    console.log(parcelpin)
-    // const parcel = (await getParcel(parcelpin))[0];
-
     const records = await getComplaints311(parcelpin);
     
     // records.sort((a, b) => 
@@ -22,11 +16,6 @@ export default async function Complaints311Page({ params }) {
 
     return (
         <>
-            <PageSelectorButtonWrapper
-                currentRoute={'complaints-311'}
-                parcelpin={parcelpin}
-            />
-
             <div className={'contentWrapper'}>
                 <div className={styles.recordPageHeader}>
                     <h1 className={styles.recordPageHeaderCount}>

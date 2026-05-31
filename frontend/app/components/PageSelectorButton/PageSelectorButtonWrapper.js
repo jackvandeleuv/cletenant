@@ -3,10 +3,16 @@
 import { useState } from 'react';
 import styles from './PageSelectorButton.module.css';
 import PageSelectorButton from './PageSelectorButton';
+import { usePathname } from 'next/navigation';
 
-export default function PageSelectorButtonWrapper({ currentRoute, parcelpin }) {
+export default function PageSelectorButtonWrapper() {
+    // Get URL path.
+    const pathName = usePathname();
+    const parts = pathName.split('/');
+    const parcelpin = parts[1];
+    const currentRoute = parts[2] ?? '';
+
     const [buttonsHidden, setButtonsHidden] = useState(true);
-    console.log(`label: ${currentRoute}`)
     let pagesSpec = [
         ['', 'Overview'],
         ['civil-tickets', 'Civil Tickets'],

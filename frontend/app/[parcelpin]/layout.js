@@ -8,7 +8,7 @@ import { sleep } from '@/app/utils/utilities';
 import { parseAddress } from '@/app/utils//parseAddress';
 import PageSelectorButtonWrapper from '../components/PageSelectorButton/PageSelectorButtonWrapper';
 
-export default function SearchBar({ children, params }) {
+export default function SearchBar({ children }) {
     const [suggestions, setSuggestions] = useState([]);
     const [suggestionsLoading, setSuggestionsLoading] = useState(false);
     const [suggestionsHidden, setSuggestionsHidden] = useState(true);
@@ -62,6 +62,8 @@ export default function SearchBar({ children, params }) {
                     loading={suggestionsLoading}
                 />}
             </div>
+
+            <PageSelectorButtonWrapper />
 
             {children}
         </div>
