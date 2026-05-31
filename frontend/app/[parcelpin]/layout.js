@@ -2,10 +2,10 @@
 
 import { useState } from 'react';
 import styles from '@/app/[parcelpin]/parcelpin.module.css';
-import { getSuggestions } from '@/app/utils/fetchData';
+import { getSuggestionsByAddress } from '@/app/utils/fetchData';
 import SuggestionsBox from '@/app/components/SuggestionsBox/SuggestionsBox';
 import { sleep } from '@/app/utils/utilities';
-import { test } from '@/app/utils//parseAddress';
+import { parseAddress } from '@/app/utils//parseAddress';
 
 export default function SearchBar({ children }) {
     const [suggestions, setSuggestions] = useState([]);
@@ -13,11 +13,6 @@ export default function SearchBar({ children }) {
     const [suggestionsHidden, setSuggestionsHidden] = useState(true);
 
     const handleSearchInput = async (input) => {
-        console.log(input);
-        test(input);
-
-        return
-
         if (!input || input.trim() === '') {
             setSuggestionsLoading(false);
             setSuggestionsHidden(true);
@@ -32,8 +27,10 @@ export default function SearchBar({ children }) {
         const currentInput = document.getElementById('searchBox').value;
         if (input !== currentInput) return;
 
+        const parsed = parseAddress(input);
+
         try {
-            setSuggestions(await getSuggestions(input));
+            setSuggestions(await getSuggestionsByAddress(input, parsed));
             setSuggestionsLoading(false);
             setSuggestionsHidden(false);
         } catch (err) {

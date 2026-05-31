@@ -4,7 +4,8 @@ import { useState } from 'react';
 import SuggestionsBox from './components/SuggestionsBox/SuggestionsBox';
 import styles from './SearchPage.module.css';
 import { sleep } from './utils/utilities';
-import { getSuggestions } from './utils/fetchData';
+import { getSuggestionsByAddress } from './utils/fetchData';
+import { parseAddress } from './utils/parseAddress';
 
 export default function MainSearch() {
     const [suggestions, setSuggestions] = useState([]);
@@ -12,7 +13,6 @@ export default function MainSearch() {
     const [suggestionsHidden, setSuggestionsHidden] = useState(true);
 
     const handleSearchInput = async (input) => {
-        console.log(input);
         if (!input || input.trim() === '') {
             setSuggestionsLoading(false);
             setSuggestionsHidden(true);
@@ -27,8 +27,10 @@ export default function MainSearch() {
         const currentInput = document.getElementById('searchBox').value;
         if (input !== currentInput) return;
 
+        const parsed = parseAddress(input);
+
         try {
-            setSuggestions(await getSuggestions(input));
+            setSuggestions(await getSuggestionsByAddress(input, parsed));
             setSuggestionsLoading(false);
             setSuggestionsHidden(false);
         } catch (err) {

@@ -47,22 +47,22 @@ URLS = {
             'taxdelinquencyamount',
         ],
     ),
-    # 'civil_tickets.csv': (
-    #     'https://kvzikdxyxvziagomfvii.supabase.co/rest/v1/civil_tickets',
-    #     [],
-    # ),
-    # 'code_violations.csv': (
-    #     'https://kvzikdxyxvziagomfvii.supabase.co/rest/v1/code_violations',
-    #     [],
-    # ),
-    # 'complaints_311.csv': (
-    #     'https://kvzikdxyxvziagomfvii.supabase.co/rest/v1/complaints_311',
-    #     [],
-    # ),
-    # 'complaints_health.csv': (
-    #     'https://kvzikdxyxvziagomfvii.supabase.co/rest/v1/complaints_health',
-    #     [],
-    # ),
+    'civil_tickets.csv': (
+        'https://kvzikdxyxvziagomfvii.supabase.co/rest/v1/civil_tickets',
+        [],
+    ),
+    'code_violations.csv': (
+        'https://kvzikdxyxvziagomfvii.supabase.co/rest/v1/code_violations',
+        [],
+    ),
+    'complaints_311.csv': (
+        'https://kvzikdxyxvziagomfvii.supabase.co/rest/v1/complaints_311',
+        [],
+    ),
+    'complaints_health.csv': (
+        'https://kvzikdxyxvziagomfvii.supabase.co/rest/v1/complaints_health',
+        [],
+    ),
 }
 
 LIMIT = 1000
