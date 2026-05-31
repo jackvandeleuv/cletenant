@@ -3,64 +3,52 @@
 import { useState } from 'react';
 import SuggestionsBox from './components/SuggestionsBox/SuggestionsBox';
 import styles from './SearchPage.module.css';
-import { sleep } from './utils/utilities';
-import { getSuggestionsByAddress } from './utils/fetchData';
-import { parseAddress } from './utils/parseAddress';
+import { clearInputBox, handleSearchInput } from './utils/search';
 
 export default function MainSearch() {
     const [suggestions, setSuggestions] = useState([]);
     const [suggestionsLoading, setSuggestionsLoading] = useState(false);
     const [suggestionsHidden, setSuggestionsHidden] = useState(true);
-
-    const handleSearchInput = async (input) => {
-        if (!input || input.trim() === '') {
-            setSuggestionsLoading(false);
-            setSuggestionsHidden(true);
-            return;
-        }
-
-        setSuggestionsLoading(true);
-        setSuggestionsHidden(false);
-
-        await sleep(300);
-
-        const currentInput = document.getElementById('searchBox').value;
-        if (input !== currentInput) return;
-
-        const parsed = parseAddress(input);
-        console.log(parsed)
-
-        try {
-            setSuggestions(await getSuggestionsByAddress(input, parsed));
-            setSuggestionsLoading(false);
-            setSuggestionsHidden(false);
-        } catch (err) {
-            setSuggestionsLoading(false);
-            setSuggestionsHidden(true);
-        }
-    }
+    const [searchInput, setSearchInput] = useState('');
 
     return (
-        <div className={styles.searchWrapper}>
-            <div className={styles.siteHeader}>
-                <svg className={styles.homeIcon} xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
-                    <path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"/>
-                </svg>
-                <h1 className={styles.siteHeaderName}>CleTenant</h1>
-            </div>
-            <div className={styles.searchBoxWrapper}>
-                <input
-                    type="text"
-                    id="searchBox"
-                    className={styles.searchBox}
-                    autoComplete="off"
-                    placeholder="Enter an address."
-                    onChange={(e) => handleSearchInput(e.target.value)}
-                />
-                {!suggestionsHidden && <SuggestionsBox
-                    suggestions={suggestions} 
-                    loading={suggestionsLoading}
-                />}
+        <div className={styles.mainPageWrapper}>
+            <div className={styles.searchWrapper}>
+                <div className={styles.siteHeader}>
+                    <svg className={styles.homeIcon} xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                        <path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"/>
+                    </svg>
+                    <h1 className={styles.siteHeaderName}>CleTenant</h1>
+                </div>
+                <div className={styles.searchBoxWrapper}>
+                    <div className={styles.inputBoxWrapper}>
+                        <input
+                            type="text"
+                            id="searchBox"
+                            className={styles.searchBox}
+                            autoComplete="off"
+                            placeholder="Enter an address."
+                            onChange={(e) => handleSearchInput(e.target.value, setSuggestions, setSuggestionsLoading, setSuggestionsHidden, setSearchInput)}
+                        />
+                        {searchInput !== '' && (
+                            <button
+                                className={styles.clearInputBoxButton}
+                                onClick={(() => clearInputBox(setSuggestionsLoading, setSuggestionsHidden, setSearchInput))}
+                            >
+                                <svg className={styles.clearInputBoxIcon} xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                                    <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/>
+                                </svg>
+                            </button>
+                        )}
+                    </div>
+                    {!suggestionsHidden && (
+                        <SuggestionsBox
+                            suggestions={suggestions} 
+                            loading={suggestionsLoading}
+                            topDist={'63px'}
+                        />
+                    )}
+                </div>
             </div>
         </div>
     )

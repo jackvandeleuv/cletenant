@@ -1,11 +1,11 @@
 import Suggestion from "../Suggestion/Suggestion";
 import styles from './SuggestionsBox.module.css';
 
-function SuggestionsBox({ suggestions, loading }) {
+function SuggestionsBox({ suggestions, loading, topDist }) {
     const boxClass = loading ? styles.suggestionBoxSkeleton : styles.suggestionBox;
     
     return (
-        <div className={boxClass}>
+        <div className={boxClass} style={{top: topDist}}>
             {!loading && suggestions.map((suggestion) => 
                 <Suggestion
                     key={suggestion.parcel}

@@ -159,6 +159,8 @@
 .homeIcon {
     width: 25px;
     height: 25px;
+    min-width: 25px;
+    min-height: 25px;
     fill: var(--light-background);
 }
 
@@ -196,6 +198,25 @@
     color: var(--white);
     font-weight: bold;
     font-size: medium;
+}
+
+.inputBoxWrapper {
+    display: flex;
+    
+}
+
+.clearInputBoxIcon {
+    width: 35px;
+    height: 35px;
+    min-width: 35px;
+    min-height: 35px;
+    fill: var(--light-background);
+}
+
+.clearInputBoxButton {
+    padding: 10px;
+    box-sizing: border-box;
+    cursor: pointer;
 }
 
 .searchWrapper {

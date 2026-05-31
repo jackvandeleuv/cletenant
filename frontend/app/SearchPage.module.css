@@ -15,15 +15,20 @@
 }
 
 .homeIcon {
-    width: 50px;
-    height: 50px;
-    fill: var(--dark);
+    width: 70px;
+    height: 70px;
+    min-width: 70px;
+    min-height: 70px;
+    /* fill: var(--dark); */
+    fill: var(--light-background)
 }
 
 .siteHeaderName {
     padding-top: 3px;
     font-weight: bold;
-    font-size: x-large;
+    font-size: xxx-large;
+
+    color: var(--light-background);
 }
 
 .searchHeader {
@@ -36,7 +41,7 @@
 
 .searchBoxWrapper {
     position: relative;
-    background-color: var(--dark);
+    background-color: var(--white);
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -52,8 +57,9 @@
     box-sizing: border-box;
     background: none;
     border: none;
-    color: var(--white);
+    color: var(--dark);
     font-weight: bold;
+    font-size: larger;
 }
 
 .searchWrapper {
@@ -62,4 +68,40 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+.inputBoxWrapper {
+    display: flex;
+}
+
+.clearInputBoxIcon {
+    width: 35px;
+    height: 35px;
+    min-width: 35px;
+    min-height: 35px;
+    fill: var(--dark);
+}
+
+.clearInputBoxButton {
+    padding: 10px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.searchWrapper {
+    height: 30%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+.mainPageWrapper {
+    background-color: var(--dark-background);
+    height: 100%;
+    width: 100%;
+    max-width: 100%;
 }
