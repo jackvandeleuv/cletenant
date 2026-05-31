@@ -45,7 +45,7 @@ export default function MainSearch() {
                         <SuggestionsBox
                             suggestions={suggestions} 
                             loading={suggestionsLoading}
-                            topDist={'63px'}
+                            topDist={'50px'}
                         />
                     )}
                 </div>

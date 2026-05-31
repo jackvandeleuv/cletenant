@@ -33,9 +33,10 @@ export async function handleSearchInput(input, setSuggestions, setSuggestionsLoa
     console.log(parsed)
 
     try {
-        setSuggestions(await getSuggestionsByAddress(input, parsed));
+        const suggestions = await getSuggestionsByAddress(input, parsed);
+        setSuggestions(suggestions);
         setSuggestionsLoading(false);
-        setSuggestionsHidden(false);
+        setSuggestionsHidden(suggestions.length === 0);
     } catch (err) {
         setSuggestionsLoading(false);
         setSuggestionsHidden(true);

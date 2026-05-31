@@ -1,4 +1,5 @@
 import { BACKEND_URL, CLIENT_SAFE_KEY } from "./config.js";
+import { sleep } from "./utilities.js";
 
 async function lookupRecord(endpoint, key, value, exactMatch, limit) {
     const DEFAULT_LIMIT = 999;
@@ -104,12 +105,13 @@ async function lookupRecordWithAddress(endpoint, input, address, limit) {
 }
 
 export async function getSuggestionsByAddress(input, address) {
+    // await sleep(100000);
     return await lookupRecordWithAddress('parcels', input, address, 5);
 }
 
-export async function getSuggestions(q) {
-    return await lookupRecord('parcels', 'par_addr_all', q, false, 5);
-}
+// export async function getSuggestions(q) {
+//     return await lookupRecord('parcels', 'par_addr_all', q, false, 5);
+// }
 
 export async function getParcel(parcelpin) {
     console.log(`looking up ${parcelpin}`)

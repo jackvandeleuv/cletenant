@@ -1,7 +1,7 @@
 
 .suggestionBox {
     width: 100%;
-    max-width: 800px;
+    max-width: var(--max-width);
     position: absolute;
     z-index: 1;
     box-sizing: border-box;
@@ -10,32 +10,108 @@
     justify-content: center;
     align-items: center;
     background-color: var(--white);
+    padding-top: 15px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 
-.suggestionBoxSkeleton {
+.panel {
     width: 100%;
-    max-width: 800px;
-    height: 250px;
-    position: absolute;
-    top: 57px;
+    border-radius: 14px;
+    padding: 16px;
+    background: var(--white);
     box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 1;
-
-    background-color: var(--dark-background);
-    background-color: white;
-    animation: skeletonPulse 1.2s ease-in-out infinite;
 }
 
-@keyframes skeletonPulse {
-    0%, 100% {
-        background-color: #a3a3a3; /* neutral-400 */
-    }
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 14px;
+}
 
-    50% {
-        background-color: #525252; /* neutral-600 */
+.list {
+    display: grid;
+    gap: 10px;
+}
+
+.item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px;
+    border-radius: 12px;
+    background: #f9fafb;
+}
+
+.content {
+    flex: 1;
+    display: grid;
+    gap: 8px;
+    padding-top: 2px;
+}
+
+.skeleton {
+    position: relative;
+    overflow: hidden;
+    background: #e5e7eb;
+}
+
+.skeleton::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    transform: translateX(-100%);
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.65),
+        transparent
+    );
+    animation: shimmer 1s infinite;
+}
+
+.title {
+    width: 42%;
+    height: 18px;
+    border-radius: 999px;
+}
+
+.badge {
+    width: 52px;
+    height: 22px;
+    border-radius: 999px;
+}
+
+.icon {
+    width: 36px;
+    height: 36px;
+    flex: 0 0 auto;
+    border-radius: 10px;
+}
+
+.line {
+    height: 12px;
+    border-radius: 999px;
+}
+
+.lineLong {
+    width: 88%;
+}
+
+.lineMedium {
+    width: 58%;
+}
+
+@keyframes shimmer {
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .skeleton::after {
+        animation: none;
     }
 }

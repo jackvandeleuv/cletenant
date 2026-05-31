@@ -1,3 +1,23 @@
+.mainPageWrapper {
+    background-color: var(--dark-background);
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.searchWrapper {
+    max-width: var(--max-width);
+    height: 60%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
 .siteHeader {
     color: var(--dark);
     box-sizing: border-box;
@@ -41,7 +61,7 @@
 
 .searchBoxWrapper {
     position: relative;
-    background-color: var(--white);
+    background-color: var(--light-background);
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -51,7 +71,7 @@
 
 .searchBox {
     width: 100%;
-    max-width: 800px;
+    max-width: var(--max-width);
     padding: 15px;
     margin: 5px;
     box-sizing: border-box;
@@ -60,16 +80,6 @@
     color: var(--dark);
     font-weight: bold;
     font-size: larger;
-}
-
-.searchWrapper {
-    height: 60%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 15px;
-    box-sizing: border-box;
 }
 
 .inputBoxWrapper {
@@ -100,8 +110,5 @@
 }
 
 .mainPageWrapper {
-    background-color: var(--dark-background);
-    height: 100%;
-    width: 100%;
-    max-width: 100%;
+
 }

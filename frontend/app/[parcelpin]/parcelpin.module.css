@@ -1,3 +1,14 @@
+.mainPageWrapper {
+    /* background-color: var(--dark-background); */
+    background-color: var(--light-background);
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
 .parcelInfoHeaderBox {
     padding: 20px;
 }
@@ -170,11 +181,13 @@
 }
 
 .searchHeader {
+    max-width: var(--max-width);
     width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: var(--light-background);
     /* padding: 5px; */
 }
 
@@ -202,7 +215,6 @@
 
 .inputBoxWrapper {
     display: flex;
-    
 }
 
 .clearInputBoxIcon {
