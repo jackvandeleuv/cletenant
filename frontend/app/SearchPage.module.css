@@ -22,6 +22,12 @@
     box-sizing: border-box;
 }
 
+@media (max-width: 600px) {
+    .searchWrapper {
+        top: 10px;
+    }
+}
+
 .siteHeader {
     color: var(--dark);
     width: 100%;
@@ -55,6 +61,7 @@
 .siteSubHeader {
     color: var(--white);
     padding: 15px;
+    padding-bottom: 20px;
     user-select: none;
 }
 
@@ -79,7 +86,7 @@
 .searchBox {
     width: 100%;
     max-width: var(--max-width);
-    padding: 15px;
+    padding: 10px;
     margin: 5px;
     box-sizing: border-box;
     background: none;
@@ -113,9 +120,5 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-
-}
-
-.mainPageWrapper {
 
 }

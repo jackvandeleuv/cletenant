@@ -8,7 +8,6 @@
     align-items: center;
 }
 
-
 .parcelInfoHeaderBox {
     padding: 20px;
 }
@@ -24,6 +23,7 @@
     padding: 10px;
     width: 100%;
     box-sizing: border-box;
+    margin-bottom: 30px;
 }
 
 .card {
@@ -155,18 +155,25 @@
 }
 
 .siteHeader {
-    background-color: var(--dark-background);
-    color: var(--light-background);
-    box-sizing: border-box;
     width: 100%;
-    padding: 15px;
-    /* padding-left: 50px; */
-    user-select: none;
+    background-color: var(--dark-background);
     border-bottom: 1px solid var(--light-background);
     display: flex;
     align-items: center;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.homeButton {
+    cursor: pointer;
+    display: flex;
+    color: var(--light-background);
+    box-sizing: border-box;
+    padding: 5px;
+    user-select: none;
     gap: 5px;
 }
+
 
 .hidden {
     visibility: hidden;

@@ -5,6 +5,7 @@ import styles from '@/app/[parcelpin]/parcelpin.module.css';
 import SuggestionsBox from '@/app/components/SuggestionsBox/SuggestionsBox';
 import PageSelectorButtonWrapper from '../components/PageSelectorButton/PageSelectorButtonWrapper';
 import { clearInputBox, handleSearchInput } from '../utils/search';
+import Link from 'next/link';
 
 export default function SearchBar({ children }) {
     const [suggestions, setSuggestions] = useState([]);
@@ -16,10 +17,15 @@ export default function SearchBar({ children }) {
         <div className={styles.mainPageWrapper}>
             <div className={styles.searchHeader}>
                 <div className={styles.siteHeader}>
-                    <svg className={styles.homeIcon} xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
-                        <path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"/>
-                    </svg>
-                    <h3 className={styles.siteHeaderName}>CleTenant</h3>
+                    <Link 
+                        className={styles.homeButton}
+                        href='/'
+                    >
+                        <svg className={styles.homeIcon} xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                            <path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"/>
+                        </svg>
+                        <h3 className={styles.siteHeaderName}>CleTenant</h3>
+                    </Link>
                 </div>
                 <div className={styles.searchBoxWrapper}>
                     <div className={styles.inputBoxWrapper}>

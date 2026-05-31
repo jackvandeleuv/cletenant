@@ -30,7 +30,6 @@ export async function handleSearchInput(input, setSuggestions, setSuggestionsLoa
     if (input !== currentInput) return;
 
     const parsed = parseAddress(input);
-    console.log(parsed)
 
     try {
         const suggestions = await getSuggestionsByAddress(input, parsed);
