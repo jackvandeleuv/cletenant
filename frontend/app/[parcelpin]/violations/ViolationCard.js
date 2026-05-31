@@ -1,8 +1,6 @@
 import styles from '../parcelpin.module.css';
 
 export default function ViolationCard({ record }) {
-    console.log('card:');
-    console.log(record)
     const hasLink = record.accela_citizen_access_url !== undefined;
 
     return (

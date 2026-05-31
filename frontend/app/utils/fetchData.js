@@ -37,21 +37,12 @@ async function lookupRecord(endpoint, key, value, exactMatch, limit) {
     return await resp.json();
 }
 
-
-// {
-//     streetNumber: Number.parseInt(streetNumber.trim()),
-//     streetDir: streetDir.trim(),
-//     streetName: streetName.trim(),
-//     streetType: streetType.trim(),
-// }
 async function lookupRecordWithAddress(endpoint, input, address, limit) {
-    console.log('looking up record with address')
     const DEFAULT_LIMIT = 999;
 
     const url = new URL(`${BACKEND_URL}/${endpoint}`);
 
     const maxRange = limit || DEFAULT_LIMIT;
-    console.log(maxRange);
 
     url.searchParams.set("select", "*");
 
@@ -95,8 +86,6 @@ async function lookupRecordWithAddress(endpoint, input, address, limit) {
         }
     );
 
-    console.log(resp.ok);
-
     if (!resp.ok) {
         throw new Error(`${resp.status}: ${resp.statusText}`);
     }
@@ -114,7 +103,6 @@ export async function getSuggestionsByAddress(input, address) {
 // }
 
 export async function getParcel(parcelpin) {
-    console.log(`looking up ${parcelpin}`)
     return await lookupRecord('parcels', 'parcel', parcelpin);
 }
 

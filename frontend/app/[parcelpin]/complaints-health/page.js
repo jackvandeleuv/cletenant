@@ -15,8 +15,6 @@ export default async function ComplaintsHealthPage({ params }) {
         records[i].submit_date = convertDateObjectToLabel(new Date(records[i].submit_date));
     }
 
-    console.log(records)
-
     return (
         <>
             <div className={'contentWrapper'}>

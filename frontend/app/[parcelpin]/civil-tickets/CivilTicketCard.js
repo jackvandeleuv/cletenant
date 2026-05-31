@@ -1,9 +1,7 @@
 import styles from '../parcelpin.module.css';
 
 export default function CivilTicketsCard({ record }) {
-
     const hasLink = record.accela_citizen_access_url !== undefined;
-    console.log(record)
     return (
         <div className={styles.recordCard}>
             <div className={styles.recordCardInnerWrapper}>

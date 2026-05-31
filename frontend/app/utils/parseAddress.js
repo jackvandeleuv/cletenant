@@ -60,18 +60,14 @@ const REMAP_SUFFIX = new Map([
 
 export function parseAddress(input) {
     const string = input.toUpperCase();
-    console.log(string)
     let [streetNumber, stringA] = splitOffLeadingSubstring(string, /^\s*(\d{1,6})/);
     
-    console.log(`street number: ${streetNumber}`)
 
     streetNumber = Number.parseInt(streetNumber.trim());
     if (Number.isNaN(streetNumber)) {
         streetNumber = '';
     }
     
-    console.log(`street number clean: ${streetNumber}`)
-
     let [streetDir, stringB] = splitOffLeadingSubstring(stringA, /^(\s*(?:N|S|E|W)\s)/);
     if (streetDir === "") {
         [streetDir, stringB] = splitOffLeadingSubstring(stringA, /^(\s*(?:NORTH|SOUTH|EAST|WEST)\s)/);
