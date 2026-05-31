@@ -5,6 +5,7 @@ import styles from '@/app/[parcelpin]/parcelpin.module.css';
 import { getSuggestions } from '@/app/utils/fetchData';
 import SuggestionsBox from '@/app/components/SuggestionsBox/SuggestionsBox';
 import { sleep } from '@/app/utils/utilities';
+import { test } from '@/app/utils//parseAddress';
 
 export default function SearchBar({ children }) {
     const [suggestions, setSuggestions] = useState([]);
@@ -13,6 +14,10 @@ export default function SearchBar({ children }) {
 
     const handleSearchInput = async (input) => {
         console.log(input);
+        test(input);
+
+        return
+
         if (!input || input.trim() === '') {
             setSuggestionsLoading(false);
             setSuggestionsHidden(true);

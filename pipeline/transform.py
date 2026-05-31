@@ -80,6 +80,27 @@ def addr_to_max(string):
 
 print('parcels')
 
+REMAP_SUFFIX = {
+    'ROW': 'ROW',
+    'TER': 'TERRACE',
+    'SQ': 'SQUARE',
+    'PK': 'PARKWAY',
+    'PKWAY': 'PARKWAY',
+    'CIR': 'CIRCLE',
+    'PKWY': 'PARKWAY',
+    'LN': 'LANE',
+    'PL': 'PLACE',
+    'CT': 'COURT',
+    'BLVD': 'BOULEVARD',
+    'DR': 'DRIVE',
+    'RD': 'ROAD',
+    'ST': 'STREET',
+    'AVE': 'AVENUE',
+    'BLV': 'BOULEVARD',
+    'BVD': 'BOULEVARD',
+    'AVE.': 'AVENUE',
+}
+
 parcels = pd.read_json('source/parcels.json')
 parcels.columns = [x.lower().strip() for x in parcels.columns]
 
@@ -95,6 +116,8 @@ PARCELS_SIMPLE_CLEAN = [
 ]
 for col_name in PARCELS_SIMPLE_CLEAN:
     parcels[col_name] = parcels[col_name].apply(clean_string)
+
+parcels['parcel_suffix'] = parcels['parcel_suffix'].apply(lambda x: REMAP_SUFFIX.get(x, x))
 
 parcels['parcel_addr_min'] = parcels['parcel_addr'].apply(lambda x: addr_to_min(x))
 parcels['parcel_addr_max'] = parcels['parcel_addr'].apply(lambda x: addr_to_max(x))
