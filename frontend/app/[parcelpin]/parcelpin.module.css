@@ -221,7 +221,7 @@
     box-sizing: border-box;
     background: none;
     border: none;
-    color: var(--white);
+    color: var(--light-background);
     font-weight: bold;
     font-size: medium;
 }
