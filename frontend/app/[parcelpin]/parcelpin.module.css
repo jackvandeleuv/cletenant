@@ -256,3 +256,19 @@
     flex-direction: column;
     justify-content: center;
 }
+
+.addressHeaderBox {
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    /* padding-top: 15px;
+    padding-bottom: 15px; */
+    background-color: var(--dark);
+    /* border-radius: 10px; */
+}
+
+.addressHeader {
+    font-weight: bolder;
+    color: var(--white)
+}

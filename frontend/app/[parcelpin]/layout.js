@@ -59,7 +59,6 @@ export default function SearchBar({ children }) {
                 </div>
 
                 <PageSelectorButtonWrapper />
-
                 {children}
             </div>
         </div>
