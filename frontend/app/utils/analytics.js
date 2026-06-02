@@ -44,7 +44,6 @@ export function logSuggestionsOffered(input) {
 }
 
 export function logSuggestionsNotFound(input) {
-    // logToGoogleAnalytics('suggestions_offered', { search_term: input });
     logToSupabase('suggestions_not_found_for_input', input);
 }
 
