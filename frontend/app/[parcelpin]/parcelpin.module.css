@@ -226,6 +226,11 @@
     font-size: medium;
 }
 
+.searchBox::placeholder {
+  color: var(--light-background);
+  font-style: italic;
+}
+
 .inputBoxWrapper {
     display: flex;
 }

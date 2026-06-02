@@ -6,6 +6,9 @@
     /* neutral-200 */
     --light-background: oklch(92.2% 0 0); 
 
+    /* neutral-400 */
+    --disabled-gray: oklch(55.6% 0 0);
+
     /* neutral-800 */
     --dark: oklch(26.9% 0 0);
     

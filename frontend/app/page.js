@@ -22,7 +22,7 @@ export default function MainSearch() {
                 </div>
                 <h2 className={styles.siteSubHeader}>
                     Find information about any property in Cleveland. 
-                    While this tool uses public, government data, it is not affiliated with the City or County.
+                    (While this tool uses public, government data, it is not affiliated with the City or County.)
                 </h2>
                 <div className={styles.searchBoxWrapper}>
                     <div className={styles.inputBoxWrapper}>
@@ -49,7 +49,7 @@ export default function MainSearch() {
                         <SuggestionsBox
                             suggestions={suggestions} 
                             loading={suggestionsLoading}
-                            topDist={'45px'}
+                            topDist={'40px'}
                             topPadding={'15px'}
                         />
                     )}
