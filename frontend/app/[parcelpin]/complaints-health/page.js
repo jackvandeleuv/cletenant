@@ -1,12 +1,17 @@
-import { getComplaintsHealth } from "@/app/utils/fetchData";
+import { getComplaintsHealth, getParcel } from "@/app/utils/fetchData";
 import styles from '../parcelpin.module.css';
 import ComplaintHealthCard from "./ComplaintHealthCard";
 import { convertDateObjectToLabel } from "@/app/utils/utilities";
 import { logPageVisited } from "@/app/utils/analytics";
+import AddressBanner from "@/app/components/AddressBanner/AddressBanner";
 
 export default async function ComplaintsHealthPage({ params }) {
     const { parcelpin } = await params;
-    const records = await getComplaintsHealth(parcelpin);
+
+    const recordsPromise = getComplaintsHealth(parcelpin);
+    const parcelPromise = getParcel(parcelpin);
+    const parcel = (await parcelPromise)[0];
+    const records = await recordsPromise;
 
     // logPageVisited(parcelpin, 'complaints_health');
 
@@ -19,25 +24,26 @@ export default async function ComplaintsHealthPage({ params }) {
     }
 
     return (
-        <>
-            <div className={'contentWrapper'}>
-                <div className={styles.recordPageHeader}>
-                    <h1 className={styles.recordPageHeaderCount}>
-                        Total Health Complaints: {records.length}
-                    </h1>
-                    <p className={styles.recordPageHeaderDescription}>
-                        The Cleveland Department of Public Health accepts complaints via the City website.
-                    </p>
-                </div>
-                <div className={styles.recordCardWrapper}>
-                    {records.map((record, i) => (
-                        <ComplaintHealthCard
-                            key={`complaint_${i}`}
-                            complaint={record}
-                        />
-                    ))}
-                </div>
+        <div className={'contentWrapper'}>
+            <AddressBanner parcel={parcel} />
+
+            <div className={styles.recordPageHeader}>
+                <h1 className={styles.recordPageHeaderCount}>
+                    Total Health Complaints: {records.length}
+                </h1>
+                <p className={styles.recordPageHeaderDescription}>
+                    The Cleveland Department of Public Health accepts complaints via the City website.
+                </p>
             </div>
-        </>
+            <div className={styles.recordCardWrapper}>
+                {records.map((record, i) => (
+                    <ComplaintHealthCard
+                        key={`complaint_${i}`}
+                        complaint={record}
+                    />
+                ))}
+            </div>
+        </div>
+        
     )
 }

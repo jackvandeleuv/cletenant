@@ -1,12 +1,17 @@
-import { getCivilTickets } from "@/app/utils/fetchData";
+import { getCivilTickets, getParcel } from "@/app/utils/fetchData";
 import styles from '../parcelpin.module.css';
 import CivilTicketsCard from "./CivilTicketCard";
 import { convertDateObjectToLabel } from "@/app/utils/utilities";
 import { logPageVisited } from "@/app/utils/analytics";
+import AddressBanner from "@/app/components/AddressBanner/AddressBanner";
 
 export default async function CivilTicketsPage({ params }) {
     const { parcelpin } = await params;
-    const records = await getCivilTickets(parcelpin);
+
+    const recordsPromise = getCivilTickets(parcelpin);
+    const parcelPromise = getParcel(parcelpin);
+    const parcel = (await parcelPromise)[0];
+    const records = await recordsPromise;
 
     // logPageVisited(parcelpin, 'civil_tickets');
 
@@ -19,26 +24,26 @@ export default async function CivilTicketsPage({ params }) {
         records[i].file_date = convertDateObjectToLabel(new Date(records[i].file_date));
     }
 
-    return (
-        <>
-            <div className={'contentWrapper'}>
-                <div className={styles.recordPageHeader}>
-                    <h1 className={styles.recordPageHeaderCount}>
-                        Total Civil Tickets: {records.length}
-                    </h1>
-                    <p className={styles.recordPageHeaderDescription}>
-                        Civil tickets are building code enforcement actions which may carry financial penalties. Tickets are issued by the City of Cleveland.
-                    </p>
-                </div>
-                <div className={styles.recordCardWrapper}>
-                    {records.map((record) => (
-                        <CivilTicketsCard 
-                            key={record.ticket_id}
-                            record={record}
-                        />
-                    ))}
-                </div>
+    return (  
+        <div className={'contentWrapper'}>
+            <AddressBanner parcel={parcel} />
+
+            <div className={styles.recordPageHeader}>
+                <h1 className={styles.recordPageHeaderCount}>
+                    Total Civil Tickets: {records.length}
+                </h1>
+                <p className={styles.recordPageHeaderDescription}>
+                    Civil tickets are building code enforcement actions which may carry financial penalties. Tickets are issued by the City of Cleveland.
+                </p>
             </div>
-        </>
+            <div className={styles.recordCardWrapper}>
+                {records.map((record) => (
+                    <CivilTicketsCard 
+                        key={record.ticket_id}
+                        record={record}
+                    />
+                ))}
+            </div>
+        </div>
     )
 }

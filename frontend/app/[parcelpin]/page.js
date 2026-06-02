@@ -4,6 +4,7 @@ import ParcelInfoHeaderBox from "./ParcelInfoHeaderBox.js";
 import EnforcementCard from "./EnforcementCard.js";
 import styles from './parcelpin.module.css';
 import { logPageVisited } from "../utils/analytics";
+import AddressBanner from "../components/AddressBanner/AddressBanner";
 
 export default async function ParcelPage({ params }) {
     // await sleep(100000);
@@ -59,46 +60,30 @@ export default async function ParcelPage({ params }) {
         ],
     ];
 
-    const oneNum = parcel.parcel_addr_max === parcel.parcel_addr_min;
-    const parcelNum = oneNum ? `${parcel.parcel_addr_max}` : `${parcel.parcel_addr_min}-${parcel.parcel_addr_max}`
-    const parcelUnit = parcel.parcel_unit ? `(${parcel.parcel_unit})` : '';
-
-    const parcelLabel = [
-        parcelNum || '',
-        parcel.parcel_predir || '',
-        parcel.parcel_street || '',
-        parcel.parcel_suffix || '',
-        parcelUnit || '',
-    ].join(' ')
-
     return (
-        <>
-            <div className={styles.addressHeaderBox}>
-                <h2 className={styles.addressHeader}>{parcelLabel}</h2>
+        <div className={'contentWrapper'}>
+            <AddressBanner parcel={parcel} />
+            <div className={styles.parcelInfoHeader}>
+                {infoBoxes.map((row) => ( 
+                    <ParcelInfoHeaderBox 
+                        key={row[0]}
+                        label={row[0]}
+                        value={row[1]}
+                    />
+                ))}            
             </div>
-            <div className={'contentWrapper'}>
-                <div className={styles.parcelInfoHeader}>
-                    {infoBoxes.map((row) => ( 
-                        <ParcelInfoHeaderBox 
-                            key={row[0]}
-                            label={row[0]}
-                            value={row[1]}
-                        />
-                    ))}            
-                </div>
-                <div className={styles.cardWrapper}>
-                    {enforcement.map((row) => (
-                        <EnforcementCard 
-                            key={row[0]}
-                            label={row[0]}
-                            value={row[1]}
-                            parcelpin={parcelpin}
-                            route={row[2]}
-                            subtitle={row[3]}
-                        />
-                    ))} 
-                </div>
+            <div className={styles.cardWrapper}>
+                {enforcement.map((row) => (
+                    <EnforcementCard 
+                        key={row[0]}
+                        label={row[0]}
+                        value={row[1]}
+                        parcelpin={parcelpin}
+                        route={row[2]}
+                        subtitle={row[3]}
+                    />
+                ))} 
             </div>
-        </>
+        </div>
     )
 }
