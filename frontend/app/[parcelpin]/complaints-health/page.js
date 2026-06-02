@@ -2,10 +2,13 @@ import { getComplaintsHealth } from "@/app/utils/fetchData";
 import styles from '../parcelpin.module.css';
 import ComplaintHealthCard from "./ComplaintHealthCard";
 import { convertDateObjectToLabel } from "@/app/utils/utilities";
+import { logPageVisited } from "@/app/utils/analytics";
 
 export default async function ComplaintsHealthPage({ params }) {
     const { parcelpin } = await params;
     const records = await getComplaintsHealth(parcelpin);
+
+    // logPageVisited(parcelpin, 'complaints_health');
 
     records.sort((a, b) => 
         ((new Date(b.submit_date)).getTime() - (new Date(a.submit_date)).getTime())

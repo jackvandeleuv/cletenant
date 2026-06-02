@@ -3,13 +3,15 @@ import { convertDateObjectToLabel, sleep } from "../utils/utilities.js";
 import ParcelInfoHeaderBox from "./ParcelInfoHeaderBox.js";
 import EnforcementCard from "./EnforcementCard.js";
 import styles from './parcelpin.module.css';
-import PageSelectorButtonWrapper from "../components/PageSelectorButton/PageSelectorButtonWrapper.js";
+import { logPageVisited } from "../utils/analytics";
 
 export default async function ParcelPage({ params }) {
     // await sleep(100000);
 
     const { parcelpin } = await params;
     const parcel = (await getParcel(parcelpin))[0];
+
+    // logPageVisited(parcelpin, 'overview');
     
     const transferDate = convertDateObjectToLabel(new Date(parcel.last_transfer_date));
     const taxDelinquency = `

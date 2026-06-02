@@ -2,10 +2,13 @@ import { getComplaints311 } from "@/app/utils/fetchData";
 import styles from '../parcelpin.module.css';
 import Complaint311Card from "./Complaint311Card";
 import { convertDateObjectToLabel } from "@/app/utils/utilities";
+import { logPageVisited } from "@/app/utils/analytics";
 
 export default async function Complaints311Page({ params }) {
     const { parcelpin } = await params;
     const records = await getComplaints311(parcelpin);
+
+    // logPageVisited(parcelpin, 'complaints_311');
     
     records.sort((a, b) => 
         ((new Date(b.requested_datetime)).getTime() - (new Date(a.requested_datetime)).getTime())

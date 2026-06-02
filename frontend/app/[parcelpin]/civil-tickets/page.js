@@ -1,12 +1,14 @@
 import { getCivilTickets } from "@/app/utils/fetchData";
-import PageSelectorButtonWrapper from "../../components/PageSelectorButton/PageSelectorButtonWrapper";
 import styles from '../parcelpin.module.css';
 import CivilTicketsCard from "./CivilTicketCard";
 import { convertDateObjectToLabel } from "@/app/utils/utilities";
+import { logPageVisited } from "@/app/utils/analytics";
 
 export default async function CivilTicketsPage({ params }) {
     const { parcelpin } = await params;
     const records = await getCivilTickets(parcelpin);
+
+    // logPageVisited(parcelpin, 'civil_tickets');
 
     records.sort((a, b) => 
         ((new Date(b.issue_date)).getTime() - (new Date(a.issue_date)).getTime())

@@ -1,11 +1,13 @@
 import { getViolations } from "@/app/utils/fetchData";
-import PageSelectorButtonWrapper from "../../components/PageSelectorButton/PageSelectorButtonWrapper";
 import styles from '../parcelpin.module.css';
 import ViolationCard from "./ViolationCard";
 import { convertDateObjectToLabel } from "@/app/utils/utilities";
+import { logPageVisited } from "@/app/utils/analytics";
 
 export default async function ViolationPage({ params }) {
     const { parcelpin } = await params;
+
+    // logPageVisited(parcelpin, 'violations');
 
     const records = await getViolations(parcelpin);
     records.sort((a, b) => 
