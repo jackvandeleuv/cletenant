@@ -65,8 +65,6 @@ export default async function ParcelPage({ params }) {
     ];
 
 
-    console.log(parcel)
-
     const codeInfractionBody = `City of Cleveland issues civil tickets and violations in response to building and zoning code infractions.`;
     const complaintBody = `Various types of complaints can be made through the 311 website and phone line, and through the Department of Public Health.`;
 

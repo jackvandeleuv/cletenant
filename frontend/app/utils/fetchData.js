@@ -95,7 +95,7 @@ async function lookupRecordWithAddress(endpoint, input, address, limit) {
 
 export async function getSuggestionsByAddress(input, address) {
     // await sleep(100000);
-    return await lookupRecordWithAddress('parcels', input, address, 5);
+    return await lookupRecordWithAddress('parcels', input, address, 100);
 }
 
 // export async function getSuggestions(q) {

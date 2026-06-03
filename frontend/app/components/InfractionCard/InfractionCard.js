@@ -9,7 +9,7 @@ export default function InfractionCard({ parcelpin, title, body, cardSpecs }) {
             <h1>{title}</h1>
             <div className={styles.infractionCardWrapper}>
                 {cardSpecs.map((card) => (
-                    <div className={styles.infractionCardTitleWrapper}>
+                    <div key={`wrapper_${card[2]}`} className={styles.infractionCardTitleWrapper}>
                         <Link 
                             key={card[2]}
                             href={`/${parcelpin}/${card[2]}`}
