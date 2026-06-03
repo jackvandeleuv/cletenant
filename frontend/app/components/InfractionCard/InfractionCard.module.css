@@ -1,0 +1,48 @@
+
+
+.cardMetric {
+    font-size: 30px;
+}
+
+.reportButton {
+    background-color: var(--dark);
+    color: var(--white);
+    font-size: medium;
+    padding: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius: 10px;
+}
+
+.reportButtonWrapper {
+    display: flex;
+}
+
+.infractionCardWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.infractionCardTitleWrapper {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+
+.overviewCard {
+    background-color: var(--white);
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    border: 1px solid var(--disabled-gray);
+    border-radius: 10px;
+}
+
+.overviewCardHeader {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}

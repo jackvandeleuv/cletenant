@@ -36,14 +36,20 @@
     font-weight: bold;
 }
 
+.parcelInfoHeaderWrapper {
+    width: 100%;
+
+    background-color: var(--white);
+    padding: 20px;
+    box-sizing: border-box;
+
+    border: 1px solid var(--disabled-gray);
+    border-radius: 10px;
+}
+
 .parcelInfoHeader {
     display: grid;
     grid-template-columns: 2fr 2fr;
-    /* background-color: var(--white); */
-    /* border-radius: 15px; */
-    padding: 10px;
-    width: 100%;
-    box-sizing: border-box;
 }
 
 .recordCardWrapper {
@@ -56,13 +62,13 @@
 
 .recordPageHeaderCount {
     font-weight: bold;
-    padding: 20px;
+    padding: 10px;
 }
 
 .recordPageHeaderDescription {
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-bottom: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
 }
 
 .recordCard {

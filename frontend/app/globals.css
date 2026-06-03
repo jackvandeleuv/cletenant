@@ -20,6 +20,13 @@
 
     --white: white;
 
+    /* green-700 */
+    --status-green: oklch(52.7% 0.154 150.069);
+    /* orange-700 */
+    --status-orange: oklch(55.5% 0.163 48.998);
+    /* red-700 */
+    --status-red: oklch(50.5% 0.213 27.518);
+
     --max-width: 600px;
 
     width: 100%;
@@ -97,10 +104,30 @@ button {
     height: 100%;
     max-width: 600px;
     overflow-y: scroll;
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    padding-bottom: 40px;
 }
 
 .defaultIcon {
     width: 25px;
     height: 25px;
     fill: var(--light-background);
+}
+
+.flexboxX {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+}
+
+.flexboxY {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 5px;
 }

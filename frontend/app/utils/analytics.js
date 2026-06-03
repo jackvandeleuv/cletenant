@@ -75,11 +75,11 @@ function logToSupabase(event_type, value) {
         "session_id": getSessionId(),
     };
 
-    fetch(
-        BACKEND_URL + '/events', {
-            method: 'POST', 
-            headers: headers, 
-            body: JSON.stringify(data)
-        }
-    );
+    // fetch(
+    //     BACKEND_URL + '/events', {
+    //         method: 'POST', 
+    //         headers: headers, 
+    //         body: JSON.stringify(data)
+    //     }
+    // );
 }

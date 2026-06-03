@@ -1,0 +1,55 @@
+'use client';
+
+import { useEffect, useRef, useState } from "react";
+import styles from './InfoButton.module.css';
+
+export default function InfoButton({ message }) {
+  const [open, setOpen] = useState(false);
+  const wrapperRef = useRef(null);
+
+  useEffect(() => {
+    function handleClickOutside(e) {
+      if (wrapperRef.current && !wrapperRef.current.contains(e.target)) {
+        setOpen(false);
+      }
+    }
+
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  return (
+    <span ref={wrapperRef} style={{ position: "relative", display: "inline-block" }}>
+      <button
+        className={styles.infoButton}
+        type="button"
+        onClick={() => setOpen((prev) => !prev)}
+        aria-label="More information"
+      >
+        <svg className={styles.helpIcon} xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+            <path d="M513.5-254.5Q528-269 528-290t-14.5-35.5Q499-340 478-340t-35.5 14.5Q428-311 428-290t14.5 35.5Q457-240 478-240t35.5-14.5ZM442-394h74q0-33 7.5-52t42.5-52q26-26 41-49.5t15-56.5q0-56-41-86t-97-30q-57 0-92.5 30T342-618l66 26q5-18 22.5-39t53.5-21q32 0 48 17.5t16 38.5q0 20-12 37.5T506-526q-44 39-54 59t-10 73Zm38 314q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/>
+        </svg>
+      </button>
+
+      {open && (
+        <div
+          style={{
+            position: "absolute",
+            top: "28px",
+            left: "0",
+            minWidth: "200px",
+            padding: "8px 10px",
+            background: "#fff",
+            border: "1px solid #ccc",
+            borderRadius: "6px",
+            boxShadow: "0 2px 8px rgba(0,0,0,0.15)",
+            zIndex: 100,
+          }}
+        >
+          {message}
+        </div>
+      )}
+    </span>
+  );
+}

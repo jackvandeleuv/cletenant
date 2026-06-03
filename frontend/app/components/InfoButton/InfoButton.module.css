@@ -1,0 +1,14 @@
+.helpIcon {
+    fill: var(--dark);
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    min-height: 20px;
+}
+
+.infoButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3px;
+}
