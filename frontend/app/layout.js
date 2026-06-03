@@ -3,7 +3,7 @@ import { Analytics } from '@vercel/analytics/next';
 import { GoogleAnalytics } from '@next/third-parties/google'
 
 export const metadata = {
-  metadataBase: new URL('https://cletenant.com'),
+  metadataBase: new URL('https://www.cletenant.com'),
   title: {
     default: 'CleTenant | Search',
   },
