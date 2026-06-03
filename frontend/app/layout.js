@@ -5,10 +5,9 @@ import { GoogleAnalytics } from '@next/third-parties/google'
 export const metadata = {
   metadataBase: new URL('https://cletenant.com'),
   title: {
-    default: 'CleTenant',
-    template: '%s | CleTenant',
+    default: 'CleTenant | Search',
   },
-  description: 'Find information about any property in Cleveland.',
+  description: 'Search public government data about any property in Cleveland.',
   alternates: {
     canonical: '/',
   },
@@ -16,14 +15,14 @@ export const metadata = {
     type: 'website',
     siteName: 'CleTenant',
     title: 'CleTenant',
-    description: 'Find information about any property in Cleveland.',
+    description: 'Search public government data about any property in Cleveland.',
     url: '/',
     images: ['/opengraph-image.png'],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Acme',
-    description: 'Find information about any property in Cleveland.',
+    title: 'CleTenant',
+    description: 'Search public government data about any property in Cleveland.',
     images: ['/opengraph-image.png'],
   },
 }

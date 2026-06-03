@@ -8,6 +8,24 @@ import AddressBanner from "../components/AddressBanner/AddressBanner";
 import RentalCard from "../components/RentalCard/RentalCard";
 import InfractionCard from "../components/InfractionCard/InfractionCard";
 
+import { parcelObjToAddressLabel } from '../utils/utilities';
+
+export async function generateMetadata({ params }) {
+    const { parcelpin } = await params;
+    const parcel = (await getParcel(parcelpin))[0];
+
+    const shortAddress = parcelObjToAddressLabel(parcel);
+
+    return {
+        title: `Overview | ${shortAddress}`,
+        description: `Overview of public data on ${shortAddress}.`,
+        alternates: {
+            canonical: `/${parcelpin}`,
+        },
+    }
+}
+
+
 export default async function ParcelPage({ params }) {
     // await sleep(100000);
 

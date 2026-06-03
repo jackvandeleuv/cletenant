@@ -1,9 +1,30 @@
 import { getCivilTickets, getParcel } from "@/app/utils/fetchData";
 import styles from '../parcelpin.module.css';
 import CivilTicketsCard from "./CivilTicketCard";
-import { convertDateObjectToLabel } from "@/app/utils/utilities";
+import { convertDateObjectToLabel, parcelObjToAddressLabel } from "@/app/utils/utilities";
 import { logPageVisited } from "@/app/utils/analytics";
 import AddressBanner from "@/app/components/AddressBanner/AddressBanner";
+
+export async function generateMetadata({ params }) {
+    const { parcelpin } = await params;
+    const parcel = (await getParcel(parcelpin))[0];
+
+    const shortAddress = parcelObjToAddressLabel(parcel);
+
+    const recordCount = parcel.civil_tickets;
+    const plural = recordCount !== 1;
+    console.log(plural)
+    const to_be = plural ? 'were' : 'was';
+    const s = plural ? 's' : '';
+
+    return {
+        title: `Civil Tickets | ${shortAddress}`,
+        description: `There ${to_be} ${recordCount} civil ticket${s} issued on ${shortAddress}.`,
+        alternates: {
+            canonical: `/${parcelpin}/civil-tickets`,
+        },
+    }
+}
 
 export default async function CivilTicketsPage({ params }) {
     const { parcelpin } = await params;

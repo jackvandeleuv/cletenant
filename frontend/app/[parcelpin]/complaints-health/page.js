@@ -1,9 +1,29 @@
 import { getComplaintsHealth, getParcel } from "@/app/utils/fetchData";
 import styles from '../parcelpin.module.css';
 import ComplaintHealthCard from "./ComplaintHealthCard";
-import { convertDateObjectToLabel } from "@/app/utils/utilities";
+import { convertDateObjectToLabel, parcelObjToAddressLabel } from "@/app/utils/utilities";
 import { logPageVisited } from "@/app/utils/analytics";
 import AddressBanner from "@/app/components/AddressBanner/AddressBanner";
+
+export async function generateMetadata({ params }) {
+    const { parcelpin } = await params;
+    const parcel = (await getParcel(parcelpin))[0];
+
+    const shortAddress = parcelObjToAddressLabel(parcel);
+
+    const recordCount = parcel.complaints_health;
+    const plural = recordCount !== 1;
+    const to_be = plural ? 'were' : 'was';
+    const s = plural ? 's' : '';
+
+    return {
+        title: `Health Complaints | ${shortAddress}`,
+        description: `There ${to_be} ${recordCount} public health complaint${s} about ${shortAddress}.`,
+        alternates: {
+            canonical: `/${parcelpin}/complaints-health`,
+        },
+    }
+}
 
 export default async function ComplaintsHealthPage({ params }) {
     const { parcelpin } = await params;
