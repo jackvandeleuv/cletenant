@@ -26,8 +26,9 @@
 
 .infractionCardTitleWrapper {
     display: flex;
-    align-items: center;
-    gap: 3px;
+    align-items: start;
+    gap: 5px;
+    user-select: none;
 }
 
 .overviewCard {

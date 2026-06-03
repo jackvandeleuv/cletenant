@@ -9,19 +9,22 @@ export default function InfractionCard({ parcelpin, title, body, cardSpecs }) {
             <h1>{title}</h1>
             <div className={styles.infractionCardWrapper}>
                 {cardSpecs.map((card) => (
-                    <Link 
-                        key={card[2]}
-                        href={`/${parcelpin}/${card[2]}`}
-                    >
-                        <div className={styles.infractionCardTitleWrapper}>
-                            <h2 className={styles.infractionCardTitle}>{card[0]}</h2>
-                    
-                            <InfoButton message={card[3]} />
-                        </div>
-                        <h1 className={styles.cardMetric}>
-                            {card[1]}
-                        </h1>
-                    </Link>
+                    <div className={styles.infractionCardTitleWrapper}>
+                        <Link 
+                            key={card[2]}
+                            href={`/${parcelpin}/${card[2]}`}
+                        >
+                                <h2 className={styles.infractionCardTitle}>{card[0]}</h2>
+                        
+
+                            <h1 className={styles.cardMetric}>
+                                {card[1]}
+                            </h1>
+
+                        </Link>
+
+                        <InfoButton message={card[3]} />
+                    </div>
                 ))}
 
             </div>
