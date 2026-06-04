@@ -46,17 +46,17 @@ async function lookupRecordWithAddress(endpoint, input, address, limit) {
 
     url.searchParams.set("select", "*");
 
-    if (address.streetNumber !== '') {
+    if (address.streetNumber && address.streetNumber !== '') {
         url.searchParams.set("parcel_addr_max", `gte.${address.streetNumber}`);
         url.searchParams.set("parcel_addr_min", `lte.${address.streetNumber}`);
     }
-    if (address.streetDir !== '') {
+    if (address.streetDir && address.streetDir !== '') {
         url.searchParams.set("parcel_predir", `eq.${address.streetDir}`);
     }
-    if (address.streetName !== '') {
-        url.searchParams.set("parcel_street", `ilike.${address.streetName}*`);  
+    if (address.streetName && address.streetName !== '') {
+        url.searchParams.set("parcel_street", `like.${address.streetName}*`);  
     }
-    if (address.streetType !== '') {
+    if (address.streetType && address.streetType !== '') {
         url.searchParams.set("parcel_suffix", `eq.${address.streetType}`);  
     }
 
@@ -66,7 +66,7 @@ async function lookupRecordWithAddress(endpoint, input, address, limit) {
         address.streetName === '' &&
         address.streetName === ''
     ) {
-        url.searchParams.set('par_addr_all', `ilike.${input.trim()}*`);  
+        url.searchParams.set('par_addr_all', `like.${input.trim()}*`);  
     }
 
     if (limit) {

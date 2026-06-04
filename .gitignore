@@ -8,3 +8,4 @@ pipeline/temp
 pipeline/.env
 frontend/.next
 frontend/node_modules
+pipeline/events_rows.csv

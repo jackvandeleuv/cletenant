@@ -62,7 +62,6 @@ export function parseAddress(input) {
     const string = input.toUpperCase();
     let [streetNumber, stringA] = splitOffLeadingSubstring(string, /^\s*(\d{1,6})/);
     
-
     streetNumber = Number.parseInt(streetNumber.trim());
     if (Number.isNaN(streetNumber)) {
         streetNumber = '';
@@ -91,9 +90,9 @@ export function parseAddress(input) {
 
     return {
         streetNumber: streetNumber,
-        streetDir: streetDir.trim(),
-        streetName: streetName.trim(),
-        streetType: streetType.trim(),
+        streetDir: streetDir.trim().toUpperCase(),
+        streetName: streetName.trim().toUpperCase(),
+        streetType: streetType.trim().toUpperCase(),
     }
     
 }
