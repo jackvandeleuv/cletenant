@@ -57,7 +57,7 @@ export function logPageVisited(parcelpin, pageType) {
 }
 
 function logToGoogleAnalytics(eventName, params) {
-    if (typeof window.gtag === 'function') {
+    if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
         window.gtag('event', eventName, params);
     }
 }
