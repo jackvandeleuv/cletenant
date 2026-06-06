@@ -57,6 +57,7 @@ export function logPageVisited(parcelpin, pageType) {
 }
 
 function logToGoogleAnalytics(eventName, params) {
+<<<<<<< HEAD
     // if (typeof window.gtag === 'function') {
     //     window.gtag('event', eventName, params);
     // }
@@ -76,6 +77,7 @@ function logToSupabase(event_type, value) {
         "session_id": getSessionId(),
     };
 
+<<<<<<< HEAD
     // fetch(
     //     BACKEND_URL + '/events', {
     //         method: 'POST', 
