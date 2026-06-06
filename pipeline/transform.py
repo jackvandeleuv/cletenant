@@ -1,5 +1,7 @@
 import pandas as pd
-import re 
+import hashlib
+import base64
+import re
 
 def clean_string(string):
     if pd.isna(string):
@@ -76,6 +78,18 @@ def addr_to_max(string):
     _, addr_max = addr_to_min_max(string)
     return addr_max
 
+def make_id(text: str, length=12) -> str:
+    digest = hashlib.sha256(text.encode("utf-8")).digest()
+    return base64.urlsafe_b64encode(digest).decode("ascii").rstrip("=")[: length]
+
+def owner_to_id(string):
+    if pd.isna(string):
+        return None
+    string = string.strip().lower()
+    string = re.sub(r'[^A-Za-z0-9]', '', string)
+    string = re.sub(r'\s\s+', '', string).strip()
+    return make_id(string)
+
 # PARCELS ----------------------------------------------------------------------
 
 print('parcels')
@@ -106,7 +120,17 @@ parcels.columns = [x.lower().strip() for x in parcels.columns]
 
 parcels = parcels[~parcels.par_addr_all.isna()].rename(columns={'parcelpin': 'parcel'})
 
-parcels['owner_clean'] = parcels['std_deeded_owner'].apply(clean_string_remove_nonalpha)
+GRADE_MAP = {
+    'A': 4,
+    'B': 3,
+    'C': 2,
+    'D': 1,
+    'F': 0,
+}
+
+parcels['survey2022_grade_num'] = parcels['survey2022_grade'].apply(lambda x: GRADE_MAP.get(x, None))
+
+parcels['owner_id'] = parcels.std_deeded_owner.apply(owner_to_id)
 
 PARCELS_SIMPLE_CLEAN = [
     'parcel_predir',
@@ -156,6 +180,8 @@ civil_tickets_agg = (civil_tickets
 
 parcels = parcels.merge(civil_tickets_agg, on='parcel', how='left')
 
+del civil_tickets
+del civil_tickets_agg
 
 # COMPLAINTS (HEALTH) ----------------------------------------------------------------------
 
@@ -195,6 +221,8 @@ complaints_health_agg = (complaints_health
 )
 parcels = parcels.merge(complaints_health_agg, on='parcel', how='left')
 
+del complaints_health
+del complaints_health_agg
 
 # VIOLATIONS ----------------------------------------------------------------------
 
@@ -247,6 +275,9 @@ violations_agg = (violation_status_history
 
 parcels = parcels.merge(violations_agg, on='parcel', how='left')
 
+del violation_status_history
+del violations_agg
+del complaint_violations
 
 # COMPLAINTS (311) ----------------------------------------------------------------------
 
@@ -281,6 +312,48 @@ complaints_311_agg = (complaints_311
 )
 parcels = parcels.merge(complaints_311_agg, on='parcel', how='left')
 
+del complaints_311
+del complaints_311_agg
+
+# WRITE OWNERS -----------------------------------------------------------------------
+
+print('owners')
+
+agg_cols = [ 
+    'activerentalregistrationflag', 
+    'activecertificateapprovingrentaloccupancyflag',
+    'leadsafecertificateactiveflag',
+    'taxdelinquencyamount',
+    'transfers_in_5y',
+    'civil_tickets',
+    'complaints_health',
+    'code_violations',
+    'complaints_311',
+    'survey2022_grade_num',
+]
+
+owners = parcels.groupby('owner_id')[agg_cols].sum().reset_index()
+par_count = (parcels
+    .groupby('owner_id')
+    .size()
+    .reset_index()
+    .rename(columns={0: 'parcels_owned'})
+)
+owners = owners.merge(par_count, on='owner_id')
+
+id_to_name = (parcels
+    [['owner_id', 'std_deeded_owner']]
+    .sort_values(['owner_id', 'std_deeded_owner'])
+    # Pick the first version of std_deeded_owner if there are multiple.
+    .drop_duplicates('owner_id', keep='first')
+)
+owners = owners.merge(id_to_name, on='owner_id')
+
+owners.to_csv('transformed/owners.csv', index=False)
+
+del par_count
+del id_to_name 
+del owners
 
 # WRITE PARCELS ----------------------------------------------------------------------
 

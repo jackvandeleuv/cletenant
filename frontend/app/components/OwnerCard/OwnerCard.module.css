@@ -1,0 +1,59 @@
+.parcelInfoHeaderWrapper {
+    width: 100%;
+
+    background-color: var(--white);
+    padding: 20px;
+    box-sizing: border-box;
+
+    border: 1px solid var(--disabled-gray);
+    border-radius: 10px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.parcelInfoHeader {
+    
+}
+
+.parcelInfoHeaderText {
+    font-size: medium;
+}
+
+
+.table {
+    width: 100%;
+    font-size: medium;
+    background-color: var(--disabled-gray);
+    /* margin: 0; */
+    border-collapse: collapse;
+}
+
+.tableRow {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    width: 100%;
+    border-top: 1px solid var(--disabled-gray);
+}
+
+.tableDataLabel {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+    /* background-color: aquamarine; */
+    background-color: var(--white);
+
+}
+
+.tableDataValue {
+    display: flex;
+    justify-content: end;
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+    /* background-color: aquamarine; */
+    background-color: var(--white);
+}

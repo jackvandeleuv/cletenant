@@ -13,7 +13,6 @@ export async function generateMetadata({ params }) {
 
     const recordCount = parcel.civil_tickets;
     const plural = recordCount !== 1;
-    console.log(plural)
     const to_be = plural ? 'were' : 'was';
     const s = plural ? 's' : '';
 

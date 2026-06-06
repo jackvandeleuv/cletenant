@@ -1,0 +1,48 @@
+.surveyCard {
+    background-color: var(--white);
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    border: 1px solid var(--disabled-gray);
+    border-radius: 10px;
+}
+
+.surveyCardBody {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+}
+
+.gradeBadge {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: green; */
+    color: var(--dark);
+    font-size: xx-large;
+    padding: 5px;
+    height: 50px;
+    width: 50px;
+    min-height: 50px;
+    min-width: 50px;
+    border-radius: 50px;
+}
+
+.gradeMessage {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.parcelImage {
+    width: 100%;
+    height: 200px;
+    /* max-width: 200px; */
+    /* object-fit: contain; */
+    object-fit: cover;
+    /* margin: 10px; */
+}

@@ -1,14 +1,13 @@
 import { getParcel } from "../utils/fetchData";
-import { convertDateObjectToLabel, sleep } from "../utils/utilities.js";
-import ParcelInfoHeaderBox from "./ParcelInfoHeaderBox.js";
-import EnforcementCard from "./EnforcementCard.js";
-import styles from './parcelpin.module.css';
-import { logPageVisited } from "../utils/analytics";
+import { convertDateObjectToLabel, parcelObjToTaxDelinquencyLabel, sleep } from "../utils/utilities.js";
+import ParcelInfoHeader from "./ParcelInfoHeader.js";
 import AddressBanner from "../components/AddressBanner/AddressBanner";
 import RentalCard from "../components/RentalCard/RentalCard";
 import InfractionCard from "../components/InfractionCard/InfractionCard";
 
 import { parcelObjToAddressLabel } from '../utils/utilities';
+import SurveyCard from "../components/SurveyCard/SurveyCard";
+import OwnerCard from "../components/OwnerCard/OwnerCard";
 
 export async function generateMetadata({ params }) {
     const { parcelpin } = await params;
@@ -33,24 +32,6 @@ export default async function ParcelPage({ params }) {
     const parcel = (await getParcel(parcelpin))[0];
 
     // logPageVisited(parcelpin, 'overview');
-    
-    const transferDate = convertDateObjectToLabel(new Date(parcel.last_transfer_date));
-    const taxDelinquency = `
-        $${(parcel.taxdelinquencyamount || 0).toLocaleString(
-            "en-US", 
-            {
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2,
-            }
-        )}
-    `.trim();
-
-    const infoBoxes = [
-        ['Parcel Owner', parcel.parcel_owner],
-        ['Tax Delinquency', taxDelinquency],
-        ['Last Transfer Date', transferDate],
-        ['Transfers Last 5 Years', parcel.transfers_in_5y],
-    ];
     
     const enforcement = [
         [
@@ -82,14 +63,14 @@ export default async function ParcelPage({ params }) {
         ],
     ];
 
-
     const codeInfractionBody = `City of Cleveland issues civil tickets and violations in response to building and zoning code infractions.`;
     const complaintBody = `Various types of complaints can be made through the 311 website and phone line, and through the Department of Public Health.`;
-
 
     return (
         <div className={'contentWrapper'}>
             <AddressBanner parcel={parcel} />
+
+            <ParcelInfoHeader parcel={parcel} />
 
             <RentalCard parcel={parcel} />
 
@@ -107,18 +88,10 @@ export default async function ParcelPage({ params }) {
                 cardSpecs={complaints}
             />
 
-            <div className={styles.parcelInfoHeaderWrapper}>
-                <h1>Ownership</h1>
-                <div className={styles.parcelInfoHeader}>
-                    {infoBoxes.map((row) => ( 
-                        <ParcelInfoHeaderBox 
-                            key={row[0]}
-                            label={row[0]}
-                            value={row[1]}
-                        />
-                    ))}            
-                </div>
-            </div>
+            <OwnerCard parcel={parcel} />
+
+            <SurveyCard parcel={parcel} />
+
         </div>
     )
 }

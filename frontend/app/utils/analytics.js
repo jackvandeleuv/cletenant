@@ -57,9 +57,9 @@ export function logPageVisited(parcelpin, pageType) {
 }
 
 function logToGoogleAnalytics(eventName, params) {
-    if (typeof window.gtag === 'function') {
-        window.gtag('event', eventName, params);
-    }
+    // if (typeof window.gtag === 'function') {
+    //     window.gtag('event', eventName, params);
+    // }
 }
 
 function logToSupabase(event_type, value) {
@@ -76,11 +76,11 @@ function logToSupabase(event_type, value) {
         "session_id": getSessionId(),
     };
 
-    fetch(
-        BACKEND_URL + '/events', {
-            method: 'POST', 
-            headers: headers, 
-            body: JSON.stringify(data)
-        }
-    );
+    // fetch(
+    //     BACKEND_URL + '/events', {
+    //         method: 'POST', 
+    //         headers: headers, 
+    //         body: JSON.stringify(data)
+    //     }
+    // );
 }

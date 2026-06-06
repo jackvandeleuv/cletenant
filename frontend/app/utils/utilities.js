@@ -33,3 +33,15 @@ export function parcelObjToAddressLabel(parcel) {
         parcelUnit || '',
     ].join(' ').trim();
 }
+
+export function parcelObjToTaxDelinquencyLabel(dollars) {
+    return `
+        $${(dollars || 0).toLocaleString(
+            "en-US", 
+            {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+            }
+        )}
+    `.trim()
+}

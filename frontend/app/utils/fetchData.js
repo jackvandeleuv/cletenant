@@ -1,6 +1,21 @@
 import { BACKEND_URL, CLIENT_SAFE_KEY } from "./config.js";
 import { sleep } from "./utilities.js";
 
+const OWNER_COLS = [
+    'std_deeded_owner',
+    'activerentalregistrationflag',
+    'activecertificateapprovingrentaloccupancyflag',
+    'leadsafecertificateactiveflag',
+    'taxdelinquencyamount',
+    'transfers_in_5y',
+    'civil_tickets',
+    'complaints_health',
+    'code_violations',
+    'complaints_311',
+    'survey2022_grade_num',
+    'parcels_owned',
+];
+
 async function lookupRecord(endpoint, key, value, exactMatch, limit) {
     const DEFAULT_LIMIT = 999;
 
@@ -10,7 +25,12 @@ async function lookupRecord(endpoint, key, value, exactMatch, limit) {
     const matchType = exactMatch || exactMatch === undefined ? 'eq' : 'ilike';
     const query = exactMatch || exactMatch === undefined ? value : `*${value}*`;
 
-    url.searchParams.set("select", "*");
+    let select = '*';
+    if (endpoint === 'parcels') {
+        select = select + `,owners(${OWNER_COLS.join(',')})`;
+    }
+
+    url.searchParams.set("select", select);
     url.searchParams.set(key, `${matchType}.${query}`);
 
     if (limit) {

@@ -32,7 +32,9 @@ def get_data(url, outfields='*'):
             data.append(row['attributes'])
 
         offset += LIMIT
-        # print(offset)
+        
+        if offset % (LIMIT * 10) == 0:
+            print(offset)
 
     return data
 
@@ -44,22 +46,22 @@ def ingest_service(url, file_name, outfields='*'):
     
 
 SERVICES = [
-    (
-        'https://services3.arcgis.com/dty2kHktVXHrqO8i/arcgis/rest/services/Civil_Tickets/FeatureServer/0/query',
-        'civil_tickets',
-    ),
-    (
-        'https://services3.arcgis.com/dty2kHktVXHrqO8i/arcgis/rest/services/Violation_Status_History/FeatureServer/0/query',
-        'violation_status_history',
-    ),
-    (
-        'https://services3.arcgis.com/dty2kHktVXHrqO8i/arcgis/rest/services/Complaint_Violation_Notices/FeatureServer/0/query',
-        'complaint_violations',
-    ),
-    (
-        'https://services3.arcgis.com/dty2kHktVXHrqO8i/arcgis/rest/services/Data_311/FeatureServer/0/query',
-        'complaints_311'
-    ),
+    # (
+    #     'https://services3.arcgis.com/dty2kHktVXHrqO8i/arcgis/rest/services/Civil_Tickets/FeatureServer/0/query',
+    #     'civil_tickets',
+    # ),
+    # (
+    #     'https://services3.arcgis.com/dty2kHktVXHrqO8i/arcgis/rest/services/Violation_Status_History/FeatureServer/0/query',
+    #     'violation_status_history',
+    # ),
+    # (
+    #     'https://services3.arcgis.com/dty2kHktVXHrqO8i/arcgis/rest/services/Complaint_Violation_Notices/FeatureServer/0/query',
+    #     'complaint_violations',
+    # ),
+    # (
+    #     'https://services3.arcgis.com/dty2kHktVXHrqO8i/arcgis/rest/services/Data_311/FeatureServer/0/query',
+    #     'complaints_311'
+    # ),
     (
         'https://services3.arcgis.com/dty2kHktVXHrqO8i/arcgis/rest/services/CDPH_Complaints/FeatureServer/0/query',
         'complaints_health'
@@ -75,6 +77,7 @@ SERVICES = [
             'parcel_street', 
             'parcel_suffix', 
             'parcel_unit', 
+            'neighborhood',
             # 'parcel_city', 
             # 'parcel_zip',
             'parcel_owner', 

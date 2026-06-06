@@ -1,0 +1,34 @@
+
+.siteHeader {
+    max-width: var(--max-width);
+    width: 100%;
+    background-color: var(--dark-background);
+    border-bottom: 1px solid var(--light-background);
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.homeButton {
+    cursor: pointer;
+    display: flex;
+    color: var(--light-background);
+    box-sizing: border-box;
+    padding: 5px;
+    user-select: none;
+    gap: 5px;
+}
+
+.homeIcon {
+    width: 25px;
+    height: 25px;
+    min-width: 25px;
+    min-height: 25px;
+    fill: var(--light-background);
+}
+
+.siteHeaderName {
+    padding-top: 3px;
+    font-weight: bold;
+}
