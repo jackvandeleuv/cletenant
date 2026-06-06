@@ -57,15 +57,9 @@ export function logPageVisited(parcelpin, pageType) {
 }
 
 function logToGoogleAnalytics(eventName, params) {
-<<<<<<< HEAD
-    // if (typeof window.gtag === 'function') {
-    //     window.gtag('event', eventName, params);
-    // }
-=======
     if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
         window.gtag('event', eventName, params);
     }
->>>>>>> 30c3caaac74a337a3a463bbc4ec46ff47d067fc4
 }
 
 function logToSupabase(event_type, value) {
@@ -82,16 +76,6 @@ function logToSupabase(event_type, value) {
         "session_id": getSessionId(),
     };
 
-<<<<<<< HEAD
-    // fetch(
-    //     BACKEND_URL + '/events', {
-    //         method: 'POST', 
-    //         headers: headers, 
-    //         body: JSON.stringify(data)
-    //     }
-    // );
-}
-=======
     fetch(
         BACKEND_URL + '/events', {
             method: 'POST', 
@@ -100,4 +84,3 @@ function logToSupabase(event_type, value) {
         }
     );
 }
->>>>>>> 30c3caaac74a337a3a463bbc4ec46ff47d067fc4
