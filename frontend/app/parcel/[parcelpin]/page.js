@@ -87,9 +87,9 @@ export default async function ParcelPage({ params }) {
                 cardSpecs={complaints}
             />
 
-            <OwnerCard owner={parcel.owners} owner_id={parcel.owner_id} includeSubtitle={true} />
-
             <SurveyCard parcel={parcel} />
+
+            <OwnerCard owner={parcel.owners} owner_id={parcel.owner_id} includeSubtitle={true} />
 
         </div>
     )
