@@ -12,18 +12,12 @@ export default function PageSelectorButtonWrapper() {
     const searchParams = useSearchParams()
     const q = searchParams.get('q') ?? '';
 
-    // useEffect(() => {
-    //     const matches = window.matchMedia('(min-width: 800px)').matches;
-    //     console.log(matches);
-    // }, []);
-
     const [wideScreen, setWideScreen] = useState(false);
 
     useEffect(() => {
         const media = window.matchMedia('(min-width: 800px)');
 
         const updateScreenSize = () => {
-            console.log(media.matches)
             setWideScreen(media.matches);
         }
 
@@ -36,11 +30,6 @@ export default function PageSelectorButtonWrapper() {
             media.removeEventListener('change', updateScreenSize)
         }
     }, []);
-
-    useEffect(() => {
-        console.log('wide screen state:')
-        console.log(wideScreen)
-    }, [wideScreen]);
 
     // Get URL path.
     const pathName = usePathname();

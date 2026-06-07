@@ -14,6 +14,7 @@ const OWNER_COLS = [
     'complaints_311',
     'survey2022_grade_num',
     'parcels_owned',
+    'parcels_owned_with_survey',
 ];
 
 const PARCEL_COLS = [

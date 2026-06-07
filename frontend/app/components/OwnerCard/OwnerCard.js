@@ -25,7 +25,7 @@ export default function OwnerCard({ owner, owner_id, includeSubtitle }) {
     }
 
     const taxDelinquency = parcelObjToTaxDelinquencyLabel(owner.taxdelinquencyamount);
-    
+
     let avgSurveyGrade = null;
     if (
         owner && 
