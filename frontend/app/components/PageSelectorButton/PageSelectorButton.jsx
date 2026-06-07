@@ -4,7 +4,7 @@ import styles from './PageSelectorButton.module.css';
 export default function PageSelectorButton({ parcelpin, buttonLabel, buttonRoute }) {
     return (
         <Link 
-            href={`/${parcelpin}/${buttonRoute}`}
+            href={`/parcel/${parcelpin}/${buttonRoute}`}
             className={styles.pageSelectorButton}
         >
             {buttonLabel}

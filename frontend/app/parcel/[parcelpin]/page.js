@@ -1,13 +1,13 @@
-import { getParcel } from "../utils/fetchData";
-import { convertDateObjectToLabel, parcelObjToTaxDelinquencyLabel, sleep } from "../utils/utilities.js";
+import { getParcel } from "../../utils/fetchData";
+import { convertDateObjectToLabel, parcelObjToTaxDelinquencyLabel, sleep } from "../../utils/utilities.js";
 import ParcelInfoHeader from "./ParcelInfoHeader.js";
-import AddressBanner from "../components/AddressBanner/AddressBanner";
-import RentalCard from "../components/RentalCard/RentalCard";
-import InfractionCard from "../components/InfractionCard/InfractionCard";
+import AddressBanner from "../../components/AddressBanner/AddressBanner";
+import RentalCard from "../../components/RentalCard/RentalCard";
+import InfractionCard from "../../components/InfractionCard/InfractionCard";
 
-import { parcelObjToAddressLabel } from '../utils/utilities';
-import SurveyCard from "../components/SurveyCard/SurveyCard";
-import OwnerCard from "../components/OwnerCard/OwnerCard";
+import { parcelObjToAddressLabel } from '../../utils/utilities';
+import SurveyCard from "../../components/SurveyCard/SurveyCard";
+import OwnerCard from "../../components/OwnerCard/OwnerCard";
 
 export async function generateMetadata({ params }) {
     const { parcelpin } = await params;
@@ -19,11 +19,10 @@ export async function generateMetadata({ params }) {
         title: `Overview | ${shortAddress}`,
         description: `Overview of public data on ${shortAddress}.`,
         alternates: {
-            canonical: `/${parcelpin}`,
+            canonical: `parcel/${parcelpin}`,
         },
     }
 }
-
 
 export default async function ParcelPage({ params }) {
     // await sleep(100000);
@@ -88,7 +87,7 @@ export default async function ParcelPage({ params }) {
                 cardSpecs={complaints}
             />
 
-            <OwnerCard parcel={parcel} />
+            <OwnerCard owner={parcel.owners} owner_id={parcel.owner_id} includeSubtitle={true} />
 
             <SurveyCard parcel={parcel} />
 

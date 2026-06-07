@@ -16,22 +16,30 @@ const OWNER_COLS = [
     'parcels_owned',
 ];
 
-async function lookupRecord(endpoint, key, value, exactMatch, limit) {
+const PARCEL_COLS = [
+    'parcel',
+    'parcel_addr_max',
+    'parcel_addr_min',
+    'parcel_unit',
+    'parcel_predir',
+    'parcel_suffix',
+    'parcel_street',
+    'par_addr_all',
+    'survey2022_grade',
+    'neighborhood',
+]
+
+async function lookupRecord(endpoint, key, value, selectString, limit) {
+    // await sleep(100000);
+
     const DEFAULT_LIMIT = 999;
 
     const url = new URL(`${BACKEND_URL}/${endpoint}`);
 
     const maxRange = limit || DEFAULT_LIMIT;
-    const matchType = exactMatch || exactMatch === undefined ? 'eq' : 'ilike';
-    const query = exactMatch || exactMatch === undefined ? value : `*${value}*`;
 
-    let select = '*';
-    if (endpoint === 'parcels') {
-        select = select + `,owners(${OWNER_COLS.join(',')})`;
-    }
-
-    url.searchParams.set("select", select);
-    url.searchParams.set(key, `${matchType}.${query}`);
+    url.searchParams.set("select", selectString);
+    url.searchParams.set(key, `eq.${value}`);
 
     if (limit) {
         url.searchParams.set('limit', limit);
@@ -115,33 +123,31 @@ async function lookupRecordWithAddress(endpoint, input, address, limit) {
 
 export async function getSuggestionsByAddress(input, address) {
     // await sleep(100000);
-    return await lookupRecordWithAddress('parcels', input, address, 100);
+    return await lookupRecordWithAddress('parcels', input, address, 'par_addr_app', 100);
 }
 
-// export async function getSuggestions(q) {
-//     return await lookupRecord('parcels', 'par_addr_all', q, false, 5);
-// }
-
 export async function getParcel(parcelpin) {
-    return await lookupRecord('parcels', 'parcel', parcelpin);
+    const select = `*,owners(${OWNER_COLS.join(',')})`;
+    return await lookupRecord('parcels', 'parcel', parcelpin, select);
+}
+
+export async function getOwner(ownerid) {
+    const select = `*,parcels(${PARCEL_COLS.join(',')})`;
+    return await lookupRecord('owners', 'owner_id', ownerid, select);
 }
 
 export async function getViolations(parcelpin) {
-    return await lookupRecord('code_violations', 'parcel', parcelpin);
+    return await lookupRecord('code_violations', 'parcel', parcelpin, '*');
 }
 
 export async function getComplaints311(parcelpin) {
-    return await lookupRecord('complaints_311', 'parcel', parcelpin);
+    return await lookupRecord('complaints_311', 'parcel', parcelpin, '*');
 }
 
 export async function getComplaintsHealth(parcelpin) {
-    return await lookupRecord('complaints_health', 'parcel', parcelpin);
+    return await lookupRecord('complaints_health', 'parcel', parcelpin, '*');
 }
 
 export async function getCivilTickets(parcelpin) {
-    return await lookupRecord('civil_tickets', 'parcel', parcelpin);
+    return await lookupRecord('civil_tickets', 'parcel', parcelpin, '*');
 }
-
-// export async function getOwner(name) {
-//     return await lookupRecord('owner', 'name', name);
-// }

@@ -1,6 +1,6 @@
-import { getCivilTickets, getParcel } from "@/app/utils/fetchData";
+import { getComplaints311, getParcel } from "@/app/utils/fetchData";
 import styles from '../parcelpin.module.css';
-import CivilTicketsCard from "./CivilTicketCard";
+import Complaint311Card from "./Complaint311Card";
 import { convertDateObjectToLabel, parcelObjToAddressLabel } from "@/app/utils/utilities";
 import { logPageVisited } from "@/app/utils/analytics";
 import AddressBanner from "@/app/components/AddressBanner/AddressBanner";
@@ -11,56 +11,54 @@ export async function generateMetadata({ params }) {
 
     const shortAddress = parcelObjToAddressLabel(parcel);
 
-    const recordCount = parcel.civil_tickets;
+    const recordCount = parcel.complaints_311;
     const plural = recordCount !== 1;
     const to_be = plural ? 'were' : 'was';
     const s = plural ? 's' : '';
 
     return {
-        title: `Civil Tickets | ${shortAddress}`,
-        description: `There ${to_be} ${recordCount} civil ticket${s} issued on ${shortAddress}.`,
+        title: `311 Complaints | ${shortAddress}`,
+        description: `There ${to_be} ${recordCount} complaint${s} made about ${shortAddress} through the 311 system.`,
         alternates: {
-            canonical: `/${parcelpin}/civil-tickets`,
+            canonical: `parcel/${parcelpin}/complaints-311`,
         },
     }
 }
 
-export default async function CivilTicketsPage({ params }) {
+export default async function Complaints311Page({ params }) {
     const { parcelpin } = await params;
 
-    const recordsPromise = getCivilTickets(parcelpin);
+    const recordsPromise = getComplaints311(parcelpin);
     const parcelPromise = getParcel(parcelpin);
     const parcel = (await parcelPromise)[0];
     const records = await recordsPromise;
 
-    // logPageVisited(parcelpin, 'civil_tickets');
-
+    // logPageVisited(parcelpin, 'complaints_311');
+    
     records.sort((a, b) => 
-        ((new Date(b.issue_date)).getTime() - (new Date(a.issue_date)).getTime())
+        ((new Date(b.requested_datetime)).getTime() - (new Date(a.requested_datetime)).getTime())
     );
-
     for (let i = 0; i < records.length; i++) {
-        records[i].issue_date = convertDateObjectToLabel(new Date(records[i].issue_date));
-        records[i].file_date = convertDateObjectToLabel(new Date(records[i].file_date));
+        records[i].requested_datetime = convertDateObjectToLabel(new Date(records[i].requested_datetime));
     }
 
-    return (  
+    return ( 
         <div className={'contentWrapper'}>
             <AddressBanner parcel={parcel} />
 
             <div className={styles.recordPageHeader}>
                 <h1 className={styles.recordPageHeaderCount}>
-                    Total Civil Tickets: {records.length}
+                    Total 311 Complaints: {records.length}
                 </h1>
                 <p className={styles.recordPageHeaderDescription}>
-                    Civil tickets are building code enforcement actions which may carry financial penalties. Tickets are issued by the City of Cleveland.
+                    The City of Cleveland accepts complaints about rental and building quality through its 311 website and phone line.
                 </p>
             </div>
             <div className={styles.recordCardWrapper}>
                 {records.map((record) => (
-                    <CivilTicketsCard 
-                        key={record.ticket_id}
-                        record={record}
+                    <Complaint311Card
+                        key={record.service_request_id}
+                        complaint={record}
                     />
                 ))}
             </div>

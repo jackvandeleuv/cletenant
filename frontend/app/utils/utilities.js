@@ -21,8 +21,11 @@ export async function sleep(ms) {
 }
 
 export function parcelObjToAddressLabel(parcel) {
+    // if (!parcel.parcel_addr_max || !parcel.parcel_addr_min) {
+    //     return parcel.par_addr_all;
+    // }
     const oneNum = parcel.parcel_addr_max === parcel.parcel_addr_min;
-    const parcelNum = oneNum ? `${parcel.parcel_addr_max}` : `${parcel.parcel_addr_min}-${parcel.parcel_addr_max}`
+    const parcelNum = oneNum ? `${parcel.parcel_addr_max || 0}` : `${parcel.parcel_addr_min}-${parcel.parcel_addr_max}`
     const parcelUnit = parcel.parcel_unit ? `(${parcel.parcel_unit})` : '';
 
     return [

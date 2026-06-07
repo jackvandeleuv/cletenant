@@ -1,6 +1,7 @@
 import { parcelObjToTaxDelinquencyLabel } from '@/app/utils/utilities';
 import styles from './OwnerCard.module.css';
 import InfoButton from '../InfoButton/InfoButton';
+import Link from 'next/link';
 
 function TableRow({ label, value, infoMessage }) {
     return (
@@ -18,67 +19,52 @@ function TableRow({ label, value, infoMessage }) {
     )
 }
 
-export default function OwnerCard({ parcel }) {
-    if (!parcel.owners) {
+export default function OwnerCard({ owner, owner_id, includeSubtitle }) {
+    if (!owner) {
         return (<></>);
     }
 
-    const OWNER_COLS = [
-        'std_deeded_owner',
-        'activerentalregistrationflag',
-        'activecertificateapprovingrentaloccupancyflag',
-        'leadsafecertificateactiveflag',
-        'taxdelinquencyamount',
-        'transfers_in_5y',
-        'civil_tickets',
-        'complaints_health',
-        'code_violations',
-        'complaints_311',
-        'survey2022_grade_num',
-        'parcels_owned',
-    ];
-
-    const taxDelinquency = parcelObjToTaxDelinquencyLabel(parcel.owners.taxdelinquencyamount);
+    const taxDelinquency = parcelObjToTaxDelinquencyLabel(owner.taxdelinquencyamount);
     
     let avgSurveyGrade = null;
     if (
-        parcel.owners && 
-        parcel.owners.survey2022_grade_num && 
-        parcel.owners.parcels_owned &&
-        parcel.owners.parcels_owned > 0
+        owner && 
+        owner.survey2022_grade_num && 
+        owner.parcels_owned &&
+        owner.parcels_owned > 0
     ) {
-        avgSurveyGrade = (parcel.owners.survey2022_grade_num / parcel.owners.parcels_owned).toFixed(1);
+        avgSurveyGrade = (owner.survey2022_grade_num / owner.parcels_owned).toFixed(1);
     }
 
     const tableRows = [
         // [
         //     'Properties Owned', 
         //     parcel.owners.parcels_owned,
-        //     `Total number of properties (known as "parcels") owned by ${parcel.owners.std_deeded_owner}`,
+        //     `Total number of properties (known as "parcels") owned by ${owner.std_deeded_owner}`,
         // ],
         [
             'Registered Rentals', 
-            parcel.owners.activerentalregistrationflag,
-            `Number of properties owned by ${parcel.owners.std_deeded_owner} that have an active rental registration. All rental properties are required to be registered with the City of Cleveland.`,
+            owner.activerentalregistrationflag,
+            `Number of properties owned by ${owner.std_deeded_owner} that have an active rental registration. All rental properties are required to be registered with the City of Cleveland.`,
         ],
         [
             'Civil Tickets', 
-            parcel.owners.civil_tickets,
+            owner.civil_tickets,
             'Fines issued by the City.',
         ],
         [
             'Code Violations', 
-            parcel.owners.code_violations,
+            owner.code_violations,
             'Official notices of building or zoning code violations.',
         ], 
         [
             '311 Complaints', 
-            parcel.owners.complaints_311,
+            owner.complaints_311,
             'Complaints received through the 311 website or phone line.',
         ],
         [
             'Health Complaints', 
-            parcel.owners.complaints_health,
+            owner.complaints_health,
             'Complaints received by the City Department of Public Health.',
         ],
         [
@@ -95,15 +81,17 @@ export default function OwnerCard({ parcel }) {
         ]);
     }
 
-    const properties = (parcel.owners.parcels_owned || 0) === 1 ? 'property' : 'properties';
+    const properties = (owner.parcels_owned || 0) === 1 ? 'property' : 'properties';
 
     return (
         <div className={styles.parcelInfoHeaderWrapper}>
             <h1>Owner Summary</h1>
             <div className={styles.parcelInfoHeader}>
-                <p className={styles.parcelInfoHeaderText}>
-                    <strong>{parcel.owners.std_deeded_owner}</strong> owns {parcel.owners.parcels_owned} {properties}. 
-                </p>
+                {includeSubtitle && (
+                    <p className={styles.parcelInfoHeaderText}>
+                        <strong><Link style={{textDecoration: 'underline'}} href={`/owner/${owner_id}`}>{owner.std_deeded_owner}</Link></strong> owns <strong>{owner.parcels_owned}</strong> {properties}. 
+                    </p>
+                )}
             </div>
             <table className={styles.table}>
                 <tbody className={styles.tbody}>

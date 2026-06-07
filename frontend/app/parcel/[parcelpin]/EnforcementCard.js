@@ -5,7 +5,7 @@ export default function EnforcementCard({ label, value, parcelpin, route, subtit
     return (
         <Link
             className={styles.card}
-            href={`/${parcelpin}/${route}`}
+            href={`/parcel/${parcelpin}/${route}`}
         >
             <h2>{label}</h2>
             <h3 className={styles.enforcementCardSubtitle}>

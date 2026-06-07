@@ -9,8 +9,8 @@ export default function PageSelectorButtonWrapper() {
     // Get URL path.
     const pathName = usePathname();
     const parts = pathName.split('/');
-    const parcelpin = parts[1];
-    const currentRoute = parts[2] ?? '';
+    const parcelpin = parts[2];
+    const currentRoute = parts[3] ?? '';
 
     const [buttonsHidden, setButtonsHidden] = useState(true);
     let pagesSpec = [

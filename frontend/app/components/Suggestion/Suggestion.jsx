@@ -7,7 +7,7 @@ export default function Suggestion({ suggestion }) {
     return (
         <Link
             className={styles.parcelSuggestion} 
-            href={`/${suggestion.parcel}`}
+            href={`/parcel/${suggestion.parcel}`}
             onClick={(() => logSuggestionClick(suggestion.parcel))}
         >
             <svg className={styles.parcelSuggestionIcon} xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
