@@ -109,7 +109,7 @@ export default function About() {
                         <h1>Why did you build this tool?</h1>
                         <p>
                             There is a lot of data being published by the City and County that sheds light on the quality of housing in Cleveland.
-                            This includes complaints, code infractions, tax delinquency, and even survey-based assessments of housing quality.
+                            This includes complaints, code infractions, tax delinquency, and survey-based assessments of housing quality.
                         </p>
                         <p> 
                             However, even when data is made public, it is not always being presented in an easy-to-use, searchable format. 
