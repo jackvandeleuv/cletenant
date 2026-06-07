@@ -3,9 +3,13 @@
 import { useState } from 'react';
 import styles from './PageSelectorButton.module.css';
 import PageSelectorButton from './PageSelectorButton';
-import { usePathname } from 'next/navigation';
+import { usePathname, useSearchParams } from 'next/navigation';
 
 export default function PageSelectorButtonWrapper() {
+    // Get URL params.
+    const searchParams = useSearchParams()
+    const q = searchParams.get('q') ?? '';
+
     // Get URL path.
     const pathName = usePathname();
     const parts = pathName.split('/');
@@ -45,6 +49,7 @@ export default function PageSelectorButtonWrapper() {
                     <PageSelectorButton
                         key={spec[0]}
                         parcelpin={parcelpin}
+                        q={q}
                         buttonLabel={spec[1]}
                         buttonRoute={spec[0]}
                     >

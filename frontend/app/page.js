@@ -4,12 +4,16 @@ import { useState } from 'react';
 import SuggestionsBox from './components/SuggestionsBox/SuggestionsBox';
 import styles from './SearchPage.module.css';
 import { clearInputBox, handleSearchInput } from './utils/search';
+import { useSearchParams } from 'next/navigation';
 
 export default function MainSearch() {
     const [suggestions, setSuggestions] = useState([]);
     const [suggestionsLoading, setSuggestionsLoading] = useState(false);
     const [suggestionsHidden, setSuggestionsHidden] = useState(true);
     const [searchInput, setSearchInput] = useState('');
+
+    const searchParams = useSearchParams()
+    const q = searchParams.get('q') ?? '';
 
     return (
         <div className={styles.outerPageWrapper}>
@@ -33,7 +37,9 @@ export default function MainSearch() {
                                 className={styles.searchBox}
                                 autoComplete="off"
                                 placeholder="Enter an address."
+                                defaultValue={q}
                                 onChange={(e) => handleSearchInput(e.target.value, setSuggestions, setSuggestionsLoading, setSuggestionsHidden, setSearchInput)}
+                                autoFocus
                             />
                             {searchInput !== '' && (
                                 <button
@@ -50,6 +56,7 @@ export default function MainSearch() {
                             <SuggestionsBox
                                 suggestions={suggestions} 
                                 loading={suggestionsLoading}
+                                searchInput={searchInput}
                                 topDist={'40px'}
                                 topPadding={'15px'}
                             />

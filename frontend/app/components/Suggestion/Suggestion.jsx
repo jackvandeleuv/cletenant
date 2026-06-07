@@ -2,12 +2,17 @@ import Link from 'next/link';
 import styles from './Suggestion.module.css';
 import { logSuggestionClick } from '@/app/utils/analytics';
 
-export default function Suggestion({ suggestion }) {
+export default function Suggestion({ suggestion, searchInput }) {
+    const q = searchInput;
+    let hrefObj = { pathname: `/parcel/${suggestion.parcel}` }
+    if (q && q.trim() !== '') {
+        hrefObj.query = { q };
+    } 
 
     return (
         <Link
             className={styles.parcelSuggestion} 
-            href={`/parcel/${suggestion.parcel}`}
+            href={hrefObj}
             onClick={(() => logSuggestionClick(suggestion.parcel))}
         >
             <svg className={styles.parcelSuggestionIcon} xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">

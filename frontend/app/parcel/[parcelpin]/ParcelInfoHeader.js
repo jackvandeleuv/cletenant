@@ -26,9 +26,11 @@ function ParcelInfoHeaderBox({ label, value, owner_id }) {
 export default function ParcelInfoHeader({ parcel }) {
     const transferDate = convertDateObjectToLabel(new Date(parcel.last_transfer_date));
     // const taxDelinquency = parcelObjToTaxDelinquencyLabel(parcel.taxdelinquencyamount);
+
+    const owner = parcel.owners || {};
     
     const infoBoxes = [
-        ['Property Owner', parcel.owners.std_deeded_owner || 'MISSING', parcel.owner_id],
+        ['Property Owner', owner.std_deeded_owner || 'MISSING', parcel.owner_id],
         ['Last Ownership Transfer', transferDate],
         ['Transferred From', parcel.grantor || 'None'],
         ['Transfers (Last 5 Years)', parcel.transfers_in_5y || 0],

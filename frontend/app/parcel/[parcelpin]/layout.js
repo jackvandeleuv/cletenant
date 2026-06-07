@@ -4,6 +4,7 @@ import SiteHeader from '../../components/SiteHeader/page';
 import EmbeddedSearchBar from '../../components/EmbeddedSearchBar/EmbeddedSearchBar';
 
 export default function ParcelLayout({ children }) {
+    
     return (
         <div className={styles.mainPageWrapper}>
             <div className={styles.searchHeader}>

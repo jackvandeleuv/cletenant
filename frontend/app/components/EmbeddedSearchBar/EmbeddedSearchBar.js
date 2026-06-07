@@ -4,12 +4,16 @@ import { clearInputBox, handleSearchInput } from '@/app/utils/search';
 import SuggestionsBox from '../SuggestionsBox/SuggestionsBox';
 import styles from './EmbeddedSearchBar.module.css';
 import { useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 
 export default function EmbeddedSearchBar() {
     const [suggestions, setSuggestions] = useState([]);
     const [suggestionsLoading, setSuggestionsLoading] = useState(false);
     const [suggestionsHidden, setSuggestionsHidden] = useState(true);
     const [searchInput, setSearchInput] = useState('');
+
+    const searchParams = useSearchParams()
+    const q = searchParams.get('q') ?? '';
     
     return (
         <div className={styles.searchBoxWrapper}>
@@ -20,6 +24,7 @@ export default function EmbeddedSearchBar() {
                     className={styles.searchBox}
                     autoComplete="off"
                     placeholder="Enter an address."
+                    defaultValue={q}
                     onChange={(e) => (
                         handleSearchInput(
                             e.target.value, 
@@ -45,6 +50,7 @@ export default function EmbeddedSearchBar() {
                 <SuggestionsBox
                     suggestions={suggestions} 
                     loading={suggestionsLoading}
+                    searchInput={searchInput}
                     topDist={'58px'}
                     topPadding={'0px'}
                 />

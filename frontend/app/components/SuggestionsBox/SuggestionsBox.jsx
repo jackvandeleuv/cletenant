@@ -2,9 +2,9 @@ import Suggestion from "../Suggestion/Suggestion";
 import SuggestionBoxSkeleton from "./SuggestionBoxSkeleton";
 import styles from './SuggestionsBox.module.css';
 
-function SuggestionsBox({ suggestions, loading, topDist, topPadding }) {
+function SuggestionsBox({ suggestions, loading, searchInput, topDist, topPadding }) {
     // const boxClass = loading ? styles.suggestionBoxSkeleton : styles.suggestionBox;
-    
+
     return (
         <div className={styles.suggestionBox} style={{top: topDist, paddingTop: topPadding}}>
             {loading && (
@@ -15,6 +15,7 @@ function SuggestionsBox({ suggestions, loading, topDist, topPadding }) {
                 <Suggestion
                     key={suggestion.parcel}
                     suggestion={suggestion} 
+                    searchInput={searchInput}
                 />
             )}
         </div>

@@ -68,7 +68,6 @@ function ParcelCaroselCard({ parcel }) {
 }
 
 export default function ParcelCarosel({ parcels }) {
-    console.log(parcels.length)
     return (
         <div className={styles.surveyCard}>
             <h1>Properties Owned</h1>
