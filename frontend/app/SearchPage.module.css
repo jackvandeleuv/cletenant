@@ -31,11 +31,11 @@
     box-sizing: border-box;
 }
 
-@media (max-width: 800px) {
+/* @media (max-width: 800px) {
     .searchWrapper {
-        top: 40px;
+        top: 50px;
     }
-}
+} */
 
 .siteHeader {
     width: 100%;
@@ -162,4 +162,17 @@
     flex-direction: column;
     justify-content: center;
 
+}
+
+.aboutLink {
+    position: absolute;
+    top: 15px;
+    right: 10px;
+    color: var(--white);
+    padding: 5px;
+    font-size: medium;
+}
+
+.aboutLink:hover {
+    text-decoration: underline;
 }

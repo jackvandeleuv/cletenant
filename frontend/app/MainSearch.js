@@ -5,6 +5,7 @@ import SuggestionsBox from './components/SuggestionsBox/SuggestionsBox';
 import styles from './SearchPage.module.css';
 import { clearInputBox, handleSearchInput } from './utils/search';
 import { useSearchParams } from 'next/navigation';
+import Link from 'next/link';
 
 export default function MainSearch() {
     const [suggestions, setSuggestions] = useState([]);
@@ -17,6 +18,7 @@ export default function MainSearch() {
 
     return (
         <div className={styles.outerPageWrapper}>
+            <Link className={styles.aboutLink} href={'/about'}>About</Link>
             <div className={styles.mainPageWrapper}>
                 <div className={styles.searchWrapper}>
                     <div className={styles.siteHeader}>

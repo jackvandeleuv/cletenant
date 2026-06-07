@@ -2,6 +2,16 @@ import FooterSpacer from "../components/FooterSpacer/FooterSpacer";
 import SiteHeader from "../components/SiteHeader/page";
 import styles from './About.module.css';
 
+export const metadata = {
+    title: {
+        default: 'CleTenant | About',
+    },
+    description: 'CleTenant is free tool for viewing public data on Cleveland properties. While it is intended primarily for use by renters, data from non-rental properties is also included.',
+    alternates: {
+        canonical: '/about',
+    },
+}
+
 function SourceCard({ spec }) {
     return (
         <a
@@ -107,6 +117,18 @@ export default function About() {
                             However, even when data is made public, it is not always being presented in an easy-to-use, searchable format. 
                             CleTenant is trying to bridge that gap by providing the simplest, most user-friendly presentation of the data possible.
                         </p>
+                        <p>
+                            If you have any feedback on this site, positive or negative, please consider filling out the survey below.
+                        </p>
+                        <div className={styles.surveyWrapper}>
+                            <a
+                                target={'_blank'}
+                                href={'https://forms.gle/FR4zkbvJjbf4P1gu6'}
+                                className={styles.surveyLink}
+                            >
+                                Survey
+                            </a>
+                        </div>
                     </section>
                     <section className={styles.section}>
                         <h1>Where does the data come from?</h1>
