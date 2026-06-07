@@ -30,8 +30,6 @@ const PARCEL_COLS = [
 ]
 
 async function lookupRecord(endpoint, key, value, selectString, limit) {
-    // await sleep(100000);
-
     const DEFAULT_LIMIT = 999;
 
     const url = new URL(`${BACKEND_URL}/${endpoint}`);
@@ -122,7 +120,6 @@ async function lookupRecordWithAddress(endpoint, input, address, limit) {
 }
 
 export async function getSuggestionsByAddress(input, address) {
-    // await sleep(100000);
     return await lookupRecordWithAddress('parcels', input, address, 'par_addr_app', 100);
 }
 

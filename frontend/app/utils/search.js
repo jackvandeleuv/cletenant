@@ -36,6 +36,10 @@ export async function handleSearchInput(input, setSuggestions, setSuggestionsLoa
 
     try {
         const suggestions = await getSuggestionsByAddress(input, parsed);
+
+        const currentInput = document.getElementById('searchBox').value;
+        if (input !== currentInput) return;
+
         setSuggestions(suggestions);
         setSuggestionsLoading(false);
         setSuggestionsHidden(suggestions.length === 0);
