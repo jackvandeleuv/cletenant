@@ -1,12 +1,8 @@
 .addressHeaderBox {
-    /* text-align: center; */
     width: 100%;
     box-sizing: border-box;
     padding: 10px;
     padding-top: 30px;
-    /* padding-bottom: 30px; */
-    /* background-color: var(--dark); */
-    /* border-radius: 10px; */
 }
 
 .addressHeader {

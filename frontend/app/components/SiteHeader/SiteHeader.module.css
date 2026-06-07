@@ -10,6 +10,17 @@
     padding-top: 12px;
     padding: 12px;
     box-sizing: border-box;
+    justify-content: space-between;
+}
+
+.aboutLink {
+    color: var(--light-background);
+    padding: 5px;
+    font-size: medium;
+}
+
+.aboutLink:hover {
+    text-decoration: underline;
 }
 
 .homeButton {

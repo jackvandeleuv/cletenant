@@ -1,0 +1,48 @@
+.section {
+    background-color: var(--white);
+    padding: 20px;
+    box-sizing: border-box;
+    border: 1px solid var(--disabled-gray);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+}
+
+.sourceCard {
+    border: 3px solid var(--dark);
+    border-radius: 15px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    user-select: none;
+    fill: var(--dark);
+}
+
+.sourceCard:hover {
+    background-color: var(--dark-background);
+    color: var(--light-background);
+    fill: var(--light-background);
+}
+
+.headerBox {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    padding-top: 30px;
+}
+
+.header {
+    font-weight: bolder;
+    font-size: x-large;
+}
+
+.icon {
+    height: 50px;
+    width: 50px;
+    min-height: 50px;
+    min-width: 50px;
+}

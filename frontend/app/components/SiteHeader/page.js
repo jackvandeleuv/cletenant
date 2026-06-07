@@ -15,6 +15,8 @@ export default function SiteHeader() {
                     <h3 className={styles.siteHeaderName}>CleTenant</h3>
                 </div>
             </Link>
+
+            <Link className={styles.aboutLink} href={'/about'}>About</Link>
         </div>
     )
 }
