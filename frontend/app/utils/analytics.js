@@ -34,17 +34,17 @@ function getSessionId() {
 }
 
 export function logSuggestionClick(record_id) {
-    logToGoogleAnalytics('suggestion_click', { record_id: record_id });
+    // logToGoogleAnalytics('suggestion_click', { record_id: record_id, debug_mode:true, engagement_time_msec: 1 });
     logToSupabase('suggestion_click', record_id);
 }
 
 export function logSuggestionsOffered(input) {
-    logToGoogleAnalytics('suggestions_were_offered_for_input', { search_term: input });
+    // logToGoogleAnalytics('suggestions_were_offered_for_input', { search_term: input });
     logToSupabase('suggestions_were_offered_for_input', input);
 }
 
 export function logSuggestionsNotFound(input) {
-    logToGoogleAnalytics('suggestions_not_found_for_input', { search_term: input });
+    // logToGoogleAnalytics('suggestions_not_found_for_input', { search_term: input });
     logToSupabase('suggestions_not_found_for_input', input);
 }
 
@@ -56,11 +56,11 @@ export function logPageVisited(parcelpin, pageType) {
     logToSupabase(`visited_${pageType}`, parcelpin);
 }
 
-function logToGoogleAnalytics(eventName, params) {
-    if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
-        window.gtag('event', eventName, params);
-    }
-}
+// function logToGoogleAnalytics(eventName, params) {
+//     if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+//         window.gtag('event', eventName, params);
+//     } 
+// }
 
 function logToSupabase(event_type, value) {
     const headers = {
