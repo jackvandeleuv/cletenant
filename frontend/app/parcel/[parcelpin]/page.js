@@ -63,8 +63,8 @@ export default async function ParcelPage({ params }) {
         ],
     ];
 
-    const codeInfractionBody = `City of Cleveland issues civil tickets and violations in response to building and zoning code infractions.`;
-    const complaintBody = `Various types of complaints can be made through the 311 website and phone line, and through the Department of Public Health.`;
+    const codeInfractionBody = `City of Cleveland issues civil tickets and violations in response to building and zoning code infractions. Both indicate problems and may result in penalties`;
+    const complaintBody = <>Complaints can be made through the <a style={{textDecoration: 'underline'}} target="_blank" href="https://www.clevelandohio.gov/311/building-housing">311 website</a> and phone line, and through the <a style={{textDecoration: 'underline'}} target="_blank" href="https://www.clevelandohio.gov/city-hall/departments/public-health/submit-complaint">Department of Public Health</a>.</>;
 
     return (
         <div className={'contentWrapperOuter'}>
