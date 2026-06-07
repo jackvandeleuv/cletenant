@@ -7,9 +7,11 @@ export async function generateMetadata({ params }) {
     const { ownerid } = await params;
     const owner = (await getOwner(ownerid))[0];
 
+    const parcels = owner.parcels_owned === 1 ? 'property': 'properties';
+
     return {
         title: `Overview | ${owner.std_deeded_owner}`,
-        description: `Overview of public data on ${owner.std_deeded_owner}.`,
+        description: `Summary of the ${owner.parcels_owned} ${parcels} owned by ${owner.std_deeded_owner}.`,
         alternates: {
             canonical: `owner/${ownerid}`,
         },
