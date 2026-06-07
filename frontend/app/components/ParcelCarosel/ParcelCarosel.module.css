@@ -26,8 +26,8 @@
     border-radius: 10px;
     border: 3px solid var(--dark);
     height: 150px;
-    width: 200px;
-    min-width: 200px;
+    width: 240px;
+    min-width: 240px;
     /* background-color: red; */
     display: flex;
     flex-direction: column;

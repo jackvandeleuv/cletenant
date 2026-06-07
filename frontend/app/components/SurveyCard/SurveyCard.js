@@ -67,7 +67,7 @@ export default function SurveyCard({ parcel }) {
                 <img 
                     className={styles.parcelImage} 
                     src={parcel.survey2022_photolink} 
-                    alt={'Link to full-screen 2022 property survey photo.'}
+                    alt={altText}
                 />
             </a>
             <div className={styles.surveyCardBody}>

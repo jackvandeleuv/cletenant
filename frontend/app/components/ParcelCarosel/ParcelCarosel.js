@@ -1,4 +1,4 @@
-import { parcelObjToAddressLabel } from '@/app/utils/utilities';
+import { convertDateObjectToLabel, parcelObjToAddressLabel } from '@/app/utils/utilities';
 import styles from './ParcelCarosel.module.css';
 import Link from 'next/link';
 
@@ -42,7 +42,8 @@ const neighborhoodColors = {
 function ParcelCaroselCard({ parcel }) {
     const label = parcelObjToAddressLabel(parcel);
     const color = neighborhoodColors[parcel.neighborhood] ?? 'var(--disabled-gray)';
-    
+    const transferDate = convertDateObjectToLabel(new Date(parcel.last_transfer_date));
+
     return (
         <Link 
             className={styles.parcelCaroselCard}
@@ -60,19 +61,22 @@ function ParcelCaroselCard({ parcel }) {
                 {label}
             </h2>
             <p>
+                Last Transfer: {transferDate}
+            </p>
+            <p>
                 Parcel {parcel.parcel}
             </p>
-
         </Link>
     )
 }
 
 export default function ParcelCarosel({ parcels }) {
+    const sortedParcels = parcels.sort((a, b) => b.last_transfer_date - a.last_transfer_date);
     return (
         <div className={styles.surveyCard}>
             <h1>Properties Owned</h1>
             <div className={styles.carosel}>
-                {parcels.map((par) => (
+                {sortedParcels.map((par) => (
                     <ParcelCaroselCard key={par.parcel} parcel={par} />
                 ))}
             </div>

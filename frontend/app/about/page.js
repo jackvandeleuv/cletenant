@@ -102,9 +102,7 @@ export default function About() {
                             While it is intended primarily for use by renters, data from non-rental properties is also included.
                         </p>
                         <p>
-                            <strong>
-                                This is an independent project that is not affiliated with the City or County government in any way.
-                            </strong>
+                            This is an independent project that <strong>is not affiliated</strong> with the City or County government in any way.
                         </p>
                     </section>
                     <section className={styles.section}>

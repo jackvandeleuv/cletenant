@@ -27,6 +27,7 @@ const PARCEL_COLS = [
     'par_addr_all',
     'survey2022_grade',
     'neighborhood',
+    'last_transfer_date',
 ]
 
 async function lookupRecord(endpoint, key, value, selectString, limit) {
