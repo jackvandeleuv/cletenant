@@ -44,30 +44,32 @@ export default async function ViolationPage({ params }) {
     }
 
     return (
-        <div className={'contentWrapper'}>
-            <AddressBanner parcel={parcel} />
+        <div className={'contentWrapperOuter'}>
+            <div className={'contentWrapper'}>
+                <AddressBanner parcel={parcel} />
 
-            <div className={styles.recordPageHeader}>
-                <h1 className={styles.recordPageHeaderCount}>
-                    Total Code Violations: {records.length}
-                </h1>
-                <p className={styles.recordPageHeaderDescription}>
-                    When the City finds a property in violation of building or zoning codes, a record of that violation will appear here.
-                </p>
-                <p className={styles.recordPageHeaderDescription}>
-                    If violations are not corrected, the City may start legal proceedings against a property owner.
-                </p>
-                <p className={styles.recordPageHeaderDescription}>         
-                    Click "more" to see the official records on the City's Accela Citizen Access site.
-                </p>
-            </div>
-            <div className={styles.recordCardWrapper}>
-                {records.map((record) => (
-                    <ViolationCard 
-                        key={record.record_id}
-                        record={record}
-                    />
-                ))}
+                <div className={styles.recordPageHeader}>
+                    <h1 className={styles.recordPageHeaderCount}>
+                        Total Code Violations: {records.length}
+                    </h1>
+                    <p className={styles.recordPageHeaderDescription}>
+                        When the City finds a property in violation of building or zoning codes, a record of that violation will appear here.
+                    </p>
+                    <p className={styles.recordPageHeaderDescription}>
+                        If violations are not corrected, the City may start legal proceedings against a property owner.
+                    </p>
+                    <p className={styles.recordPageHeaderDescription}>         
+                        Click "more" to see the official records on the City's Accela Citizen Access site.
+                    </p>
+                </div>
+                <div className={styles.recordCardWrapper}>
+                    {records.map((record) => (
+                        <ViolationCard 
+                            key={record.record_id}
+                            record={record}
+                        />
+                    ))}
+                </div>
             </div>
         </div>
     )

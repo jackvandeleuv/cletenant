@@ -1,16 +1,19 @@
 
 .siteHeader {
-    max-width: var(--max-width);
+    /* max-width: var(--max-width); */
     width: 100%;
     background-color: var(--dark-background);
     border-bottom: 1px solid var(--light-background);
     display: flex;
     align-items: center;
-    padding: 10px;
+    padding: 5px;
+    padding-top: 12px;
+    padding: 12px;
     box-sizing: border-box;
 }
 
 .homeButton {
+    height: 100%;
     cursor: pointer;
     display: flex;
     color: var(--light-background);
@@ -29,6 +32,12 @@
 }
 
 .siteHeaderName {
-    padding-top: 3px;
+    padding-top: 2px;
     font-weight: bold;
+}
+
+.siteHeaderNameWrapper {
+    height: 100%;
+    display: flex;
+    align-items: center;
 }

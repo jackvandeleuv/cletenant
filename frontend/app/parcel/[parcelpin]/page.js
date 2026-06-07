@@ -8,6 +8,7 @@ import InfractionCard from "../../components/InfractionCard/InfractionCard";
 import { parcelObjToAddressLabel } from '../../utils/utilities';
 import SurveyCard from "../../components/SurveyCard/SurveyCard";
 import OwnerCard from "../../components/OwnerCard/OwnerCard";
+import FooterSpacer from "@/app/components/FooterSpacer/FooterSpacer";
 
 export async function generateMetadata({ params }) {
     const { parcelpin } = await params;
@@ -66,31 +67,34 @@ export default async function ParcelPage({ params }) {
     const complaintBody = `Various types of complaints can be made through the 311 website and phone line, and through the Department of Public Health.`;
 
     return (
-        <div className={'contentWrapper'}>
-            <AddressBanner parcel={parcel} />
+        <div className={'contentWrapperOuter'}>
+            <div className={'contentWrapper'}>
+                <AddressBanner parcel={parcel} />
 
-            <ParcelInfoHeader parcel={parcel} />
+                <ParcelInfoHeader parcel={parcel} />
 
-            <RentalCard parcel={parcel} />
+                <RentalCard parcel={parcel} />
 
-            <InfractionCard 
-                parcelpin={parcel.parcel}
-                title={'Code Infractions'}
-                body={codeInfractionBody}
-                cardSpecs={enforcement}
-            />
+                <InfractionCard 
+                    parcelpin={parcel.parcel}
+                    title={'Code Infractions'}
+                    body={codeInfractionBody}
+                    cardSpecs={enforcement}
+                />
 
-            <InfractionCard 
-                parcelpin={parcel.parcel}
-                title={'Complaints'}
-                body={complaintBody}
-                cardSpecs={complaints}
-            />
+                <InfractionCard 
+                    parcelpin={parcel.parcel}
+                    title={'Complaints'}
+                    body={complaintBody}
+                    cardSpecs={complaints}
+                />
 
-            <SurveyCard parcel={parcel} />
+                <SurveyCard parcel={parcel} />
 
-            <OwnerCard owner={parcel.owners} owner_id={parcel.owner_id} includeSubtitle={true} />
+                <OwnerCard owner={parcel.owners} owner_id={parcel.owner_id} includeSubtitle={true} />
 
+                <FooterSpacer />
+            </div>
         </div>
     )
 }

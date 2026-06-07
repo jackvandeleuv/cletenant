@@ -43,25 +43,27 @@ export default async function Complaints311Page({ params }) {
     }
 
     return ( 
-        <div className={'contentWrapper'}>
-            <AddressBanner parcel={parcel} />
+        <div className={'contentWrapperOuter'}>
+            <div className={'contentWrapper'}>
+                <AddressBanner parcel={parcel} />
 
-            <div className={styles.recordPageHeader}>
-                <h1 className={styles.recordPageHeaderCount}>
-                    Total 311 Complaints: {records.length}
-                </h1>
-                <p className={styles.recordPageHeaderDescription}>
-                    The City of Cleveland accepts complaints about rental and building quality through its 311 website and phone line.
-                </p>
-            </div>
-            <div className={styles.recordCardWrapper}>
-                {records.map((record) => (
-                    <Complaint311Card
-                        key={record.service_request_id}
-                        complaint={record}
-                    />
-                ))}
-            </div>
+                <div className={styles.recordPageHeader}>
+                    <h1 className={styles.recordPageHeaderCount}>
+                        Total 311 Complaints: {records.length}
+                    </h1>
+                    <p className={styles.recordPageHeaderDescription}>
+                        The City of Cleveland accepts complaints about rental and building quality through its 311 website and phone line.
+                    </p>
+                </div>
+                <div className={styles.recordCardWrapper}>
+                    {records.map((record) => (
+                        <Complaint311Card
+                            key={record.service_request_id}
+                            complaint={record}
+                        />
+                    ))}
+                </div>
+        </div>
         </div>
     )
 }

@@ -44,26 +44,27 @@ export default async function ComplaintsHealthPage({ params }) {
     }
 
     return (
-        <div className={'contentWrapper'}>
-            <AddressBanner parcel={parcel} />
+        <div className={'contentWrapperOuter'}>
+            <div className={'contentWrapper'}>
+                <AddressBanner parcel={parcel} />
 
-            <div className={styles.recordPageHeader}>
-                <h1 className={styles.recordPageHeaderCount}>
-                    Total Health Complaints: {records.length}
-                </h1>
-                <p className={styles.recordPageHeaderDescription}>
-                    The Cleveland Department of Public Health accepts complaints via the City website.
-                </p>
+                <div className={styles.recordPageHeader}>
+                    <h1 className={styles.recordPageHeaderCount}>
+                        Total Health Complaints: {records.length}
+                    </h1>
+                    <p className={styles.recordPageHeaderDescription}>
+                        The Cleveland Department of Public Health accepts complaints via the City website.
+                    </p>
+                </div>
+                <div className={styles.recordCardWrapper}>
+                    {records.map((record, i) => (
+                        <ComplaintHealthCard
+                            key={`complaint_${i}`}
+                            complaint={record}
+                        />
+                    ))}
+                </div>
             </div>
-            <div className={styles.recordCardWrapper}>
-                {records.map((record, i) => (
-                    <ComplaintHealthCard
-                        key={`complaint_${i}`}
-                        complaint={record}
-                    />
-                ))}
-            </div>
-        </div>
-        
+        </div> 
     )
 }

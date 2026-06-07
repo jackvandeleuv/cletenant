@@ -45,24 +45,26 @@ export default async function CivilTicketsPage({ params }) {
     }
 
     return (  
-        <div className={'contentWrapper'}>
-            <AddressBanner parcel={parcel} />
+        <div className={'contentWrapperOuter'}>
+            <div className={'contentWrapper'}>
+                <AddressBanner parcel={parcel} />
 
-            <div className={styles.recordPageHeader}>
-                <h1 className={styles.recordPageHeaderCount}>
-                    Total Civil Tickets: {records.length}
-                </h1>
-                <p className={styles.recordPageHeaderDescription}>
-                    Civil tickets are building code enforcement actions which may carry financial penalties. Tickets are issued by the City of Cleveland.
-                </p>
-            </div>
-            <div className={styles.recordCardWrapper}>
-                {records.map((record) => (
-                    <CivilTicketsCard 
-                        key={record.ticket_id}
-                        record={record}
-                    />
-                ))}
+                <div className={styles.recordPageHeader}>
+                    <h1 className={styles.recordPageHeaderCount}>
+                        Total Civil Tickets: {records.length}
+                    </h1>
+                    <p className={styles.recordPageHeaderDescription}>
+                        Civil tickets are building code enforcement actions which may carry financial penalties. Tickets are issued by the City of Cleveland.
+                    </p>
+                </div>
+                <div className={styles.recordCardWrapper}>
+                    {records.map((record) => (
+                        <CivilTicketsCard 
+                            key={record.ticket_id}
+                            record={record}
+                        />
+                    ))}
+                </div>
             </div>
         </div>
     )

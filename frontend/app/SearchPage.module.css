@@ -31,15 +31,13 @@
     box-sizing: border-box;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 800px) {
     .searchWrapper {
-        top: 50px;
+        top: 40px;
     }
 }
 
 .siteHeader {
-    max-width: var(--max-width);
-    color: var(--dark);
     width: 100%;
     user-select: none;
     display: flex;
@@ -48,8 +46,11 @@
     gap: 5px;
 }
 
-.hidden {
-    visibility: hidden;
+.siteHeaderName {
+    padding-top: 3px;
+    font-weight: bold;
+    font-size: xxx-large;
+    color: var(--white);
 }
 
 .homeIcon {
@@ -60,19 +61,44 @@
     /* fill: var(--dark); */
     fill: var(--white);
 }
+/* 
+@media (max-width: 800px) {
+    .siteHeaderName {
+        font-size: xx-large;
+    }
 
-.siteHeaderName {
-    padding-top: 3px;
-    font-weight: bold;
-    font-size: xxx-large;
-    color: var(--white);
+    .homeIcon {
+        width: 50px;
+        height: 50px;
+        min-width: 50px;
+        min-height: 50px;
+    }
+} */
+
+.hidden {
+    visibility: hidden;
 }
 
 .siteSubHeader {
     color: var(--white);
-    padding: 15px;
+    /* padding: 15px; */
     padding-bottom: 20px;
     user-select: none;
+    text-align: center;
+}
+
+.siteSubSubHeader {
+    color: var(--white);
+    padding-top: 20px;
+    user-select: none;
+    text-align: center;
+}
+
+.siteSubHeaderWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .searchHeader {
@@ -84,7 +110,7 @@
 }
 
 .searchBoxWrapper {
-    max-width: var(--max-width);
+    /* max-width: var(--max-width); */
     position: relative;
     background-color: var(--white);
     width: 100%;
@@ -108,8 +134,7 @@
 }
 
 .searchBox::placeholder {
-  color: var(--disabled-gray);
-  font-style: italic;
+    color: var(--disabled-gray);
 }
 
 .inputBoxWrapper {

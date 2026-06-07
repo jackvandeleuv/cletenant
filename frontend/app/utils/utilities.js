@@ -11,11 +11,6 @@ export function convertDateObjectToLabel(dateObj) {
     `.trim();
 }
 
-export function updateContentWrapper(html) {
-    const contentWrapper = document.getElementById('contentWrapper');
-    contentWrapper.innerHTML = html;
-}
-
 export async function sleep(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
 }

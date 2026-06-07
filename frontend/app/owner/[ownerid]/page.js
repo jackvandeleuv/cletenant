@@ -1,3 +1,4 @@
+import FooterSpacer from "@/app/components/FooterSpacer/FooterSpacer";
 import OwnerBanner from "@/app/components/OwnerBanner/OwnerBanner";
 import OwnerCard from "@/app/components/OwnerCard/OwnerCard";
 import ParcelCarosel from "@/app/components/ParcelCarosel/ParcelCarosel";
@@ -23,10 +24,13 @@ export default async function OwnerPage({ params }) {
     const owner = (await getOwner(ownerid))[0];
 
     return (
-        <div className={'contentWrapper'}>
-            <OwnerBanner owner={owner} />
-            <OwnerCard owner={owner} owner_id={ownerid} includeSubtitle={false} />
-            <ParcelCarosel parcels={owner.parcels} />
+        <div className={'contentWrapperOuter'}>
+            <div className={'contentWrapper'}>
+                <OwnerBanner owner={owner} />
+                <OwnerCard owner={owner} owner_id={ownerid} includeSubtitle={false} />
+                <ParcelCarosel parcels={owner.parcels} />
+                <FooterSpacer />
+            </div>
         </div>
     );
 }

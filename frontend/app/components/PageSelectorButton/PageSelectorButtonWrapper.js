@@ -1,14 +1,46 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './PageSelectorButton.module.css';
 import PageSelectorButton from './PageSelectorButton';
 import { usePathname, useSearchParams } from 'next/navigation';
+import PageSelectorWide from './PageSelectorWide';
+import PageSelectorNarrow from './PageSelectorNarrow';
 
 export default function PageSelectorButtonWrapper() {
     // Get URL params.
     const searchParams = useSearchParams()
     const q = searchParams.get('q') ?? '';
+
+    // useEffect(() => {
+    //     const matches = window.matchMedia('(min-width: 800px)').matches;
+    //     console.log(matches);
+    // }, []);
+
+    const [wideScreen, setWideScreen] = useState(false);
+
+    useEffect(() => {
+        const media = window.matchMedia('(min-width: 800px)');
+
+        const updateScreenSize = () => {
+            console.log(media.matches)
+            setWideScreen(media.matches);
+        }
+
+        updateScreenSize();
+
+        media.addEventListener('change', updateScreenSize);
+
+        // Clean up when unmounting.
+        return () => {
+            media.removeEventListener('change', updateScreenSize)
+        }
+    }, []);
+
+    useEffect(() => {
+        console.log('wide screen state:')
+        console.log(wideScreen)
+    }, [wideScreen]);
 
     // Get URL path.
     const pathName = usePathname();
@@ -24,39 +56,27 @@ export default function PageSelectorButtonWrapper() {
         ['complaints-311', 'Complaints (311)'],
         ['complaints-health', 'Complaints (Health)'],
     ];
-    const currentLabel = pagesSpec.filter((row) => row[0] === currentRoute).pop()[1];
-    pagesSpec = pagesSpec.filter((row) => row[0] !== currentRoute);
     
     return (
-        <div 
-            className={styles.pageSelectorWrapper}
-            onClick={(() => setButtonsHidden(!buttonsHidden))}
-        >
-            <button className={styles.pageSelector}>
-                <p className={styles.pageSelectorCurrentLabel}>
-                    {currentLabel}
-                </p>
-                <svg 
-                    className={styles.pageSelectorButtonIcon} 
-                    xmlns="http://www.w3.org/2000/svg" 
-                    viewBox="0 -960 960 960"
-                >
-                    <path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z"/>
-                </svg>
-            </button>
-            <div className={`${styles.pageSelectorButtonWrapper} ${buttonsHidden ? 'hidden': ''}`}>
-                {pagesSpec.map((spec) => 
-                    <PageSelectorButton
-                        key={spec[0]}
-                        parcelpin={parcelpin}
-                        q={q}
-                        buttonLabel={spec[1]}
-                        buttonRoute={spec[0]}
-                    >
-                        {spec[1]}
-                    </PageSelectorButton>
-                )}
-            </div>
-        </div>
+        <>
+            {wideScreen ? (
+                <PageSelectorWide 
+                    parcelpin={parcelpin}
+                    setButtonsHidden={setButtonsHidden}
+                    currentRoute={currentRoute}
+                    pagesSpec={pagesSpec}
+                    q={q}
+                />
+            ) : (
+                <PageSelectorNarrow
+                    parcelpin={parcelpin}
+                    buttonsHidden={buttonsHidden}
+                    setButtonsHidden={setButtonsHidden}
+                    currentRoute={currentRoute}
+                    pagesSpec={pagesSpec}
+                    q={q}
+                />
+            )}
+        </>
     )
 }

@@ -1,3 +1,32 @@
+.pageSelectorWrapperWide {
+    background-color: var(--dark-background);
+    width: 100%;
+    border-top: 1px solid var(--white);
+    display: flex;
+    justify-content: center;
+}
+
+.pageSelectorButtonWide {
+    padding: 10px;
+    color: var(--light-background);
+    box-sizing: border-box;
+}
+
+.pageSelectorButtonWide:hover {
+    text-decoration: underline;
+}
+
+.pageSelectorButtonWrapperWide {
+    max-width: var(--max-width);
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 10px;
+    /* gap: 15px; */
+    font-size: 15px;
+}
 
 .pageSelectorWrapper {
     max-width: var(--max-width);

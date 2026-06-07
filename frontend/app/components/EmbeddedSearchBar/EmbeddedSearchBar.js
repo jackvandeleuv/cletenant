@@ -10,10 +10,11 @@ export default function EmbeddedSearchBar() {
     const [suggestions, setSuggestions] = useState([]);
     const [suggestionsLoading, setSuggestionsLoading] = useState(false);
     const [suggestionsHidden, setSuggestionsHidden] = useState(true);
-    const [searchInput, setSearchInput] = useState('');
 
     const searchParams = useSearchParams()
     const q = searchParams.get('q') ?? '';
+
+    const [searchInput, setSearchInput] = useState(q);
     
     return (
         <div className={styles.searchBoxWrapper}>
@@ -51,8 +52,9 @@ export default function EmbeddedSearchBar() {
                     suggestions={suggestions} 
                     loading={suggestionsLoading}
                     searchInput={searchInput}
-                    topDist={'58px'}
-                    topPadding={'0px'}
+                    topDist={'40px'}
+                    topPadding={'15px'}
+                    maxWidth={'800px'}
                 />
             )}
         </div>

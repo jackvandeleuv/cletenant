@@ -13,7 +13,10 @@
     --dark: oklch(26.9% 0 0);
     
     /* teal-700 */
-    --dark-background: oklch(51.1% 0.096 186.391);
+    /* --dark-background: oklch(51.1% 0.096 186.391); */
+
+    /* teal-900 */
+    --dark-background: oklch(38.6% 0.063 188.416);
 
     /* orange-200 */
     --accent: oklch(90.1% 0.076 70.697);
@@ -103,35 +106,28 @@ button {
     width: 100%;
     height: 100%;
     max-width: var(--max-width);
-    overflow-y: scroll;
 
     display: flex;
     flex-direction: column;
     gap: 20px;
 
-    padding-bottom: 40px;
-
     padding-right: 5px;
     padding-left: 5px;
+
     box-sizing: border-box;
+}
+
+.contentWrapperOuter {
+    overflow-y: scroll;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .defaultIcon {
     width: 25px;
     height: 25px;
     fill: var(--light-background);
-}
-
-.flexboxX {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 5px;
-}
-
-.flexboxY {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 5px;
 }
