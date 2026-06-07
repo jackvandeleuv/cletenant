@@ -339,7 +339,17 @@ par_count = (parcels
     .reset_index()
     .rename(columns={0: 'parcels_owned'})
 )
-owners = owners.merge(par_count, on='owner_id')
+par_with_survey_count = (parcels
+    [~parcels.survey2022_grade_num.isna()]
+    .groupby('owner_id')
+    .size()
+    .reset_index()
+    .rename(columns={0: 'parcels_owned_with_survey'})
+)
+owners = (owners
+    .merge(par_count, on='owner_id')
+    .merge(par_with_survey_count, on='owner_id')
+)
 
 id_to_name = (parcels
     [['owner_id', 'std_deeded_owner']]

@@ -10,3 +10,4 @@ frontend/.next
 frontend/node_modules
 pipeline/events_rows.csv
 pipeline/test_neighborhoods.csv
+pipeline/scratch.ipynb
