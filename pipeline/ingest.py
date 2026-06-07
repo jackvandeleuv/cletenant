@@ -46,22 +46,22 @@ def ingest_service(url, file_name, outfields='*'):
     
 
 SERVICES = [
-    # (
-    #     'https://services3.arcgis.com/dty2kHktVXHrqO8i/arcgis/rest/services/Civil_Tickets/FeatureServer/0/query',
-    #     'civil_tickets',
-    # ),
-    # (
-    #     'https://services3.arcgis.com/dty2kHktVXHrqO8i/arcgis/rest/services/Violation_Status_History/FeatureServer/0/query',
-    #     'violation_status_history',
-    # ),
-    # (
-    #     'https://services3.arcgis.com/dty2kHktVXHrqO8i/arcgis/rest/services/Complaint_Violation_Notices/FeatureServer/0/query',
-    #     'complaint_violations',
-    # ),
-    # (
-    #     'https://services3.arcgis.com/dty2kHktVXHrqO8i/arcgis/rest/services/Data_311/FeatureServer/0/query',
-    #     'complaints_311'
-    # ),
+    (
+        'https://services3.arcgis.com/dty2kHktVXHrqO8i/arcgis/rest/services/Civil_Tickets/FeatureServer/0/query',
+        'civil_tickets',
+    ),
+    (
+        'https://services3.arcgis.com/dty2kHktVXHrqO8i/arcgis/rest/services/Violation_Status_History/FeatureServer/0/query',
+        'violation_status_history',
+    ),
+    (
+        'https://services3.arcgis.com/dty2kHktVXHrqO8i/arcgis/rest/services/Complaint_Violation_Notices/FeatureServer/0/query',
+        'complaint_violations',
+    ),
+    (
+        'https://services3.arcgis.com/dty2kHktVXHrqO8i/arcgis/rest/services/Data_311/FeatureServer/0/query',
+        'complaints_311'
+    ),
     (
         'https://services3.arcgis.com/dty2kHktVXHrqO8i/arcgis/rest/services/CDPH_Complaints/FeatureServer/0/query',
         'complaints_health'
