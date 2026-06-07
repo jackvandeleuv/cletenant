@@ -30,10 +30,10 @@ export default function OwnerCard({ owner, owner_id, includeSubtitle }) {
     if (
         owner && 
         owner.survey2022_grade_num && 
-        owner.parcels_owned &&
-        owner.parcels_owned > 0
+        owner.parcels_owned_with_survey &&
+        owner.parcels_owned_with_survey > 0
     ) {
-        avgSurveyGrade = (owner.survey2022_grade_num / owner.parcels_owned).toFixed(1);
+        avgSurveyGrade = (owner.survey2022_grade_num / owner.parcels_owned_with_survey).toFixed(1);
     }
 
     const tableRows = [

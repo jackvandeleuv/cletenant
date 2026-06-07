@@ -351,7 +351,7 @@ owners = (owners
 
     # There is a filter so we have to left join.
     .merge(par_with_survey_count, on='owner_id', how='left')
-    .fillna(value=0, subset=['parcels_owned_with_survey'])
+    .fillna(value={'parcels_owned_with_survey': 0})
 )
 
 id_to_name = (parcels
