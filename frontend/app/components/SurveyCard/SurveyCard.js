@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import styles from './SurveyCard.module.css';
 import { parcelObjToAddressLabel } from '@/app/utils/utilities';
+import Link from 'next/link';
 
 export default function SurveyCard({ parcel }) {
     if (!parcel.survey2022_grade) {
@@ -94,11 +95,18 @@ export default function SurveyCard({ parcel }) {
 
     return (
         <div className={styles.surveyCard}>
-            <img 
-                className={styles.parcelImage} 
-                src={parcel.survey2022_photolink} 
-                alt={altText}
-            />
+            <a 
+                className={styles.photoLinkWrapper}
+                href={parcel.survey2022_photolink} 
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img 
+                    className={styles.parcelImage} 
+                    src={parcel.survey2022_photolink} 
+                    alt={'Link to full-screen 2022 property survey photo.'}
+                />
+            </a>
             <div className={styles.surveyCardBody}>
                 <div 
                     className={styles.gradeBadge}

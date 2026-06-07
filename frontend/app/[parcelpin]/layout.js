@@ -5,7 +5,6 @@ import styles from '@/app/[parcelpin]/parcelpin.module.css';
 import SuggestionsBox from '@/app/components/SuggestionsBox/SuggestionsBox';
 import PageSelectorButtonWrapper from '../components/PageSelectorButton/PageSelectorButtonWrapper';
 import { clearInputBox, handleSearchInput } from '../utils/search';
-import Link from 'next/link';
 import SiteHeader from '../components/SiteHeader/page';
 
 export default function SearchBar({ children }) {
