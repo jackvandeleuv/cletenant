@@ -29,6 +29,7 @@
 }
 
 .reportButton {
+    cursor: pointer;
     background-color: var(--dark);
     color: var(--white);
     font-size: medium;
@@ -36,6 +37,10 @@
     padding-left: 15px;
     padding-right: 15px;
     border-radius: 10px;
+}
+
+.reportButton:hover {
+    background-color: var(--dark-background);
 }
 
 .reportButtonWrapper {
