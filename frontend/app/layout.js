@@ -1,5 +1,4 @@
 import "./globals.css";
-import { Analytics } from '@vercel/analytics/next';
 import { GoogleAnalytics } from '@next/third-parties/google'
 
 export const metadata = {
@@ -34,7 +33,6 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         {children}
-        <Analytics />
         {gaId ? <GoogleAnalytics gaId={gaId} /> : null}
       </body>
     </html>

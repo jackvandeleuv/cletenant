@@ -63,15 +63,7 @@ async function lookupRecord(endpoint, key, value, selectString, limit) {
     return await resp.json();
 }
 
-async function lookupRecordWithAddress(endpoint, input, address, limit) {
-    const DEFAULT_LIMIT = 999;
-
-    const url = new URL(`${BACKEND_URL}/${endpoint}`);
-
-    const maxRange = limit || DEFAULT_LIMIT;
-
-    url.searchParams.set("select", "*");
-
+function setParsedAddressSearchParams(url, address) {
     if (address.streetNumber && address.streetNumber !== '') {
         url.searchParams.set("parcel_addr_max", `gte.${address.streetNumber}`);
         url.searchParams.set("parcel_addr_min", `lte.${address.streetNumber}`);
@@ -86,17 +78,23 @@ async function lookupRecordWithAddress(endpoint, input, address, limit) {
         url.searchParams.set("parcel_suffix", `eq.${address.streetType}`);  
     }
 
-    if (
-        address.streetNumber === '' &&
-        address.streetDir === '' &&
-        address.streetName === '' &&
-        address.streetName === ''
-    ) {
-        url.searchParams.set('par_addr_all', `like.${input.trim()}*`);  
-    }
+    return url;
+}
 
-    if (limit) {
-        url.searchParams.set('limit', limit);
+function setRawAddressSearchParams(url, input) {
+    url.searchParams.set('par_addr_all', `like.${input.trim()}*`);  
+    return url;
+}
+
+async function lookupRecordWithAddress(endpoint, input, address, limit, useParsing) {
+    const DEFAULT_LIMIT = 999;
+
+    let url = new URL(`${BACKEND_URL}/${endpoint}`);
+    url.searchParams.set("select", "par_addr_all,parcel");
+    if (useParsing) {
+        url = setParsedAddressSearchParams(url, address);
+    } else {
+        url = setRawAddressSearchParams(url, input);
     }
 
     const resp = await fetch(
@@ -104,7 +102,7 @@ async function lookupRecordWithAddress(endpoint, input, address, limit) {
         {
             method: 'GET',
             headers: {
-                'Range': `0-${maxRange}`,
+                'Range': `0-${limit || DEFAULT_LIMIT}`,
                 'Content-Type': 'application/x-www-form-urlencoded',
                 'apikey': CLIENT_SAFE_KEY,
                 'Authorization': `Bearer ${CLIENT_SAFE_KEY}`,
@@ -120,7 +118,28 @@ async function lookupRecordWithAddress(endpoint, input, address, limit) {
 }
 
 export async function getSuggestionsByAddress(input, address) {
-    return await lookupRecordWithAddress('parcels', input, address, 'par_addr_app', 100);
+    const LIMIT = 99;
+    
+    const parsedPromise = lookupRecordWithAddress('parcels', input, address, LIMIT, false);
+    const exactPromise = lookupRecordWithAddress('parcels', input, address, LIMIT, true);
+    
+    const parsed = await parsedPromise;
+    const exact = await exactPromise;
+    
+    const out = [];
+    const outSet = new Set();
+    for (const parcel of parsed) {
+        if (outSet.has(parcel.parcel)) continue;
+        out.push(parcel);
+        outSet.add(parcel.parcel);
+    }
+    for (const parcel of exact) {
+        if (outSet.has(parcel.parcel)) continue;
+        out.push(parcel);
+        outSet.add(parcel.parcel);
+    }
+    
+    return out;
 }
 
 export async function getParcel(parcelpin) {
