@@ -20,7 +20,7 @@ export default function RentalCard({ parcel }) {
             message: (
                 <div className={styles.messageBox}>
                     <h3>This property is registered as a rental with the City of Cleveland, but has failed to get its required lead safe certification.</h3>
-                    <h3>If you are renting at this property, you can report it to the City for failing to register.</h3>
+                    <h3>If you are renting at this property, you can report this owner to the City for failing to comply.</h3>
                 </div>
             ),
             icon: (
@@ -34,7 +34,7 @@ export default function RentalCard({ parcel }) {
             message: (
                 <div className={styles.messageBox}>
                     <h3>This property is not registered as a rental with the City of Cleveland.</h3>
-                    <h3>If you are renting at this property, you can report it to the City for failing to register.</h3>
+                    <h3>If you are renting at this property, you can report this owner to the City for failing to register.</h3>
                 </div>
             ),
             icon: (
