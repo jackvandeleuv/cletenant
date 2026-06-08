@@ -35,16 +35,16 @@ export default async function ParcelPage({ params }) {
     
     const enforcement = [
         [
-            'Civil Tickets', 
-            parcel.civil_tickets, 
-            'civil-tickets',
-            'Fines issued by the City.',
-        ],
-        [
             'Code Violations', 
             parcel.code_violations, 
             'violations',
             'Official notices of building or zoning code violations.'
+        ],
+        [
+            'Civil Tickets', 
+            parcel.civil_tickets, 
+            'civil-tickets',
+            'Fines issued by the City.',
         ],
     ];
 
@@ -63,7 +63,7 @@ export default async function ParcelPage({ params }) {
         ],
     ];
 
-    const codeInfractionBody = `City of Cleveland issues civil tickets and violations in response to building and zoning code infractions. Both indicate problems and may result in penalties`;
+    const codeInfractionBody = `The City of Cleveland issues violations and civil tickets when properties fail to comply with building or zoning code rules. Both indicate problems and may result in penalties`;
     const complaintBody = <>Complaints can be made through the <a style={{textDecoration: 'underline'}} target="_blank" href="https://www.clevelandohio.gov/311/building-housing">311 website</a> and phone line, and through the <a style={{textDecoration: 'underline'}} target="_blank" href="https://www.clevelandohio.gov/city-hall/departments/public-health/submit-complaint">Department of Public Health</a>.</>;
 
     return (
@@ -77,7 +77,7 @@ export default async function ParcelPage({ params }) {
 
                 <InfractionCard 
                     parcelpin={parcel.parcel}
-                    title={'Code Infractions'}
+                    title={'Infractions'}
                     body={codeInfractionBody}
                     cardSpecs={enforcement}
                 />

@@ -59,9 +59,11 @@ export default async function ViolationPage({ params }) {
                     <p className={styles.recordPageHeaderDescription}>
                         If violations are not corrected, the City may start legal proceedings against a property owner.
                     </p>
-                    <p className={styles.recordPageHeaderDescription}>         
-                        Click "more" to see the official records on the City's Accela Citizen Access site.
-                    </p>
+                    {records && records.length > 0 && (
+                        <p className={styles.recordPageHeaderDescription}>         
+                            Click "more" to see the official records on the City's Accela Citizen Access site.
+                        </p>
+                    )}
                 </div>
                 <div className={styles.recordCardWrapper}>
                     {records.map((record) => (

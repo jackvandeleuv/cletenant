@@ -40,10 +40,10 @@ export default function PageSelectorButtonWrapper() {
     const [buttonsHidden, setButtonsHidden] = useState(true);
     let pagesSpec = [
         ['', 'Overview'],
-        ['civil-tickets', 'Civil Tickets'],
         ['violations', 'Code Violations'],
-        ['complaints-311', 'Complaints (311)'],
-        ['complaints-health', 'Complaints (Health)'],
+        ['civil-tickets', 'Civil Tickets'],
+        ['complaints-311', '311 Complaints'],
+        ['complaints-health', 'Health Complaints'],
     ];
     
     return (
