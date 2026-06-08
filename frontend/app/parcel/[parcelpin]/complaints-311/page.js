@@ -4,6 +4,7 @@ import Complaint311Card from "./Complaint311Card";
 import { convertDateObjectToLabel, parcelObjToAddressLabel } from "@/app/utils/utilities";
 import { logPageVisited } from "@/app/utils/analytics";
 import AddressBanner from "@/app/components/AddressBanner/AddressBanner";
+import FooterSpacer from "@/app/components/FooterSpacer/FooterSpacer";
 
 export async function generateMetadata({ params }) {
     const { parcelpin } = await params;
@@ -63,7 +64,9 @@ export default async function Complaints311Page({ params }) {
                         />
                     ))}
                 </div>
-        </div>
+
+                <FooterSpacer />
+            </div>
         </div>
     )
 }

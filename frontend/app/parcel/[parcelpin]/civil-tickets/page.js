@@ -4,6 +4,7 @@ import CivilTicketsCard from "./CivilTicketCard";
 import { convertDateObjectToLabel, parcelObjToAddressLabel } from "@/app/utils/utilities";
 import { logPageVisited } from "@/app/utils/analytics";
 import AddressBanner from "@/app/components/AddressBanner/AddressBanner";
+import FooterSpacer from "@/app/components/FooterSpacer/FooterSpacer";
 
 export async function generateMetadata({ params }) {
     const { parcelpin } = await params;
@@ -65,6 +66,7 @@ export default async function CivilTicketsPage({ params }) {
                         />
                     ))}
                 </div>
+                <FooterSpacer />
             </div>
         </div>
     )
