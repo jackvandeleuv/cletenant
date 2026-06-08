@@ -54,7 +54,7 @@ export default async function ComplaintsHealthPage({ params }) {
                         Total Health Complaints: {records.length}
                     </h1>
                     <p className={styles.recordPageHeaderDescription}>
-                        The Cleveland Department of Public Health accepts complaints via the City website.
+                        The Cleveland Department of Public Health accepts complaints via the <a style={{textDecoration: 'underline'}} target="_blank" href="https://www.clevelandohio.gov/city-hall/departments/public-health/submit-complaint">City website</a>.
                     </p>
                 </div>
                 <div className={styles.recordCardWrapper}>

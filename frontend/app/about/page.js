@@ -112,7 +112,7 @@ export default function About() {
                             This includes complaints, code infractions, tax delinquency, and survey-based assessments of housing quality.
                         </p>
                         <p> 
-                            However, even when data is made public, it is not always being presented in an easy-to-use, searchable format. 
+                            However, even when data is made public, it is not always presented in an easy-to-use, searchable format. 
                             CleTenant is trying to bridge that gap by providing the simplest, most user-friendly presentation of the data possible.
                         </p>
                         <p>
@@ -131,13 +131,13 @@ export default function About() {
                     <section className={styles.section}>
                         <h1>Where does the data come from?</h1>
                         <p>
-                            The data shown on this site comes from the City of Cleveland's Open Data Portal, which publishes a variety of datasets related to housing quality.
+                            The data shown on this site comes from the City of Cleveland's Open Data Portal, which publishes a variety of datasets related to housing quality. The version on CleTenant is updated weekly.
                         </p>
                         <p>
-                            Some data on this portal is itself sourced from Cuyahoga County. To see more details, visit the <a style={{textDecoration: 'underline'}} href="https://data.clevelandohio.gov" target={'_blank'}>official site</a>.
+                            Some data on the Cleveland Open Data Portal is itself sourced from Cuyahoga County. To see more details, visit the <a style={{textDecoration: 'underline'}} href="https://data.clevelandohio.gov" target={'_blank'}>official site</a>.
                         </p>
                         <p>
-                            All the numbers on CleTenant can be replicated using the following open data sources:
+                            All the numbers on CleTenant can be replicated using the following public data sources:
                         </p>
                         {links.map((spec) => (
                             <SourceCard key={spec.title} spec={spec} />

@@ -53,7 +53,7 @@ export default async function Complaints311Page({ params }) {
                         Total 311 Complaints: {records.length}
                     </h1>
                     <p className={styles.recordPageHeaderDescription}>
-                        The City of Cleveland accepts complaints about rental and building quality through its 311 website and phone line.
+                        The City of Cleveland accepts complaints about rental and building quality through its <a style={{textDecoration: 'underline'}} target="_blank" href="https://www.clevelandohio.gov/311/building-housing">311 website</a> and phone line.
                     </p>
                 </div>
                 <div className={styles.recordCardWrapper}>
