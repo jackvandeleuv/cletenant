@@ -1,7 +1,6 @@
 import pandas as pd 
 
-template = '''
-<?xml version="1.0" encoding="UTF-8"?>
+template = '''<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
         <loc>https://www.cletenant.com/</loc>
@@ -14,7 +13,7 @@ template = '''
     </url>
 '''
 
-def url_template(path, date='2026-08-06'):
+def url_template(path, date='2026-06-08'):
     return f'''
     <url>
         <loc>https://www.cletenant.com/{path}</loc>
@@ -34,4 +33,3 @@ for parcel in parcels['parcel']:
 
 with open('sitemap.xml', 'w') as file:
     file.write(template + '\n</urlset>')
-    
