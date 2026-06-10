@@ -104,6 +104,9 @@ export default function About() {
                         <p>
                             This is an independent project that <strong>is not affiliated</strong> with the City or County government in any way.
                         </p>
+                        <p>
+                            The code behind this site is available on <a style={{textDecoration: 'underline'}} target="_blank" href="https://www.github.com/jackvandeleuv/cletenant">Github</a>.
+                        </p>
                     </section>
                     <section className={styles.section}>
                         <h1>Why did you build this tool?</h1>
