@@ -73,7 +73,7 @@ export default async function ParcelPage({ params }) {
 
                 <ParcelInfoHeader parcel={parcel} />
 
-                <RentalCard parcel={parcel} />
+                {/* <RentalCard parcel={parcel} /> */}
 
                 <InfractionCard 
                     parcelpin={parcel.parcel}
