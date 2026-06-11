@@ -32,7 +32,8 @@ export default function EmbeddedSearchBar() {
                             setSuggestions, 
                             setSuggestionsLoading, 
                             setSuggestionsHidden, 
-                            setSearchInput
+                            setSearchInput,
+                            'owner'
                         )
                     )}
                 />

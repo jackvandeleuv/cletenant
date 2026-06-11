@@ -57,30 +57,30 @@ export function logPageVisited(parcelpin, pageType) {
 }
 
 function logToGoogleAnalytics(eventName, params) {
-    if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
-        window.gtag('event', eventName, params);
-    } 
+    // if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+    //     window.gtag('event', eventName, params);
+    // } 
 }
 
 function logToSupabase(event_type, value) {
-    const headers = {
-        'apikey': CLIENT_SAFE_KEY,
-        'Authorization': `Bearer ${CLIENT_SAFE_KEY}`,
-        'Content-Type': 'application/json',
-        'Prefer': 'return=minimal',
-    };
+    // const headers = {
+    //     'apikey': CLIENT_SAFE_KEY,
+    //     'Authorization': `Bearer ${CLIENT_SAFE_KEY}`,
+    //     'Content-Type': 'application/json',
+    //     'Prefer': 'return=minimal',
+    // };
 
-    const data = {
-        "event_type": event_type, 
-        "value": value, 
-        "session_id": getSessionId(),
-    };
+    // const data = {
+    //     "event_type": event_type, 
+    //     "value": value, 
+    //     "session_id": getSessionId(),
+    // };
 
-    fetch(
-        BACKEND_URL + '/events', {
-            method: 'POST', 
-            headers: headers, 
-            body: JSON.stringify(data)
-        }
-    );
+    // fetch(
+    //     BACKEND_URL + '/events', {
+    //         method: 'POST', 
+    //         headers: headers, 
+    //         body: JSON.stringify(data)
+    //     }
+    // );
 }

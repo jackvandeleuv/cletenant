@@ -144,6 +144,35 @@ export async function getSuggestionsByAddress(input, address) {
     return out;
 }
 
+export async function getSuggestionsByOwner(input, limit) {
+    const DEFAULT_LIMIT = 999;
+
+    const cleanInput = (input || '').trim().toUpperCase();
+
+    let url = new URL(`${BACKEND_URL}/owners`);
+    url.searchParams.set("select", "owner_id,std_deeded_owner,parcels_owned");
+    url.searchParams.set('std_deeded_owner', `like.*${cleanInput}*`);  
+
+    const resp = await fetch(
+        url, 
+        {
+            method: 'GET',
+            headers: {
+                'Range': `0-${limit || DEFAULT_LIMIT}`,
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'apikey': CLIENT_SAFE_KEY,
+                'Authorization': `Bearer ${CLIENT_SAFE_KEY}`,
+            },
+        }
+    );
+
+    if (!resp.ok) {
+        throw new Error(`${resp.status}: ${resp.statusText}`);
+    }
+
+    return await resp.json();
+}
+
 export async function getParcel(parcelpin) {
     const select = `*,owners(${OWNER_COLS.join(',')})`;
     return await lookupRecord('parcels', 'parcel', parcelpin, select);

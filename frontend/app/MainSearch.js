@@ -6,12 +6,14 @@ import styles from './SearchPage.module.css';
 import { clearInputBox, handleSearchInput } from './utils/search';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
+import SearchModeSelector from './components/SearchModeSelector/SearchModeSelector';
 
 export default function MainSearch() {
     const [suggestions, setSuggestions] = useState([]);
     const [suggestionsLoading, setSuggestionsLoading] = useState(false);
     const [suggestionsHidden, setSuggestionsHidden] = useState(true);
     const [searchInput, setSearchInput] = useState('');
+    const [searchMode, setSearchMode] = useState('parcels');
 
     const searchParams = useSearchParams()
     const q = searchParams.get('q') ?? '';
@@ -41,7 +43,7 @@ export default function MainSearch() {
                                 autoComplete="off"
                                 placeholder="Enter an address."
                                 defaultValue={q}
-                                onChange={(e) => handleSearchInput(e.target.value, setSuggestions, setSuggestionsLoading, setSuggestionsHidden, setSearchInput)}
+                                onChange={(e) => handleSearchInput(e.target.value, setSuggestions, setSuggestionsLoading, setSuggestionsHidden, setSearchInput, 'owner')}
                                 autoFocus
                             />
                             {searchInput !== '' && (
@@ -66,6 +68,9 @@ export default function MainSearch() {
                             />
                         )}
                     </div>
+                    
+                    <SearchModeSelector />
+
                     <h3 className={styles.siteSubSubHeader}>
                         This tool uses public, government data, but it is not affiliated with the City or County.
                     </h3>
