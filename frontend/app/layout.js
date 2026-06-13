@@ -6,7 +6,7 @@ export const metadata = {
   title: {
     default: 'CleTenant | Search',
   },
-  description: 'Search public government data about any property in Cleveland.',
+  description: 'Search public government data about any property in the city of Cleveland.',
   alternates: {
     canonical: '/',
   },
@@ -14,14 +14,14 @@ export const metadata = {
     type: 'website',
     siteName: 'CleTenant',
     title: 'CleTenant',
-    description: 'Search public government data about any property in Cleveland.',
+    description: 'Search public government data about any property in the city of Cleveland.',
     url: '/',
     images: ['/opengraph-image.png'],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'CleTenant',
-    description: 'Search public government data about any property in Cleveland.',
+    description: 'Search public government data about any property in the city of Cleveland.',
     images: ['/opengraph-image.png'],
   },
 }

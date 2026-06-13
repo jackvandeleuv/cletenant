@@ -6,7 +6,7 @@ export const metadata = {
     title: {
         default: 'CleTenant | About',
     },
-    description: 'CleTenant is free tool for viewing public data on Cleveland properties. While it is intended primarily for use by renters, data from non-rental properties is also included.',
+    description: 'CleTenant is free tool for viewing public data on properties in the city of Cleveland. While it is intended primarily for use by renters, data from non-rental properties is also included.',
     alternates: {
         canonical: '/about',
     },
@@ -98,8 +98,9 @@ export default function About() {
                     <section className={styles.section}>
                         <h1>Welcome to CleTenant!</h1>
                         <p>
-                            CleTenant is free tool for viewing public data on Cleveland properties.
-                            While it is intended primarily for use by renters, data from non-rental properties is also included.
+                            CleTenant is free tool for viewing public data on properties in the city of Cleveland.
+                            (Other areas of Cuyahoga County outside of the city of Cleveland proper are not included.)
+                            While it is intended primarily for use by renters, data from non-rental properties is also available.
                         </p>
                         <p>
                             This is an independent project that <strong>is not affiliated</strong> with the City or County government in any way.

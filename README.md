@@ -1,12 +1,12 @@
 # Welcome to CleTenant!
 
-CleTenant is free tool for viewing public data on Cleveland properties. While it is intended primarily for use by renters, data from non-rental properties is also included.
+CleTenant is free tool for viewing public data on properties in the city of Cleveland. While it is intended primarily for use by renters, data from non-rental properties is also included.
 
 This is an independent project that **is not affiliated** with the City or County government in any way.
 
 # Why did you build this tool?
 
-There is a lot of data being published by the City and County that sheds light on the quality of housing in Cleveland. This includes complaints, code infractions, tax delinquency, and survey-based assessments of housing quality.
+There is a lot of data being published by the City and County that sheds light on the quality of housing in the city of Cleveland. This includes complaints, code infractions, tax delinquency, and survey-based assessments of housing quality.
 
 However, even when data is made public, it is not always presented in an easy-to-use, searchable format. CleTenant is trying to bridge that gap by providing the simplest, most user-friendly presentation of the data possible.
 

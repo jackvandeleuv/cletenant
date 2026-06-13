@@ -29,7 +29,7 @@ export default function MainSearch() {
                     </div>
                     <div className={styles.siteSubHeaderWrapper}>
                         <h1 className={styles.siteSubHeader}>
-                            Find information about any property in Cleveland.
+                            Find information about any property in the city of Cleveland.
                         </h1>
                     </div>
                     <div className={styles.searchBoxWrapper}>
